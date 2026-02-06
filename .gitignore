@@ -6,4 +6,5 @@ build
 .vscode
 compile_commands.json
 debug_artifacts
-testsoutput/
+tests
+output/
