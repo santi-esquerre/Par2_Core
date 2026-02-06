@@ -1,64 +1,209 @@
-cmake_minimum_required(VERSION 3.8)
-project(par2 LANGUAGES CXX CUDA)
+cmake_minimum_required(VERSION 3.18 FATAL_ERROR)
+project(par2_core VERSION 0.1.0 LANGUAGES CXX CUDA)
 
-# LINUX
-# Create makefile:
-# > cmake -DCMAKE_BUILD_TYPE=Release ..
-# Compile:
-# > make
-#
-# WINDOWS
-# Create MSVC solution:
-# > cmake -G "Visual Studio 15 2017 Win64" -T v140 -DCMAKE_BUILD_TYPE=Release -DYAML_ROOT=C:/path/to/yaml-cpp ..
-# Compile using the Developer Command Prompt for VS:
-# > devenv /Build Release par2.sln
+# =============================================================================
+# Build options
+# =============================================================================
+option(PAR2_BUILD_EXAMPLES "Build examples" ON)
+option(PAR2_BUILD_TESTS "Build tests" OFF)
+option(PAR2_BUILD_LEGACY_RUNNER "Build legacy runner tool (requires yaml-cpp)" OFF)
+option(PAR2_BUILD_ORIGINAL "Build original PAR2 executable for comparison" OFF)
 
-set(CUDA_PROPAGATE_HOST_FLAGS OFF)
+# =============================================================================
+# C++ and CUDA standards
+# =============================================================================
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CUDA_STANDARD 17)
+set(CMAKE_CUDA_STANDARD_REQUIRED ON)
 
-# Add custom cmake module for YamlCpp
-set(CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/CMakeModules
-                      ${CMAKE_MODULE_PATH})
-
-# Search YamlCpp library
-set(YAMLCPP_USE_STATIC_LIBS ON)
-find_package(YamlCpp REQUIRED)
-include_directories(${YAMLCPP_INCLUDE_DIR})
-
-# In MSVC, use static compilation to have a standalone executable
-if(MSVC)
-    foreach(flag_var
-            CMAKE_CXX_FLAGS CMAKE_CXX_FLAGS_DEBUG CMAKE_CXX_FLAGS_RELEASE
-            CMAKE_CXX_FLAGS_MINSIZEREL CMAKE_CXX_FLAGS_RELWITHDEBINFO
-            CMAKE_CUDA_FLAGS CMAKE_CUDA_FLAGS_DEBUG CMAKE_CUDA_FLAGS_RELEASE)
-        if(${flag_var} MATCHES "/MD")
-            string(REGEX REPLACE "/MD" "/MT" ${flag_var} "${${flag_var}}")
-            set(${flag_var} "${${flag_var}}" CACHE INTERNAL "")
-        endif(${flag_var} MATCHES "/MD")
-        if(${flag_var} MATCHES "-MD")
-            string(REGEX REPLACE "-MD" "-MT" ${flag_var} "${${flag_var}}")
-            set(${flag_var} "${${flag_var}}" CACHE INTERNAL "")
-        endif(${flag_var} MATCHES "-MD")
-    endforeach(flag_var)
+# Default CUDA architectures if not specified (75+ for CUDA 12.x)
+if(NOT DEFINED CMAKE_CUDA_ARCHITECTURES)
+    set(CMAKE_CUDA_ARCHITECTURES 75 80 86 89 90)
 endif()
 
-# Compiler definitions
-add_definitions(-DPAR2_FLOAT=float)
-add_definitions(-arch=sm_30
- -gencode=arch=compute_30,code=sm_30
- -gencode=arch=compute_50,code=sm_50
- -gencode=arch=compute_52,code=sm_52
- -gencode=arch=compute_60,code=sm_60
- -gencode=arch=compute_61,code=sm_61
- -gencode=arch=compute_62,code=sm_62
- -gencode=arch=compute_70,code=sm_70
- -gencode=arch=compute_70,code=compute_70)
+# clangd compatibility: avoid CUDA response files
+set(CMAKE_CUDA_USE_RESPONSE_FILE_FOR_INCLUDES OFF)
+set(CMAKE_CUDA_USE_RESPONSE_FILE_FOR_LIBRARIES OFF)
 
-# Create executable
-add_executable(par2 maingpu.cu)
+# =============================================================================
+# Library target: par2_core
+# =============================================================================
+add_library(par2_core STATIC
+    src/transport_engine.cu
+    src/injectors.cu
+    src/stats.cu
+    src/io.cu
+    src/kernels/move_particles.cu
+    src/kernels/cornerfield.cu
+    src/kernels/drift_correction.cu
+)
 
-# Enable C++11 features
-target_compile_features(par2 PUBLIC cxx_std_11)
-set_property(TARGET par2 PROPERTY CUDA_STANDARD 11)
+target_include_directories(par2_core
+    PUBLIC
+        $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+        $<INSTALL_INTERFACE:include>
+    PRIVATE
+        ${CMAKE_CURRENT_SOURCE_DIR}/src
+)
 
-# Link libraries to executable
-target_link_libraries(par2 ${CUDA_curand_LIBRARY} ${CUDA_LIBRARIES} ${YAMLCPP_LIBRARY})
+# CUDA-specific settings
+set_target_properties(par2_core PROPERTIES
+    CUDA_SEPARABLE_COMPILATION ON
+    POSITION_INDEPENDENT_CODE ON
+)
+
+# Compiler warnings
+target_compile_options(par2_core PRIVATE
+    $<$<COMPILE_LANGUAGE:CXX>:-Wall -Wextra>
+    $<$<COMPILE_LANGUAGE:CUDA>:--expt-relaxed-constexpr>
+)
+
+# Debug/Release flags
+target_compile_options(par2_core PRIVATE
+    $<$<AND:$<COMPILE_LANGUAGE:CUDA>,$<CONFIG:Debug>>:-G -lineinfo>
+    $<$<AND:$<COMPILE_LANGUAGE:CUDA>,$<CONFIG:Release>>:-O3 --use_fast_math>
+)
+
+# =============================================================================
+# Examples
+# =============================================================================
+if(PAR2_BUILD_EXAMPLES)
+    add_subdirectory(examples EXCLUDE_FROM_ALL)
+endif()
+
+# =============================================================================
+# Tests
+# =============================================================================
+if(PAR2_BUILD_TESTS)
+    enable_testing()
+    find_package(GTest REQUIRED)
+
+    # M4 Pipeline tests
+    add_executable(test_m4_pipeline tests/test_m4_pipeline.cu)
+    target_link_libraries(test_m4_pipeline PRIVATE par2_core GTest::gtest GTest::gtest_main)
+    target_include_directories(test_m4_pipeline PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
+    set_target_properties(test_m4_pipeline PROPERTIES
+        CUDA_SEPARABLE_COMPILATION ON
+    )
+    add_test(NAME M4_Pipeline COMMAND test_m4_pipeline)
+
+    # M5 Data Access tests
+    add_executable(test_m5_dataaccess tests/test_m5_dataaccess.cu)
+    target_link_libraries(test_m5_dataaccess PRIVATE par2_core GTest::gtest GTest::gtest_main)
+    target_include_directories(test_m5_dataaccess PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
+    set_target_properties(test_m5_dataaccess PROPERTIES
+        CUDA_SEPARABLE_COMPILATION ON
+    )
+    add_test(NAME M5_DataAccess COMMAND test_m5_dataaccess)
+
+    # P2 Stats tests
+    add_executable(test_stats tests/test_stats.cu)
+    target_link_libraries(test_stats PRIVATE par2_core GTest::gtest GTest::gtest_main)
+    target_include_directories(test_stats PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
+    set_target_properties(test_stats PROPERTIES
+        CUDA_SEPARABLE_COMPILATION ON
+    )
+    add_test(NAME Stats COMMAND test_stats)
+endif()
+
+# =============================================================================
+# Legacy Runner Tool (optional)
+# =============================================================================
+if(PAR2_BUILD_LEGACY_RUNNER)
+    add_subdirectory(tools/legacy_runner)
+endif()
+
+# =============================================================================
+# Original PAR2 Executable (for comparison testing)
+# =============================================================================
+if(PAR2_BUILD_ORIGINAL)
+    # Find CUDA toolkit for curand
+    find_package(CUDAToolkit REQUIRED)
+
+    # Use bundled yaml-cpp from legacy_runner if available, otherwise add it
+    if(NOT TARGET yaml-cpp)
+        set(YAML_CPP_BUILD_TESTS OFF CACHE BOOL "" FORCE)
+        set(YAML_CPP_BUILD_TOOLS OFF CACHE BOOL "" FORCE)
+        set(YAML_CPP_BUILD_CONTRIB OFF CACHE BOOL "" FORCE)
+        set(YAML_CPP_FORMAT_SOURCE OFF CACHE BOOL "" FORCE)
+        add_subdirectory(tools/legacy_runner/external/yaml-cpp-0.8.0 yaml-cpp-original EXCLUDE_FROM_ALL)
+    endif()
+
+    # Original PAR2 executable
+    # Note: PParticles.cu is included by PParticles.cuh (template implementation)
+    add_executable(par2_original
+        legacy/maingpu.cu
+    )
+
+    target_include_directories(par2_original PRIVATE
+        ${CMAKE_CURRENT_SOURCE_DIR}/legacy
+    )
+
+    # Define PAR2_FLOAT (use double to match legacy runner for comparison)
+    target_compile_definitions(par2_original PRIVATE
+        PAR2_FLOAT=double
+    )
+
+    target_link_libraries(par2_original PRIVATE
+        yaml-cpp
+        CUDA::cudart
+        CUDA::curand
+    )
+
+    set_target_properties(par2_original PROPERTIES
+        CUDA_SEPARABLE_COMPILATION ON
+    )
+
+    target_compile_options(par2_original PRIVATE
+        $<$<COMPILE_LANGUAGE:CUDA>:--expt-relaxed-constexpr>
+        $<$<AND:$<COMPILE_LANGUAGE:CUDA>,$<CONFIG:Release>>:-O3 --use_fast_math>
+    )
+endif()
+
+# =============================================================================
+# M6 Comparison Tests (original vs core)
+# =============================================================================
+if(PAR2_BUILD_ORIGINAL AND PAR2_BUILD_LEGACY_RUNNER)
+    enable_testing()
+
+    # Find Python for comparison script
+    find_package(Python3 COMPONENTS Interpreter REQUIRED)
+
+    # Test Example01-basic (self-contained, always works)
+    add_test(
+        NAME par2_compare_example01
+        COMMAND ${Python3_EXECUTABLE}
+            ${CMAKE_SOURCE_DIR}/tools/compare_original_vs_core.py
+            --yaml ${CMAKE_SOURCE_DIR}/legacy/Examples/Example01-basic/example.yaml
+            --par2_original $<TARGET_FILE:par2_original>
+            --par2_core $<TARGET_FILE:par2core_legacy_runner>
+            --seed 12345
+            --stat-rtol 0.05
+    )
+
+    # Note: Example02-flopy requires MODFLOW files generated by FloPy.
+    # It cannot be run standalone without first generating tmp/model.ftl
+    # via the FlopyPar2.ipynb notebook. Skipping for automated testing.
+endif()
+
+# =============================================================================
+# Installation
+# =============================================================================
+include(GNUInstallDirs)
+
+install(TARGETS par2_core
+    EXPORT par2_core-targets
+    LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
+    ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
+)
+
+install(DIRECTORY include/par2_core
+    DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}
+)
+
+install(EXPORT par2_core-targets
+    FILE par2_core-targets.cmake
+    NAMESPACE par2::
+    DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/par2_core
+)
