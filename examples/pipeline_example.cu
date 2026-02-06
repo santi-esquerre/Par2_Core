@@ -1,16 +1,32 @@
 /**
- * @file pipeline_integration.cu
- * @brief Example: HPC pipeline integration with multi-stream coordination.
+ * @file pipeline_example.cu
+ * @brief Par2_Core — Canonical pipeline integration example.
  *
- * Demonstrates how to integrate TransportEngine into a multi-solver pipeline
- * using CUDA streams and events for non-blocking synchronization.
+ * This is the **single reference example** for Par2_Core.  It shows how to
+ * embed TransportEngine in a multi-solver HPC pipeline using CUDA streams
+ * and events for fully asynchronous, zero-sync-in-the-hot-loop operation.
  *
- * Key concepts:
- * - Separate streams for flow solver and transport engine
- * - Event-based synchronization (no cudaDeviceSynchronize!)
- * - Zero CPU blocking in the hot loop
+ * ## Key patterns demonstrated
  *
- * @copyright Par2_Core - GPU-native transport engine
+ *  1. **Separate streams** — flow solver and transport each get their own
+ *     cudaStream_t so they can overlap on the GPU.
+ *  2. **Event-based sync** — cudaStreamWaitEvent replaces any global
+ *     cudaDeviceSynchronize; the CPU never blocks inside the loop.
+ *  3. **prepare() vs step()** — prepare() may allocate workspace; step()
+ *     is allocation-free and safe to call at high frequency.
+ *  4. **Explicit synchronize** — only called once, at the end, when we
+ *     need to copy results to host for I/O.
+ *
+ * ## Build & run
+ *
+ *   cmake -S . -B build -DPAR2_BUILD_EXAMPLES=ON
+ *   cmake --build build --target par2_pipeline_example
+ *   ./build/examples/par2_pipeline_example
+ *
+ * No external files (MODFLOW, YAML, legacy) required.
+ *
+ * @copyright Par2_Core — GPU-native transport engine
+ *            Based on PAR² by Calogero B. Rizzo
  */
 
 #include <par2_core/par2_core.hpp>
