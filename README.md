@@ -130,7 +130,7 @@ engine.synchronize();
 
 ## Documentation
 
-📖 **[Full documentation on GitHub Pages](https://GerryR.github.io/par2/)**
+📖 **[Full documentation on GitHub Pages](https://santi-esquerre.github.io/Par2_Core/)**
 <!-- TODO: verify URL once GitHub Pages deployment is set up -->
 
 The docs are built with **Sphinx + MathJax + Breathe (Doxygen → Sphinx)**
