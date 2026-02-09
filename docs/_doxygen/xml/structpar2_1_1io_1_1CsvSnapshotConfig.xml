@@ -1,0 +1,193 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.4" xml:lang="en-US">
+  <compounddef id="structpar2_1_1io_1_1CsvSnapshotConfig" kind="struct" language="C++" prot="public">
+    <compoundname>par2::io::CsvSnapshotConfig</compoundname>
+    <includes refid="io_8hpp" local="no">io.hpp</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structpar2_1_1io_1_1CsvSnapshotConfig_1a1446df872c8b1da73a5dce679945d879" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool par2::io::CsvSnapshotConfig::legacy_format</definition>
+        <argsstring></argsstring>
+        <name>legacy_format</name>
+        <qualifiedname>par2::io::CsvSnapshotConfig::legacy_format</qualifiedname>
+        <initializer>= true</initializer>
+        <briefdescription>
+<para>Use legacy PAR² column names. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>When true: &quot;id,x coord,y coord,z coord&quot; When false: &quot;id,x,y,z&quot;</para>
+<para>Default: true (legacy compatible) </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/par2_core/io.hpp" line="371" column="10" bodyfile="include/par2_core/io.hpp" bodystart="371" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structpar2_1_1io_1_1CsvSnapshotConfig_1a3ed4e5c61338b879f328c31a988dbab9" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool par2::io::CsvSnapshotConfig::include_id</definition>
+        <argsstring></argsstring>
+        <name>include_id</name>
+        <qualifiedname>par2::io::CsvSnapshotConfig::include_id</qualifiedname>
+        <initializer>= true</initializer>
+        <briefdescription>
+<para>Include particle ID column (0-based index). </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Legacy always includes ID. Set false only for special exports. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/par2_core/io.hpp" line="378" column="10" bodyfile="include/par2_core/io.hpp" bodystart="378" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structpar2_1_1io_1_1CsvSnapshotConfig_1a79ada6e0f83f4ea89c2a23761a9d8c2b" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool par2::io::CsvSnapshotConfig::include_time</definition>
+        <argsstring></argsstring>
+        <name>include_time</name>
+        <qualifiedname>par2::io::CsvSnapshotConfig::include_time</qualifiedname>
+        <initializer>= false</initializer>
+        <briefdescription>
+<para>Include time column at start of each row. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Legacy snapshots do NOT include time. Set true for time-series exports. Format: &quot;t,id,x,y,z,...&quot; </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/par2_core/io.hpp" line="386" column="10" bodyfile="include/par2_core/io.hpp" bodystart="386" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structpar2_1_1io_1_1CsvSnapshotConfig_1a8299aedc250e3b0b0da33ec4a078cde6" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool par2::io::CsvSnapshotConfig::include_status</definition>
+        <argsstring></argsstring>
+        <name>include_status</name>
+        <qualifiedname>par2::io::CsvSnapshotConfig::include_status</qualifiedname>
+        <initializer>= false</initializer>
+        <briefdescription>
+<para>Include particle status column (0=Active, 1=Exited, 255=Inactive). </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Not in legacy. Useful for analyzing particle fate with Open BC. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/par2_core/io.hpp" line="393" column="10" bodyfile="include/par2_core/io.hpp" bodystart="393" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structpar2_1_1io_1_1CsvSnapshotConfig_1a63e59b0cdb71c029bad114a2699624d0" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool par2::io::CsvSnapshotConfig::include_wrap_counts</definition>
+        <argsstring></argsstring>
+        <name>include_wrap_counts</name>
+        <qualifiedname>par2::io::CsvSnapshotConfig::include_wrap_counts</qualifiedname>
+        <initializer>= false</initializer>
+        <briefdescription>
+<para>Include wrap count columns (wrapX, wrapY, wrapZ). </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Not in legacy. Useful for debugging periodic BC. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/par2_core/io.hpp" line="400" column="10" bodyfile="include/par2_core/io.hpp" bodystart="400" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structpar2_1_1io_1_1CsvSnapshotConfig_1a813f58d0c5358db03bead31f80e3d619" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool par2::io::CsvSnapshotConfig::include_unwrapped</definition>
+        <argsstring></argsstring>
+        <name>include_unwrapped</name>
+        <qualifiedname>par2::io::CsvSnapshotConfig::include_unwrapped</qualifiedname>
+        <initializer>= false</initializer>
+        <briefdescription>
+<para>Include unwrapped position columns (xu, yu, zu). </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Not in legacy. For periodic BC, unwrapped = wrapped + wrap*L. Requires unwrapped positions to be computed before snapshot. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/par2_core/io.hpp" line="408" column="10" bodyfile="include/par2_core/io.hpp" bodystart="408" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structpar2_1_1io_1_1CsvSnapshotConfig_1abc3a787547d9d5b4f6d5cc3ecf3c0e37" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int par2::io::CsvSnapshotConfig::precision</definition>
+        <argsstring></argsstring>
+        <name>precision</name>
+        <qualifiedname>par2::io::CsvSnapshotConfig::precision</qualifiedname>
+        <initializer>= 15</initializer>
+        <briefdescription>
+<para>Decimal digits for floating point values. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Legacy uses 15 (full double precision). Reduce for smaller files. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/par2_core/io.hpp" line="419" column="9" bodyfile="include/par2_core/io.hpp" bodystart="419" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structpar2_1_1io_1_1CsvSnapshotConfig_1a503d7cd01b242d817d3f3b24aaaeba5b" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int par2::io::CsvSnapshotConfig::stride</definition>
+        <argsstring></argsstring>
+        <name>stride</name>
+        <qualifiedname>par2::io::CsvSnapshotConfig::stride</qualifiedname>
+        <initializer>= 1</initializer>
+        <briefdescription>
+<para>Export every Nth particle. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>stride=1: all particles stride=10: every 10th particle (10% sample)</para>
+<para>Useful for reducing output size with millions of particles. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/par2_core/io.hpp" line="433" column="9" bodyfile="include/par2_core/io.hpp" bodystart="433" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structpar2_1_1io_1_1CsvSnapshotConfig_1a2c697308c80bf858203d59b0d8879767" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int par2::io::CsvSnapshotConfig::max_particles</definition>
+        <argsstring></argsstring>
+        <name>max_particles</name>
+        <qualifiedname>par2::io::CsvSnapshotConfig::max_particles</qualifiedname>
+        <initializer>= -1</initializer>
+        <briefdescription>
+<para>Maximum particles to export. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>-1 = no limit (export all after stride) Positive = hard cap on output rows </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/par2_core/io.hpp" line="441" column="9" bodyfile="include/par2_core/io.hpp" bodystart="441" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Configuration for CSV snapshot export. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>Controls format, columns, and sampling for CSV particle snapshots.</para>
+<sect2 id="structpar2_1_1io_1_1CsvSnapshotConfig_1autotoc_md6">
+<title>Legacy Format</title>
+<para>When <computeroutput>legacy_format = true</computeroutput> (default), output matches legacy PAR² exactly: <programlisting filename=".csv"><codeline><highlight class="normal">id,x<sp/>coord,y<sp/>coord,z<sp/>coord</highlight></codeline>
+<codeline><highlight class="normal">0,1.234567890123456,2.345678901234567,3.456789012345678</highlight></codeline>
+</programlisting></para>
+</sect2>
+<sect2 id="structpar2_1_1io_1_1CsvSnapshotConfig_1autotoc_md7">
+<title>Extended Format</title>
+<para>When <computeroutput>legacy_format = false</computeroutput>, uses simpler column names and allows optional columns for status, wrap counts, and unwrapped positions: <programlisting filename=".csv"><codeline><highlight class="normal">id,x,y,z,xu,yu,zu,status,wrapX,wrapY,wrapZ</highlight></codeline>
+</programlisting> </para>
+</sect2>
+    </detaileddescription>
+    <location file="include/par2_core/io.hpp" line="358" column="1" bodyfile="include/par2_core/io.hpp" bodystart="358" bodyend="442"/>
+    <listofallmembers>
+      <member refid="structpar2_1_1io_1_1CsvSnapshotConfig_1a3ed4e5c61338b879f328c31a988dbab9" prot="public" virt="non-virtual"><scope>par2::io::CsvSnapshotConfig</scope><name>include_id</name></member>
+      <member refid="structpar2_1_1io_1_1CsvSnapshotConfig_1a8299aedc250e3b0b0da33ec4a078cde6" prot="public" virt="non-virtual"><scope>par2::io::CsvSnapshotConfig</scope><name>include_status</name></member>
+      <member refid="structpar2_1_1io_1_1CsvSnapshotConfig_1a79ada6e0f83f4ea89c2a23761a9d8c2b" prot="public" virt="non-virtual"><scope>par2::io::CsvSnapshotConfig</scope><name>include_time</name></member>
+      <member refid="structpar2_1_1io_1_1CsvSnapshotConfig_1a813f58d0c5358db03bead31f80e3d619" prot="public" virt="non-virtual"><scope>par2::io::CsvSnapshotConfig</scope><name>include_unwrapped</name></member>
+      <member refid="structpar2_1_1io_1_1CsvSnapshotConfig_1a63e59b0cdb71c029bad114a2699624d0" prot="public" virt="non-virtual"><scope>par2::io::CsvSnapshotConfig</scope><name>include_wrap_counts</name></member>
+      <member refid="structpar2_1_1io_1_1CsvSnapshotConfig_1a1446df872c8b1da73a5dce679945d879" prot="public" virt="non-virtual"><scope>par2::io::CsvSnapshotConfig</scope><name>legacy_format</name></member>
+      <member refid="structpar2_1_1io_1_1CsvSnapshotConfig_1a2c697308c80bf858203d59b0d8879767" prot="public" virt="non-virtual"><scope>par2::io::CsvSnapshotConfig</scope><name>max_particles</name></member>
+      <member refid="structpar2_1_1io_1_1CsvSnapshotConfig_1abc3a787547d9d5b4f6d5cc3ecf3c0e37" prot="public" virt="non-virtual"><scope>par2::io::CsvSnapshotConfig</scope><name>precision</name></member>
+      <member refid="structpar2_1_1io_1_1CsvSnapshotConfig_1a503d7cd01b242d817d3f3b24aaaeba5b" prot="public" virt="non-virtual"><scope>par2::io::CsvSnapshotConfig</scope><name>stride</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

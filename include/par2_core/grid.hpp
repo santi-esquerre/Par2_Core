@@ -28,14 +28,19 @@ namespace par2 {
  * Describes a uniform Cartesian grid with:
  * - nx × ny × nz cells
  * - Cell sizes dx, dy, dz (uniform per axis)
- * - Origin at (px, py, pz)
+ * - Origin at (px, py, pz) — this is the **corner** of cell (0,0,0),
+ *   not the cell center
  *
  * The domain spans:
  * - X: [px, px + nx*dx]
  * - Y: [py, py + ny*dy]
  * - Z: [pz, pz + nz*dz]
  *
- * For 2D simulations, set nz=1 (the code handles this specially).
+ * For 2D simulations, set nz=1.  The kernel forces Z displacement to zero
+ * and skips Z boundary checks when nz==1.
+ *
+ * @note This is a lightweight POD struct that can be passed by value to
+ *       CUDA kernels (no pointers, no dynamic memory).
  */
 template <typename T>
 struct GridDesc {

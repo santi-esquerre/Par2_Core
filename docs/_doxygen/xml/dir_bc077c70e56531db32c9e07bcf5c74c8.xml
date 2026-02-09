@@ -1,0 +1,23 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.4" xml:lang="en-US">
+  <compounddef id="dir_bc077c70e56531db32c9e07bcf5c74c8" kind="dir">
+    <compoundname>include/par2_core</compoundname>
+    <innerfile refid="boundary_8hpp">boundary.hpp</innerfile>
+    <innerfile refid="debug__policy_8hpp">debug_policy.hpp</innerfile>
+    <innerfile refid="grid_8hpp">grid.hpp</innerfile>
+    <innerfile refid="injectors_8hpp">injectors.hpp</innerfile>
+    <innerfile refid="io_8hpp">io.hpp</innerfile>
+    <innerfile refid="par2__core_8hpp">par2_core.hpp</innerfile>
+    <innerfile refid="stats_8hpp">stats.hpp</innerfile>
+    <innerfile refid="transport__engine_8hpp">transport_engine.hpp</innerfile>
+    <innerfile refid="types_8hpp">types.hpp</innerfile>
+    <innerfile refid="velocity__layout_8hpp">velocity_layout.hpp</innerfile>
+    <innerfile refid="version_8hpp">version.hpp</innerfile>
+    <innerfile refid="views_8hpp">views.hpp</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="include/par2_core/"/>
+  </compounddef>
+</doxygen>

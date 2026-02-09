@@ -1,0 +1,258 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.4" xml:lang="en-US">
+  <compounddef id="debug__policy_8hpp" kind="file" language="C++">
+    <compoundname>debug_policy.hpp</compoundname>
+      <sectiondef kind="define">
+      <memberdef kind="define" id="debug__policy_8hpp_1ab580aa2441865ad28e7c82f43dd642b4" prot="public" static="no">
+        <name>PAR2_DEBUG_LEVEL</name>
+        <initializer>0</initializer>
+        <briefdescription>
+<para>Master debug level for Par2_Core. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><itemizedlist>
+<listitem><para>0: Release (default) - no debug overhead</para>
+</listitem><listitem><para>1: Basic debug - CUDA error checks after launches (no sync)</para>
+</listitem><listitem><para>2: Full debug - adds NaN guards and bounds checks in kernels </para>
+</listitem></itemizedlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/par2_core/debug_policy.hpp" line="64" column="16" bodyfile="include/par2_core/debug_policy.hpp" bodystart="64" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="debug__policy_8hpp_1a439a5b5e8739d673c373dfa3e8fb90e7" prot="public" static="no">
+        <name>PAR2_ENABLE_CUDA_CHECKS</name>
+        <initializer>0</initializer>
+        <briefdescription>
+<para>Enable CUDA error checks after kernel launches. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>When enabled, uses cudaPeekAtLastError() after kernel launches. Does NOT synchronize - only catches launch config errors. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/par2_core/debug_policy.hpp" line="82" column="16" bodyfile="include/par2_core/debug_policy.hpp" bodystart="82" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="debug__policy_8hpp_1a6021a171b13091a4f314b032e514b4ae" prot="public" static="no">
+        <name>PAR2_ENABLE_NAN_GUARDS</name>
+        <initializer>0</initializer>
+        <briefdescription>
+<para>Enable NaN/Inf guards in dispersion computations. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>When enabled, kernels check for division by zero and clamp values to prevent NaN propagation. Adds per-particle overhead. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/par2_core/debug_policy.hpp" line="96" column="16" bodyfile="include/par2_core/debug_policy.hpp" bodystart="96" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="debug__policy_8hpp_1a5aaaf5372fd99661a3a7ca3635de9aa4" prot="public" static="no">
+        <name>PAR2_ENABLE_BOUNDS_CHECKS</name>
+        <initializer>0</initializer>
+        <briefdescription>
+<para>Enable array bounds checking in kernels. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>When enabled, kernels validate array indices before access. Significant per-particle overhead. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/par2_core/debug_policy.hpp" line="110" column="16" bodyfile="include/par2_core/debug_policy.hpp" bodystart="110" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="debug__policy_8hpp_1ad90d3d600e0ce3f692232ac7635ed8f0" prot="public" static="no">
+        <name>PAR2_DEBUG_ONLY</name>
+        <param><defname>code</defname></param>
+        <initializer>((void)0)</initializer>
+        <briefdescription>
+<para>Legacy macro for debug builds. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><xrefsect id="deprecated_1_deprecated000001"><xreftitle>Deprecated</xreftitle><xrefdescription><para>Use PAR2_DEBUG_LEVEL instead. </para>
+</xrefdescription></xrefsect></para>
+<para>Execute code only in debug builds.</para>
+<para>Usage: <programlisting filename=".cpp"><codeline><highlight class="normal"><ref refid="debug__policy_8hpp_1ad90d3d600e0ce3f692232ac7635ed8f0" kindref="member">PAR2_DEBUG_ONLY</ref>(printf(</highlight><highlight class="stringliteral">&quot;Debug:<sp/>x=%f\n&quot;</highlight><highlight class="normal">,<sp/>x);)</highlight></codeline>
+</programlisting> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/par2_core/debug_policy.hpp" line="152" column="12" bodyfile="include/par2_core/debug_policy.hpp" bodystart="152" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="debug__policy_8hpp_1ab4725fc915429bcfe4bce0c873afb425" prot="public" static="no">
+        <name>PAR2_NAN_GUARD</name>
+        <param><defname>code</defname></param>
+        <initializer>((void)0)</initializer>
+        <briefdescription>
+<para>Execute code only with NaN guards enabled. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/par2_core/debug_policy.hpp" line="161" column="12" bodyfile="include/par2_core/debug_policy.hpp" bodystart="161" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="debug__policy_8hpp_1ab0b2ad422e840b79bd9ef73633c94aa6" prot="public" static="no">
+        <name>PAR2_DEVICE_ASSERT</name>
+        <param><defname>cond</defname></param>
+        <param><defname>msg</defname></param>
+        <initializer>((void)0)</initializer>
+        <briefdescription>
+<para>Device-side assertion (only in debug builds). </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Usage in kernels: <programlisting filename=".cpp"><codeline><highlight class="normal"><ref refid="debug__policy_8hpp_1ab0b2ad422e840b79bd9ef73633c94aa6" kindref="member">PAR2_DEVICE_ASSERT</ref>(idx<sp/>&lt;<sp/>n,<sp/></highlight><highlight class="stringliteral">&quot;Index<sp/>out<sp/>of<sp/>bounds&quot;</highlight><highlight class="normal">);</highlight></codeline>
+</programlisting> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/par2_core/debug_policy.hpp" line="176" column="12" bodyfile="include/par2_core/debug_policy.hpp" bodystart="176" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Compile-time debug/release policies for Par2_Core. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>This header defines compile-time macros that control debug features:<itemizedlist>
+<listitem><para>PAR2_DEBUG_LEVEL: Overall debug level (0=release, 1=basic, 2=full)</para>
+</listitem><listitem><para>PAR2_ENABLE_NAN_GUARDS: Enable NaN/Inf checks in kernels</para>
+</listitem><listitem><para>PAR2_ENABLE_BOUNDS_CHECKS: Enable array bounds validation</para>
+</listitem></itemizedlist>
+</para>
+<sect2 id="debug__policy_8hpp_1autotoc_md1">
+<title>Design Philosophy</title>
+<para><bold>Zero overhead in release builds.</bold> All debug checks use <computeroutput>#if</computeroutput> preprocessor conditionals that eliminate code entirely in release builds. No runtime branches in kernel hot paths.</para>
+</sect2>
+<sect2 id="debug__policy_8hpp_1autotoc_md2">
+<title>Usage</title>
+<para>Set these macros via CMake or compiler flags: <programlisting filename=".cmake"><codeline><highlight class="normal">#<sp/>Debug<sp/>build<sp/>with<sp/>full<sp/>checks</highlight></codeline>
+<codeline><highlight class="normal">target_compile_definitions(myapp<sp/>PRIVATE<sp/>PAR2_DEBUG_LEVEL=2)</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#<sp/>Release<sp/>build<sp/>(default,<sp/>no<sp/>checks)</highlight></codeline>
+<codeline><highlight class="normal">#<sp/>Nothing<sp/>needed<sp/>-<sp/>defaults<sp/>to<sp/>PAR2_DEBUG_LEVEL=0</highlight></codeline>
+</programlisting></para>
+<para>Or in code before including any Par2_Core headers: <programlisting filename=".cpp"><codeline><highlight class="preprocessor">#define<sp/>PAR2_DEBUG_LEVEL<sp/>1</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="par2__core_8hpp" kindref="compound">par2_core/par2_core.hpp</ref>&gt;</highlight></codeline>
+</programlisting></para>
+</sect2>
+<sect2 id="debug__policy_8hpp_1autotoc_md3">
+<title>Debug Levels</title>
+<para><table rows="4" cols="3"><row>
+<entry thead="yes"><para>Level   </para>
+</entry><entry thead="yes"><para>Description   </para>
+</entry><entry thead="yes"><para>Overhead    </para>
+</entry></row>
+<row>
+<entry thead="no"><para>0   </para>
+</entry><entry thead="no"><para>Release: No checks, maximum performance   </para>
+</entry><entry thead="no"><para>None    </para>
+</entry></row>
+<row>
+<entry thead="no"><para>1   </para>
+</entry><entry thead="no"><para>Basic: API validation, CUDA error checks   </para>
+</entry><entry thead="no"><para>Minimal (async)    </para>
+</entry></row>
+<row>
+<entry thead="no"><para>2   </para>
+</entry><entry thead="no"><para>Full: + NaN guards, bounds checks   </para>
+</entry><entry thead="no"><para>Per-particle   </para>
+</entry></row>
+</table>
+</para>
+<para><simplesect kind="copyright"><para>Par2_Core - GPU-native transport engine </para>
+</simplesect>
+</para>
+</sect2>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="normal"></highlight></codeline>
+<codeline lineno="44"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>PAR2_CORE_DEBUG_POLICY_HPP</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="45"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>PAR2_CORE_DEBUG_POLICY_HPP</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="46"><highlight class="normal"></highlight></codeline>
+<codeline lineno="47"><highlight class="normal"></highlight><highlight class="comment">//<sp/>=============================================================================</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="48"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Debug<sp/>Level<sp/>Configuration</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="49"><highlight class="normal"></highlight><highlight class="comment">//<sp/>=============================================================================</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="50"><highlight class="normal"></highlight></codeline>
+<codeline lineno="58"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>PAR2_DEBUG_LEVEL</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="59"><highlight class="normal"></highlight><highlight class="preprocessor">#<sp/><sp/>if<sp/>defined(NDEBUG)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="60"><highlight class="normal"></highlight><highlight class="preprocessor">#<sp/><sp/><sp/><sp/>define<sp/>PAR2_DEBUG_LEVEL<sp/>0</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="61"><highlight class="normal"></highlight><highlight class="preprocessor">#<sp/><sp/>elif<sp/>defined(DEBUG)<sp/>||<sp/>defined(_DEBUG)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="62"><highlight class="normal"></highlight><highlight class="preprocessor">#<sp/><sp/><sp/><sp/>define<sp/>PAR2_DEBUG_LEVEL<sp/>1</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="63"><highlight class="normal"></highlight><highlight class="preprocessor">#<sp/><sp/>else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="64" refid="debug__policy_8hpp_1ab580aa2441865ad28e7c82f43dd642b4" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#<sp/><sp/><sp/><sp/>define<sp/>PAR2_DEBUG_LEVEL<sp/>0</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="65"><highlight class="normal"></highlight><highlight class="preprocessor">#<sp/><sp/>endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="66"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="67"><highlight class="normal"></highlight></codeline>
+<codeline lineno="68"><highlight class="normal"></highlight><highlight class="comment">//<sp/>=============================================================================</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="69"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Derived<sp/>Feature<sp/>Macros</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="70"><highlight class="normal"></highlight><highlight class="comment">//<sp/>=============================================================================</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="71"><highlight class="normal"></highlight></codeline>
+<codeline lineno="78"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>PAR2_ENABLE_CUDA_CHECKS</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="79"><highlight class="normal"></highlight><highlight class="preprocessor">#<sp/><sp/>if<sp/>PAR2_DEBUG_LEVEL<sp/>&gt;=<sp/>1</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="80"><highlight class="normal"></highlight><highlight class="preprocessor">#<sp/><sp/><sp/><sp/>define<sp/>PAR2_ENABLE_CUDA_CHECKS<sp/>1</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="81"><highlight class="normal"></highlight><highlight class="preprocessor">#<sp/><sp/>else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="82" refid="debug__policy_8hpp_1a439a5b5e8739d673c373dfa3e8fb90e7" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#<sp/><sp/><sp/><sp/>define<sp/>PAR2_ENABLE_CUDA_CHECKS<sp/>0</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="83"><highlight class="normal"></highlight><highlight class="preprocessor">#<sp/><sp/>endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="84"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="85"><highlight class="normal"></highlight></codeline>
+<codeline lineno="92"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>PAR2_ENABLE_NAN_GUARDS</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="93"><highlight class="normal"></highlight><highlight class="preprocessor">#<sp/><sp/>if<sp/>PAR2_DEBUG_LEVEL<sp/>&gt;=<sp/>2</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="94"><highlight class="normal"></highlight><highlight class="preprocessor">#<sp/><sp/><sp/><sp/>define<sp/>PAR2_ENABLE_NAN_GUARDS<sp/>1</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="95"><highlight class="normal"></highlight><highlight class="preprocessor">#<sp/><sp/>else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="96" refid="debug__policy_8hpp_1a6021a171b13091a4f314b032e514b4ae" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#<sp/><sp/><sp/><sp/>define<sp/>PAR2_ENABLE_NAN_GUARDS<sp/>0</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="97"><highlight class="normal"></highlight><highlight class="preprocessor">#<sp/><sp/>endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="98"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="99"><highlight class="normal"></highlight></codeline>
+<codeline lineno="106"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>PAR2_ENABLE_BOUNDS_CHECKS</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="107"><highlight class="normal"></highlight><highlight class="preprocessor">#<sp/><sp/>if<sp/>PAR2_DEBUG_LEVEL<sp/>&gt;=<sp/>2</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="108"><highlight class="normal"></highlight><highlight class="preprocessor">#<sp/><sp/><sp/><sp/>define<sp/>PAR2_ENABLE_BOUNDS_CHECKS<sp/>1</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="109"><highlight class="normal"></highlight><highlight class="preprocessor">#<sp/><sp/>else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="110" refid="debug__policy_8hpp_1a5aaaf5372fd99661a3a7ca3635de9aa4" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#<sp/><sp/><sp/><sp/>define<sp/>PAR2_ENABLE_BOUNDS_CHECKS<sp/>0</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="111"><highlight class="normal"></highlight><highlight class="preprocessor">#<sp/><sp/>endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="112"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="113"><highlight class="normal"></highlight></codeline>
+<codeline lineno="114"><highlight class="normal"></highlight><highlight class="comment">//<sp/>=============================================================================</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="115"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Legacy<sp/>Compatibility<sp/>(map<sp/>to<sp/>new<sp/>system)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="116"><highlight class="normal"></highlight><highlight class="comment">//<sp/>=============================================================================</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="117"><highlight class="normal"></highlight></codeline>
+<codeline lineno="123"><highlight class="normal"></highlight><highlight class="preprocessor">#if<sp/>PAR2_DEBUG_LEVEL<sp/>&gt;=<sp/>1</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="124"><highlight class="normal"></highlight><highlight class="preprocessor">#<sp/><sp/>ifndef<sp/>PAR2_CORE_DEBUG</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="125"><highlight class="normal"></highlight><highlight class="preprocessor">#<sp/><sp/><sp/><sp/>define<sp/>PAR2_CORE_DEBUG<sp/>1</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="126"><highlight class="normal"></highlight><highlight class="preprocessor">#<sp/><sp/>endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="127"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="128"><highlight class="normal"></highlight></codeline>
+<codeline lineno="129"><highlight class="normal"></highlight><highlight class="comment">//<sp/>=============================================================================</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="130"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Compile-time<sp/>Assertions</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="131"><highlight class="normal"></highlight><highlight class="comment">//<sp/>=============================================================================</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="132"><highlight class="normal"></highlight></codeline>
+<codeline lineno="133"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Sanity<sp/>check:<sp/>debug<sp/>level<sp/>must<sp/>be<sp/>0,<sp/>1,<sp/>or<sp/>2</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="134"><highlight class="normal"></highlight><highlight class="keyword">static_assert</highlight><highlight class="normal">(<ref refid="debug__policy_8hpp_1ab580aa2441865ad28e7c82f43dd642b4" kindref="member">PAR2_DEBUG_LEVEL</ref><sp/>&gt;=<sp/>0<sp/>&amp;&amp;<sp/><ref refid="debug__policy_8hpp_1ab580aa2441865ad28e7c82f43dd642b4" kindref="member">PAR2_DEBUG_LEVEL</ref><sp/>&lt;=<sp/>2,</highlight></codeline>
+<codeline lineno="135"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;PAR2_DEBUG_LEVEL<sp/>must<sp/>be<sp/>0<sp/>(release),<sp/>1<sp/>(basic),<sp/>or<sp/>2<sp/>(full)&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="136"><highlight class="normal"></highlight></codeline>
+<codeline lineno="137"><highlight class="normal"></highlight><highlight class="comment">//<sp/>=============================================================================</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="138"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Debug<sp/>Utility<sp/>Macros<sp/>(for<sp/>internal<sp/>use)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="139"><highlight class="normal"></highlight><highlight class="comment">//<sp/>=============================================================================</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="140"><highlight class="normal"></highlight></codeline>
+<codeline lineno="149"><highlight class="normal"></highlight><highlight class="preprocessor">#if<sp/>PAR2_DEBUG_LEVEL<sp/>&gt;=<sp/>1</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="150"><highlight class="normal"></highlight><highlight class="preprocessor">#<sp/><sp/>define<sp/>PAR2_DEBUG_ONLY(code)<sp/>do<sp/>{<sp/>code<sp/>}<sp/>while(0)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="151"><highlight class="normal"></highlight><highlight class="preprocessor">#else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="152" refid="debug__policy_8hpp_1ad90d3d600e0ce3f692232ac7635ed8f0" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#<sp/><sp/>define<sp/>PAR2_DEBUG_ONLY(code)<sp/>((void)0)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="153"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="154"><highlight class="normal"></highlight></codeline>
+<codeline lineno="158"><highlight class="normal"></highlight><highlight class="preprocessor">#if<sp/>PAR2_ENABLE_NAN_GUARDS</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="159"><highlight class="normal"></highlight><highlight class="preprocessor">#<sp/><sp/>define<sp/>PAR2_NAN_GUARD(code)<sp/>do<sp/>{<sp/>code<sp/>}<sp/>while(0)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="160"><highlight class="normal"></highlight><highlight class="preprocessor">#else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="161" refid="debug__policy_8hpp_1ab4725fc915429bcfe4bce0c873afb425" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#<sp/><sp/>define<sp/>PAR2_NAN_GUARD(code)<sp/>((void)0)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="162"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="163"><highlight class="normal"></highlight></codeline>
+<codeline lineno="172"><highlight class="normal"></highlight><highlight class="preprocessor">#if<sp/>PAR2_DEBUG_LEVEL<sp/>&gt;=<sp/>2<sp/>&amp;&amp;<sp/>defined(__CUDA_ARCH__)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="173"><highlight class="normal"></highlight><highlight class="preprocessor">#<sp/><sp/>define<sp/>PAR2_DEVICE_ASSERT(cond,<sp/>msg)<sp/>\</highlight></codeline>
+<codeline lineno="174"><highlight class="preprocessor"><sp/><sp/><sp/><sp/><sp/>do<sp/>{<sp/>if<sp/>(!(cond))<sp/>{<sp/>printf(&quot;PAR2<sp/>Assert:<sp/>%s<sp/>at<sp/>%s:%d\n&quot;</highlight><highlight class="normal">,<sp/>msg,<sp/>__FILE__,<sp/>__LINE__);<sp/>}<sp/>}<sp/>while(0)</highlight></codeline>
+<codeline lineno="175"><highlight class="normal"></highlight><highlight class="preprocessor">#else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="176" refid="debug__policy_8hpp_1ab0b2ad422e840b79bd9ef73633c94aa6" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#<sp/><sp/>define<sp/>PAR2_DEVICE_ASSERT(cond,<sp/>msg)<sp/>((void)0)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="177"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="178"><highlight class="normal"></highlight></codeline>
+<codeline lineno="179"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">//<sp/>PAR2_CORE_DEBUG_POLICY_HPP</highlight><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="include/par2_core/debug_policy.hpp"/>
+  </compounddef>
+</doxygen>

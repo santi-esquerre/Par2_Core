@@ -1,0 +1,247 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.4" xml:lang="en-US">
+  <compounddef id="stats_8hpp" kind="file" language="C++">
+    <compoundname>stats.hpp</compoundname>
+    <includes refid="views_8hpp" local="yes">views.hpp</includes>
+    <includes refid="grid_8hpp" local="yes">grid.hpp</includes>
+    <includes local="no">cuda_runtime.h</includes>
+    <includedby refid="par2__core_8hpp" local="yes">include/par2_core/par2_core.hpp</includedby>
+    <incdepgraph>
+      <node id="4">
+        <label>grid.hpp</label>
+        <link refid="grid_8hpp"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>include/par2_core/stats.hpp</label>
+        <link refid="stats_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>velocity_layout.hpp</label>
+        <link refid="velocity__layout_8hpp"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>views.hpp</label>
+        <link refid="views_8hpp"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>cassert</label>
+      </node>
+      <node id="6">
+        <label>cstddef</label>
+      </node>
+      <node id="5">
+        <label>cstdint</label>
+      </node>
+      <node id="8">
+        <label>cuda_runtime.h</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="2">
+        <label>include/par2_core/par2_core.hpp</label>
+        <link refid="par2__core_8hpp"/>
+      </node>
+      <node id="1">
+        <label>include/par2_core/stats.hpp</label>
+        <link refid="stats_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="structpar2_1_1Moments3" prot="public">par2::Moments3</innerclass>
+    <innerclass refid="structpar2_1_1ParticleCounts" prot="public">par2::ParticleCounts</innerclass>
+    <innerclass refid="structpar2_1_1StatsResult" prot="public">par2::StatsResult</innerclass>
+    <innerclass refid="structpar2_1_1StatsConfig" prot="public">par2::StatsConfig</innerclass>
+    <innerclass refid="classpar2_1_1StatsComputer" prot="public">par2::StatsComputer</innerclass>
+    <innernamespace refid="namespacepar2">par2</innernamespace>
+    <briefdescription>
+<para>Statistics utilities for Par2_Core. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>GPU-accelerated computation of particle statistics:<itemizedlist>
+<listitem><para>Position moments (mean, variance, standard deviation)</para>
+</listitem><listitem><para>Status counts (active, exited, inactive)</para>
+</listitem><listitem><para>Legacy-compatible functions (concentrationBox, concentrationAfterX)</para>
+</listitem></itemizedlist>
+</para>
+<sect2 id="stats_8hpp_1autotoc_md11">
+<title>Design Principles</title>
+<para><orderedlist>
+<listitem><para><bold>Stream-first</bold>: All async operations take cudaStream_t</para>
+</listitem><listitem><para><bold>No hidden allocs</bold>: StatsComputer pre-allocates buffers</para>
+</listitem><listitem><para><bold>Explicit sync</bold>: User controls synchronization</para>
+</listitem><listitem><para><bold>Legacy-compatible</bold>: Matches legacy semantics where applicable</para>
+</listitem></orderedlist>
+</para>
+</sect2>
+<sect2 id="stats_8hpp_1autotoc_md12">
+<title>Usage Example</title>
+<para><programlisting filename=".cpp"><codeline><highlight class="comment">//<sp/>Create<sp/>stats<sp/>computer<sp/>(allocates<sp/>buffers<sp/>once)</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><ref refid="classpar2_1_1StatsComputer" kindref="compound">par2::StatsComputer&lt;double&gt;</ref><sp/>stats(num_particles);</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">//<sp/>Compute<sp/>stats<sp/>async</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><ref refid="structpar2_1_1StatsConfig" kindref="compound">par2::StatsConfig</ref><sp/>cfg;</highlight></codeline>
+<codeline><highlight class="normal">cfg.<ref refid="structpar2_1_1StatsConfig_1ac6a95f250505087ccd447f8008099c63" kindref="member">use_unwrapped</ref><sp/>=<sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">;<sp/><sp/></highlight><highlight class="comment">//<sp/>For<sp/>periodic<sp/>BC</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">stats.compute_async(particles,<sp/>grid,<sp/>cfg,<sp/>stream);</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">//<sp/>Wait<sp/>and<sp/>fetch</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">cudaStreamSynchronize(stream);</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>result<sp/>=<sp/>stats.fetch_result();</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">std::cout<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;Mean<sp/>X:<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>result.moments.mean[0]<sp/>&lt;&lt;<sp/>std::endl;</highlight></codeline>
+<codeline><highlight class="normal">std::cout<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;Active:<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>result.counts.active<sp/>&lt;&lt;<sp/>std::endl;</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="copyright"><para>Par2_Core - GPU-native transport engine </para>
+</simplesect>
+</para>
+</sect2>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="normal"></highlight></codeline>
+<codeline lineno="39"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>PAR2_CORE_STATS_HPP</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="40"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>PAR2_CORE_STATS_HPP</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="41"><highlight class="normal"></highlight></codeline>
+<codeline lineno="42"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="views_8hpp" kindref="compound">views.hpp</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="43"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="grid_8hpp" kindref="compound">grid.hpp</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="44"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;cuda_runtime.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="45"><highlight class="normal"></highlight></codeline>
+<codeline lineno="46"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespacepar2" kindref="compound">par2</ref><sp/>{</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"></highlight></codeline>
+<codeline lineno="48"><highlight class="normal"></highlight><highlight class="comment">//<sp/>=============================================================================</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="49"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Result<sp/>Structures</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="50"><highlight class="normal"></highlight><highlight class="comment">//<sp/>=============================================================================</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="51"><highlight class="normal"></highlight></codeline>
+<codeline lineno="62"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>T&gt;</highlight></codeline>
+<codeline lineno="63" refid="structpar2_1_1Moments3" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structpar2_1_1Moments3" kindref="compound">Moments3</ref><sp/>{</highlight></codeline>
+<codeline lineno="64" refid="structpar2_1_1Moments3_1a835d62ddcf1398f08de7a2cb7cb932c0" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>T<sp/><ref refid="structpar2_1_1Moments3_1a835d62ddcf1398f08de7a2cb7cb932c0" kindref="member">mean</ref>[3]<sp/>=<sp/>{T(0),<sp/>T(0),<sp/>T(0)};<sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="65" refid="structpar2_1_1Moments3_1a0f07c172941eaf416b4cb840fa6a82d6" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>T<sp/><ref refid="structpar2_1_1Moments3_1a0f07c172941eaf416b4cb840fa6a82d6" kindref="member">var</ref>[3]<sp/>=<sp/>{T(0),<sp/>T(0),<sp/>T(0)};<sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="66" refid="structpar2_1_1Moments3_1a7fb92a0bec5323eb0a0575748c6b9b86" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>T<sp/><ref refid="structpar2_1_1Moments3_1a7fb92a0bec5323eb0a0575748c6b9b86" kindref="member">std</ref>[3]<sp/>=<sp/>{T(0),<sp/>T(0),<sp/>T(0)};<sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="67"><highlight class="normal"></highlight></codeline>
+<codeline lineno="69" refid="structpar2_1_1Moments3_1a30660ebcdd5c14d5b85b0f7e3555129d" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="structpar2_1_1Moments3_1a30660ebcdd5c14d5b85b0f7e3555129d" kindref="member">has_nan</ref>()<sp/>const<sp/>noexcept<sp/>{</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i<sp/>=<sp/>0;<sp/>i<sp/>&lt;<sp/>3;<sp/>++i)<sp/>{</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="structpar2_1_1Moments3_1a835d62ddcf1398f08de7a2cb7cb932c0" kindref="member">mean</ref>[i]<sp/>!=<sp/><ref refid="structpar2_1_1Moments3_1a835d62ddcf1398f08de7a2cb7cb932c0" kindref="member">mean</ref>[i]<sp/>||<sp/><ref refid="structpar2_1_1Moments3_1a0f07c172941eaf416b4cb840fa6a82d6" kindref="member">var</ref>[i]<sp/>!=<sp/><ref refid="structpar2_1_1Moments3_1a0f07c172941eaf416b4cb840fa6a82d6" kindref="member">var</ref>[i]<sp/>||<sp/><ref refid="structpar2_1_1Moments3_1a7fb92a0bec5323eb0a0575748c6b9b86" kindref="member">std</ref>[i]<sp/>!=<sp/><ref refid="structpar2_1_1Moments3_1a7fb92a0bec5323eb0a0575748c6b9b86" kindref="member">std</ref>[i])<sp/>{</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="77"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="78"><highlight class="normal"></highlight></codeline>
+<codeline lineno="85" refid="structpar2_1_1ParticleCounts" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structpar2_1_1ParticleCounts" kindref="compound">ParticleCounts</ref><sp/>{</highlight></codeline>
+<codeline lineno="86" refid="structpar2_1_1ParticleCounts_1ae4590abbfaa02528ca15cbc64750d179" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="structpar2_1_1ParticleCounts_1ae4590abbfaa02528ca15cbc64750d179" kindref="member">total</ref><sp/>=<sp/>0;<sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="87" refid="structpar2_1_1ParticleCounts_1a14897a2acbd520688ee2e8c0cb055903" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="structpar2_1_1ParticleCounts_1a14897a2acbd520688ee2e8c0cb055903" kindref="member">active</ref><sp/>=<sp/>0;<sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="88" refid="structpar2_1_1ParticleCounts_1abd299589ccb012c12a3d08a8ea03e117" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="structpar2_1_1ParticleCounts_1abd299589ccb012c12a3d08a8ea03e117" kindref="member">exited</ref><sp/>=<sp/>0;<sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="89" refid="structpar2_1_1ParticleCounts_1adcb49f625d86def619f444118ffaefa8" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="structpar2_1_1ParticleCounts_1adcb49f625d86def619f444118ffaefa8" kindref="member">inactive</ref><sp/>=<sp/>0;<sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="90"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="91"><highlight class="normal"></highlight></codeline>
+<codeline lineno="97"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>T&gt;</highlight></codeline>
+<codeline lineno="98" refid="structpar2_1_1StatsResult" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structpar2_1_1StatsResult" kindref="compound">StatsResult</ref><sp/>{</highlight></codeline>
+<codeline lineno="99" refid="structpar2_1_1StatsResult_1a2c0177a8e58f4eebafb6330a5c91574f" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structpar2_1_1Moments3" kindref="compound">Moments3&lt;T&gt;</ref><sp/><ref refid="structpar2_1_1StatsResult_1a2c0177a8e58f4eebafb6330a5c91574f" kindref="member">moments</ref>;<sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="100" refid="structpar2_1_1StatsResult_1afac5c76cbb66f990a2d5e1eb9fd6f7a8" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structpar2_1_1ParticleCounts" kindref="compound">ParticleCounts</ref><sp/><ref refid="structpar2_1_1StatsResult_1afac5c76cbb66f990a2d5e1eb9fd6f7a8" kindref="member">counts</ref>;<sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="101" refid="structpar2_1_1StatsResult_1a385ea74d3232d7a1ffb06888f3a94c2b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="structpar2_1_1StatsResult_1a385ea74d3232d7a1ffb06888f3a94c2b" kindref="member">computed</ref><sp/>=<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;<sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="102"><highlight class="normal"></highlight></codeline>
+<codeline lineno="104" refid="structpar2_1_1StatsResult_1a7238fd79bc9f164eafb92ed362fc58af" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="structpar2_1_1StatsResult_1a7238fd79bc9f164eafb92ed362fc58af" kindref="member">valid</ref>()<sp/>const<sp/>noexcept<sp/>{</highlight></codeline>
+<codeline lineno="105"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="structpar2_1_1StatsResult_1a385ea74d3232d7a1ffb06888f3a94c2b" kindref="member">computed</ref><sp/>&amp;&amp;<sp/>!<ref refid="structpar2_1_1StatsResult_1a2c0177a8e58f4eebafb6330a5c91574f" kindref="member">moments</ref>.has_nan();</highlight></codeline>
+<codeline lineno="106"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="107"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="108"><highlight class="normal"></highlight></codeline>
+<codeline lineno="109"><highlight class="normal"></highlight><highlight class="comment">//<sp/>=============================================================================</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="110"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Configuration</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="111"><highlight class="normal"></highlight><highlight class="comment">//<sp/>=============================================================================</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="112"><highlight class="normal"></highlight></codeline>
+<codeline lineno="116" refid="structpar2_1_1StatsConfig" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structpar2_1_1StatsConfig" kindref="compound">StatsConfig</ref><sp/>{</highlight></codeline>
+<codeline lineno="128" refid="structpar2_1_1StatsConfig_1ac6a95f250505087ccd447f8008099c63" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="structpar2_1_1StatsConfig_1ac6a95f250505087ccd447f8008099c63" kindref="member">use_unwrapped</ref><sp/>=<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="129"><highlight class="normal"></highlight></codeline>
+<codeline lineno="142" refid="structpar2_1_1StatsConfig_1a58677d86507194408e0f42d194c8533e" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="structpar2_1_1StatsConfig_1a58677d86507194408e0f42d194c8533e" kindref="member">filter_active_only</ref><sp/>=<sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="143"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="144"><highlight class="normal"></highlight></codeline>
+<codeline lineno="145"><highlight class="normal"></highlight><highlight class="comment">//<sp/>=============================================================================</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="146"><highlight class="normal"></highlight><highlight class="comment">//<sp/>StatsComputer<sp/>Class</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="147"><highlight class="normal"></highlight><highlight class="comment">//<sp/>=============================================================================</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="148"><highlight class="normal"></highlight></codeline>
+<codeline lineno="168"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>T&gt;</highlight></codeline>
+<codeline lineno="169" refid="classpar2_1_1StatsComputer" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classpar2_1_1StatsComputer" kindref="compound">StatsComputer</ref><sp/>{</highlight></codeline>
+<codeline lineno="170"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="179" refid="classpar2_1_1StatsComputer_1a6cadba63284214173a6701625be7463f" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">explicit</highlight><highlight class="normal"><sp/><ref refid="classpar2_1_1StatsComputer_1a6cadba63284214173a6701625be7463f" kindref="member">StatsComputer</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>max_particles);</highlight></codeline>
+<codeline lineno="180"><highlight class="normal"></highlight></codeline>
+<codeline lineno="184" refid="classpar2_1_1StatsComputer_1a3115b8956e498d3e51c42ec807c4f2e0" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classpar2_1_1StatsComputer_1a3115b8956e498d3e51c42ec807c4f2e0" kindref="member">~StatsComputer</ref>();</highlight></codeline>
+<codeline lineno="185"><highlight class="normal"></highlight></codeline>
+<codeline lineno="186"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Non-copyable</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="187" refid="classpar2_1_1StatsComputer_1ac23d76ce5f3a700735f0c989fb73c5d1" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classpar2_1_1StatsComputer_1ac23d76ce5f3a700735f0c989fb73c5d1" kindref="member">StatsComputer</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classpar2_1_1StatsComputer" kindref="compound">StatsComputer</ref>&amp;)<sp/>=<sp/></highlight><highlight class="keyword">delete</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="188" refid="classpar2_1_1StatsComputer_1a4b993efa911878cca7c1fed44887f642" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classpar2_1_1StatsComputer" kindref="compound">StatsComputer</ref>&amp;<sp/><ref refid="classpar2_1_1StatsComputer_1a4b993efa911878cca7c1fed44887f642" kindref="member">operator=</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classpar2_1_1StatsComputer" kindref="compound">StatsComputer</ref>&amp;)<sp/>=<sp/></highlight><highlight class="keyword">delete</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="189"><highlight class="normal"></highlight></codeline>
+<codeline lineno="190"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Movable</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="191" refid="classpar2_1_1StatsComputer_1aeec413c4e43fb9226f13bf317fa2b9a8" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classpar2_1_1StatsComputer_1aeec413c4e43fb9226f13bf317fa2b9a8" kindref="member">StatsComputer</ref>(<ref refid="classpar2_1_1StatsComputer" kindref="compound">StatsComputer</ref>&amp;&amp;<sp/>other)<sp/></highlight><highlight class="keyword">noexcept</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="192" refid="classpar2_1_1StatsComputer_1a408a69b66fe50b40e57768307337f3a8" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classpar2_1_1StatsComputer" kindref="compound">StatsComputer</ref>&amp;<sp/><ref refid="classpar2_1_1StatsComputer_1a408a69b66fe50b40e57768307337f3a8" kindref="member">operator=</ref>(<ref refid="classpar2_1_1StatsComputer" kindref="compound">StatsComputer</ref>&amp;&amp;<sp/>other)<sp/></highlight><highlight class="keyword">noexcept</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="193"><highlight class="normal"></highlight></codeline>
+<codeline lineno="212" refid="classpar2_1_1StatsComputer_1aa6637dee6851cfcbd77bbff1ec6d62c8" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>cudaError_t<sp/><ref refid="classpar2_1_1StatsComputer_1aa6637dee6851cfcbd77bbff1ec6d62c8" kindref="member">compute_async</ref>(</highlight></codeline>
+<codeline lineno="213"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="structpar2_1_1ConstParticlesView" kindref="compound">ConstParticlesView&lt;T&gt;</ref>&amp;<sp/>particles,</highlight></codeline>
+<codeline lineno="214"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="structpar2_1_1GridDesc" kindref="compound">GridDesc&lt;T&gt;</ref>&amp;<sp/>grid,</highlight></codeline>
+<codeline lineno="215"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="structpar2_1_1StatsConfig" kindref="compound">StatsConfig</ref>&amp;<sp/>config,</highlight></codeline>
+<codeline lineno="216"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cudaStream_t<sp/>stream</highlight></codeline>
+<codeline lineno="217"><highlight class="normal"><sp/><sp/><sp/><sp/>);</highlight></codeline>
+<codeline lineno="218"><highlight class="normal"></highlight></codeline>
+<codeline lineno="230" refid="classpar2_1_1StatsComputer_1a13c5539a0d595310bd06eabc5922876b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structpar2_1_1StatsResult" kindref="compound">StatsResult&lt;T&gt;</ref><sp/><ref refid="classpar2_1_1StatsComputer_1a13c5539a0d595310bd06eabc5922876b" kindref="member">fetch_result</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="231"><highlight class="normal"></highlight></codeline>
+<codeline lineno="235" refid="classpar2_1_1StatsComputer_1a2e6998cf0b9980b601937e359c715502" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="classpar2_1_1StatsComputer_1a2e6998cf0b9980b601937e359c715502" kindref="member">capacity</ref>()<sp/>const<sp/>noexcept;</highlight></codeline>
+<codeline lineno="236"><highlight class="normal"></highlight></codeline>
+<codeline lineno="237"><highlight class="normal">private:</highlight></codeline>
+<codeline lineno="238"><highlight class="normal"><sp/><sp/><sp/><sp/>struct<sp/>Impl;</highlight></codeline>
+<codeline lineno="239"><highlight class="normal"><sp/><sp/><sp/><sp/>Impl*<sp/>impl_<sp/>=<sp/></highlight><highlight class="keywordtype">nullptr</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="240"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="241"><highlight class="normal"></highlight></codeline>
+<codeline lineno="242"><highlight class="normal"></highlight><highlight class="comment">//<sp/>=============================================================================</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="243"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Legacy-Compatible<sp/>Convenience<sp/>Functions</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="244"><highlight class="normal"></highlight><highlight class="comment">//<sp/>=============================================================================</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="245"><highlight class="normal"></highlight></codeline>
+<codeline lineno="268"><highlight class="normal">template<sp/>&lt;typename<sp/>T&gt;</highlight></codeline>
+<codeline lineno="269" refid="namespacepar2_1a770790c753e2c1e702444601a7d43f36" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="namespacepar2_1a770790c753e2c1e702444601a7d43f36" kindref="member">concentration_box</ref>(</highlight></codeline>
+<codeline lineno="270"><highlight class="normal"><sp/><sp/><sp/><sp/>const<sp/><ref refid="structpar2_1_1ConstParticlesView" kindref="compound">ConstParticlesView</ref>&lt;T&gt;&amp;<sp/>particles,</highlight></codeline>
+<codeline lineno="271"><highlight class="normal"><sp/><sp/><sp/><sp/>T<sp/>x0,<sp/>T<sp/>y0,<sp/>T<sp/>z0,</highlight></codeline>
+<codeline lineno="272"><highlight class="normal"><sp/><sp/><sp/><sp/>T<sp/>x1,<sp/>T<sp/>y1,<sp/>T<sp/>z1,</highlight></codeline>
+<codeline lineno="273"><highlight class="normal"><sp/><sp/><sp/><sp/>cudaStream_t<sp/>stream<sp/>=<sp/></highlight><highlight class="keywordtype">nullptr</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="274"><highlight class="normal">);</highlight></codeline>
+<codeline lineno="275"><highlight class="normal"></highlight></codeline>
+<codeline lineno="296"><highlight class="normal">template<sp/>&lt;typename<sp/>T&gt;</highlight></codeline>
+<codeline lineno="297" refid="namespacepar2_1a9bce5aded6bb06c022dd23ab5bccc411" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="namespacepar2_1a9bce5aded6bb06c022dd23ab5bccc411" kindref="member">concentration_past_plane</ref>(</highlight></codeline>
+<codeline lineno="298"><highlight class="normal"><sp/><sp/><sp/><sp/>const<sp/><ref refid="structpar2_1_1ConstParticlesView" kindref="compound">ConstParticlesView</ref>&lt;T&gt;&amp;<sp/>particles,</highlight></codeline>
+<codeline lineno="299"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>axis,</highlight></codeline>
+<codeline lineno="300"><highlight class="normal"><sp/><sp/><sp/><sp/>T<sp/>threshold,</highlight></codeline>
+<codeline lineno="301"><highlight class="normal"><sp/><sp/><sp/><sp/>cudaStream_t<sp/>stream<sp/>=<sp/></highlight><highlight class="keywordtype">nullptr</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="302"><highlight class="normal">);</highlight></codeline>
+<codeline lineno="303"><highlight class="normal"></highlight></codeline>
+<codeline lineno="317"><highlight class="normal">template<sp/>&lt;typename<sp/>T&gt;</highlight></codeline>
+<codeline lineno="318" refid="namespacepar2_1a891f2f48e8cee966243f37d1f22878f7" refkind="member"><highlight class="normal"><ref refid="structpar2_1_1ParticleCounts" kindref="compound">ParticleCounts</ref><sp/><ref refid="namespacepar2_1a891f2f48e8cee966243f37d1f22878f7" kindref="member">count_by_status</ref>(</highlight></codeline>
+<codeline lineno="319"><highlight class="normal"><sp/><sp/><sp/><sp/>const<sp/><ref refid="structpar2_1_1ConstParticlesView" kindref="compound">ConstParticlesView</ref>&lt;T&gt;&amp;<sp/>particles,</highlight></codeline>
+<codeline lineno="320"><highlight class="normal"><sp/><sp/><sp/><sp/>cudaStream_t<sp/>stream<sp/>=<sp/></highlight><highlight class="keywordtype">nullptr</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="321"><highlight class="normal">);</highlight></codeline>
+<codeline lineno="322"><highlight class="normal"></highlight></codeline>
+<codeline lineno="323"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>par2</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="324"><highlight class="normal"></highlight></codeline>
+<codeline lineno="325"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">//<sp/>PAR2_CORE_STATS_HPP</highlight><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="include/par2_core/stats.hpp"/>
+  </compounddef>
+</doxygen>

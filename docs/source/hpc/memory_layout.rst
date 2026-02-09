@@ -1,0 +1,59 @@
+Memory Layout
+=============
+
+This chapter documents the GPU memory layout conventions used by Par2_Core.
+
+Grid Indexing
+-------------
+
+Cell indexing follows legacy PAR²:
+
+.. code-block:: text
+
+   cell_id = iz * (ny * nx) + iy * nx + ix
+
+Face/corner fields have size ``(nx+1) × (ny+1) × (nz+1)`` using the same
+row-major convention.
+
+Particle Storage (SoA)
+----------------------
+
+Particles use Structure-of-Arrays layout for coalesced GPU access:
+
+* ``x[N]``, ``y[N]``, ``z[N]`` — wrapped positions
+* ``status[N]`` — active/exited/inactive (optional)
+* ``wrapX[N]``, ``wrapY[N]``, ``wrapZ[N]`` — periodic wrap counters (optional)
+
+No special alignment or padding is required beyond natural CUDA alignment.
+The SoA layout ensures coalesced access when threads process consecutive
+particle indices (the typical pattern in grid-stride loops).
+
+Velocity Views (Zero-Copy)
+--------------------------
+
+Velocity fields are passed to the engine as **non-owning views**
+(device pointers + element count):
+
+* ``FaceFieldView<T>`` (alias ``VelocityView<T>``) — staggered MAC
+  face-centred velocity with ``U``, ``V``, ``W`` pointers.
+* ``CornerFieldView<T>`` (alias ``CornerVelocityView<T>``) — corner-centred
+  velocity with ``Uc``, ``Vc``, ``Wc`` pointers.
+
+Both have size ``(nx+1)(ny+1)(nz+1)`` per component.
+The engine **never** allocates or frees velocity memory.
+
+**Ownership rules:**
+
+.. list-table::
+   :header-rows: 1
+   :widths: 25 15 60
+
+   * - Resource
+     - Owner
+     - Lifetime
+   * - Face velocity
+     - User
+     - Valid from ``bind_velocity`` until next ``bind_velocity`` or destruction.
+   * - Corner velocity
+     - Engine or User
+     - Computed in workspace; freed on dtor. User-provided: same as face velocity.

@@ -1,0 +1,80 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.4" xml:lang="en-US">
+  <compounddef id="structpar2_1_1Version" kind="struct" language="C++" prot="public">
+    <compoundname>par2::Version</compoundname>
+    <includes refid="version_8hpp" local="no">version.hpp</includes>
+      <sectiondef kind="public-static-attrib">
+      <memberdef kind="variable" id="structpar2_1_1Version_1aef4962e2ca9ee6cfdd381887d6f5a384" prot="public" static="yes" constexpr="yes" mutable="no">
+        <type>constexpr int</type>
+        <definition>constexpr int par2::Version::major</definition>
+        <argsstring></argsstring>
+        <name>major</name>
+        <qualifiedname>par2::Version::major</qualifiedname>
+        <initializer>=  0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/par2_core/version.hpp" line="20" column="26" bodyfile="include/par2_core/version.hpp" bodystart="20" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structpar2_1_1Version_1a2d42afa8f54232d9318e2177188cf65d" prot="public" static="yes" constexpr="yes" mutable="no">
+        <type>constexpr int</type>
+        <definition>constexpr int par2::Version::minor</definition>
+        <argsstring></argsstring>
+        <name>minor</name>
+        <qualifiedname>par2::Version::minor</qualifiedname>
+        <initializer>=  1</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/par2_core/version.hpp" line="21" column="26" bodyfile="include/par2_core/version.hpp" bodystart="21" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structpar2_1_1Version_1a05be3f3833d6d50b672aad667cb9ab2f" prot="public" static="yes" constexpr="yes" mutable="no">
+        <type>constexpr int</type>
+        <definition>constexpr int par2::Version::patch</definition>
+        <argsstring></argsstring>
+        <name>patch</name>
+        <qualifiedname>par2::Version::patch</qualifiedname>
+        <initializer>=  0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/par2_core/version.hpp" line="22" column="26" bodyfile="include/par2_core/version.hpp" bodystart="22" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structpar2_1_1Version_1ad3fc883acf27d83724cd795dbee8dbd1" prot="public" static="yes" constexpr="yes" mutable="no">
+        <type>constexpr const char *</type>
+        <definition>constexpr const char* par2::Version::string</definition>
+        <argsstring></argsstring>
+        <name>string</name>
+        <qualifiedname>par2::Version::string</qualifiedname>
+        <initializer>=  &quot;0.1.0&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/par2_core/version.hpp" line="23" column="33" bodyfile="include/par2_core/version.hpp" bodystart="23" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="include/par2_core/version.hpp" line="19" column="1" bodyfile="include/par2_core/version.hpp" bodystart="19" bodyend="24"/>
+    <listofallmembers>
+      <member refid="structpar2_1_1Version_1aef4962e2ca9ee6cfdd381887d6f5a384" prot="public" virt="non-virtual"><scope>par2::Version</scope><name>major</name></member>
+      <member refid="structpar2_1_1Version_1a2d42afa8f54232d9318e2177188cf65d" prot="public" virt="non-virtual"><scope>par2::Version</scope><name>minor</name></member>
+      <member refid="structpar2_1_1Version_1a05be3f3833d6d50b672aad667cb9ab2f" prot="public" virt="non-virtual"><scope>par2::Version</scope><name>patch</name></member>
+      <member refid="structpar2_1_1Version_1ad3fc883acf27d83724cd795dbee8dbd1" prot="public" virt="non-virtual"><scope>par2::Version</scope><name>string</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

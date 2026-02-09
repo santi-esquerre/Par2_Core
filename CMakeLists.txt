@@ -130,6 +130,68 @@ endif()
 # =============================================================================
 # Installation
 # =============================================================================
+
+# =============================================================================
+# Documentation (Doxygen + Sphinx/Breathe)
+# =============================================================================
+option(PAR2_BUILD_DOCS "Build Sphinx/Doxygen documentation" OFF)
+
+if(PAR2_BUILD_DOCS)
+    find_package(Doxygen QUIET)
+    find_program(SPHINX_EXECUTABLE sphinx-build
+        HINTS
+            "${CMAKE_CURRENT_SOURCE_DIR}/.venv/bin"
+            "$ENV{HOME}/.local/bin"
+    )
+
+    if(NOT DOXYGEN_FOUND)
+        message(WARNING "Doxygen not found — 'docs' target will not be available. "
+                        "Install with: sudo apt install doxygen")
+    endif()
+    if(NOT SPHINX_EXECUTABLE)
+        message(WARNING "sphinx-build not found — 'docs' target will not be available. "
+                        "Install with: pip install -r docs/requirements.txt")
+    endif()
+
+    if(DOXYGEN_FOUND AND SPHINX_EXECUTABLE)
+        set(DOXYFILE_IN "${CMAKE_CURRENT_SOURCE_DIR}/docs/Doxyfile")
+        set(DOXYGEN_XML_DIR "${CMAKE_CURRENT_SOURCE_DIR}/docs/_doxygen/xml")
+        set(SPHINX_SOURCE "${CMAKE_CURRENT_SOURCE_DIR}/docs/source")
+        set(SPHINX_BUILD  "${CMAKE_CURRENT_SOURCE_DIR}/docs/build/html")
+
+        # Step 1: Doxygen → XML
+        add_custom_command(
+            OUTPUT  "${DOXYGEN_XML_DIR}/index.xml"
+            COMMAND ${DOXYGEN_EXECUTABLE} "${DOXYFILE_IN}"
+            WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}"
+            DEPENDS "${DOXYFILE_IN}"
+            COMMENT "Generating Doxygen XML..."
+        )
+
+        # Step 2: Sphinx → HTML (depends on Doxygen XML)
+        add_custom_target(docs
+            COMMAND ${SPHINX_EXECUTABLE} -b html
+                    "${SPHINX_SOURCE}" "${SPHINX_BUILD}"
+            WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/docs"
+            DEPENDS "${DOXYGEN_XML_DIR}/index.xml"
+            COMMENT "Building Sphinx HTML documentation..."
+        )
+
+        # Optional: docs-clean target
+        add_custom_target(docs-clean
+            COMMAND ${CMAKE_COMMAND} -E rm -rf
+                    "${CMAKE_CURRENT_SOURCE_DIR}/docs/_doxygen"
+                    "${CMAKE_CURRENT_SOURCE_DIR}/docs/build"
+            COMMENT "Cleaning documentation build artifacts..."
+        )
+
+        message(STATUS "Documentation target 'docs' enabled (Doxygen + Sphinx)")
+    endif()
+endif()
+
+# =============================================================================
+# Install targets
+# =============================================================================
 include(GNUInstallDirs)
 
 install(TARGETS par2_core

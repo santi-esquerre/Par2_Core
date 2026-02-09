@@ -40,6 +40,13 @@ template <typename T> struct EngineImpl;
  *
  * @tparam T Floating point type (float or double)
  *
+ * ## Thread Safety
+ *
+ * TransportEngine is **NOT thread-safe** for concurrent host calls.
+ * All bind_*, step(), synchronize(), etc. must be serialized from the
+ * host side.  Multiple engines on different CUDA streams can run
+ * concurrently (one host thread per engine, or explicit serialization).
+ *
  * ## Usage Example
  *
  * ```cpp
@@ -145,12 +152,19 @@ public:
      *
      * @param vel Velocity view with device pointers to U, V, W arrays
      *
-     * @pre vel.size == grid.num_corners()
+     * @pre vel.size == grid.num_corners()  (= (nx+1)*(ny+1)*(nz+1))
      * @pre All pointers are valid device memory
+     * @post needs_corner_update() == true
+     * @post needs_drift_update() == true (if using Precomputed drift)
      *
-     * The engine does NOT copy this data - operates directly on user buffers.
+     * The engine does NOT copy this data — operates directly on user buffers.
      * The buffers must remain valid until the next bind_velocity() call or
      * engine destruction.
+     *
+     * @warning After calling this, you must call update_derived_fields()
+     *          before the next step() if using Trilinear interpolation or
+     *          on-the-fly drift correction.
+     * @warning Clears any previous bind_corner_velocity() external binding.
      */
     void bind_velocity(const VelocityView<T>& vel);
 
@@ -179,8 +193,15 @@ public:
      *
      * @pre particles.n <= allocated size of arrays
      * @pre All pointers are valid device memory
+     * @post is_prepared() == false — you must call prepare() before step()
      *
      * The engine writes to these arrays during step() and inject_*().
+     *
+     * @warning The particle arrays must remain valid until the next
+     *          bind_particles() call or engine destruction.
+     * @warning If particles.status / wrapX/Y/Z are nullptr and the
+     *          boundary config requires them, call ensure_tracking_arrays()
+     *          or prepare() to auto-allocate.
      */
     void bind_particles(const ParticlesView<T>& particles);
 
@@ -237,13 +258,22 @@ public:
      *
      * @param dt Time step size
      *
-     * @pre Velocity and particles are bound
+     * @pre has_velocity() == true
+     * @pre has_particles() == true
+     * @pre is_prepared() == true (call prepare() first)
+     * @pre needs_corner_update() == false
+     * @pre needs_drift_update() == false
      * @pre dt > 0
      *
      * This is ASYNC: the kernel is launched on the configured stream
      * and returns immediately. NO cudaDeviceSynchronize() inside.
+     * NO allocations occur — all workspace was set up in prepare().
      *
      * After return, particle positions are updated (on GPU).
+     * Particles with ParticleStatus::Exited are skipped.
+     *
+     * @warning Calling step() without prepare() causes an assertion
+     *          failure in debug builds or undefined behavior in release.
      */
     void step(T dt);
 
@@ -253,8 +283,11 @@ public:
      * @param dt Time step size per step
      * @param num_steps Number of steps to execute
      *
+     * @pre Same preconditions as step()
+     *
      * Equivalent to calling step(dt) num_steps times.
      * All steps run on the same stream without intermediate syncs.
+     * No allocations, no synchronization during the loop.
      */
     void advance(T dt, int num_steps);
 
@@ -321,8 +354,13 @@ public:
      * - Open BC: allocates status array if not provided by user
      * - Periodic BC: allocates wrapX/Y/Z if not provided by user
      *
+     * @pre has_particles() == true
+     *
      * This is NOT called automatically to avoid hidden allocations.
-     * Safe to call multiple times - no-op if already allocated.
+     * Safe to call multiple times — no-op if already allocated.
+     * User-provided buffers in ParticlesView take priority (not overwritten).
+     *
+     * @note Also called internally by prepare().
      *
      * @throws std::runtime_error if allocation fails
      */
@@ -337,10 +375,14 @@ public:
      *
      * **MUST be called after bind_particles() and before step()/advance()**.
      *
+     * @pre has_particles() == true
+     * @post is_prepared() == true
+     * @post step() and advance() can be called without allocations
+     *
      * This method:
      * - Allocates RNG states if needed (one-time or grow)
-     * - Initializes RNG states with kernel
-     * - Allocates status/wrap arrays if using Open/Periodic BC
+     * - Initializes RNG states with kernel (seed from EngineConfig::rng_seed)
+     * - Calls ensure_tracking_arrays() for Open/Periodic BC
      * - Computes corner velocity if trilinear mode and face velocity bound
      *
      * All allocations use cudaMallocAsync when available (CUDA 11.2+).

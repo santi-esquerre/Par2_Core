@@ -1,0 +1,158 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.4" xml:lang="en-US">
+  <compounddef id="boundary_8hpp" kind="file" language="C++">
+    <compoundname>boundary.hpp</compoundname>
+    <includes refid="types_8hpp" local="yes">types.hpp</includes>
+    <includedby refid="par2__core_8hpp" local="yes">include/par2_core/par2_core.hpp</includedby>
+    <includedby refid="transport__engine_8hpp" local="yes">include/par2_core/transport_engine.hpp</includedby>
+    <incdepgraph>
+      <node id="1">
+        <label>include/par2_core/boundary.hpp</label>
+        <link refid="boundary_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>types.hpp</label>
+        <link refid="types_8hpp"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>cstddef</label>
+      </node>
+      <node id="4">
+        <label>cstdint</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="1">
+        <label>include/par2_core/boundary.hpp</label>
+        <link refid="boundary_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>include/par2_core/par2_core.hpp</label>
+        <link refid="par2__core_8hpp"/>
+      </node>
+      <node id="3">
+        <label>include/par2_core/transport_engine.hpp</label>
+        <link refid="transport__engine_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="structpar2_1_1AxisBoundary" prot="public">par2::AxisBoundary</innerclass>
+    <innerclass refid="structpar2_1_1BoundaryConfig" prot="public">par2::BoundaryConfig</innerclass>
+    <innernamespace refid="namespacepar2">par2</innernamespace>
+    <briefdescription>
+<para>Boundary condition configuration for Par2_Core. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>Defines per-axis boundary conditions for particle tracking.</para>
+<para><simplesect kind="copyright"><para>Par2_Core - GPU-native transport engine </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>PAR2_CORE_BOUNDARY_HPP</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>PAR2_CORE_BOUNDARY_HPP</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="types_8hpp" kindref="compound">types.hpp</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight></codeline>
+<codeline lineno="15" refid="namespacepar2" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespacepar2" kindref="compound">par2</ref><sp/>{</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>T&gt;</highlight></codeline>
+<codeline lineno="33" refid="structpar2_1_1AxisBoundary" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structpar2_1_1AxisBoundary" kindref="compound">AxisBoundary</ref><sp/>{</highlight></codeline>
+<codeline lineno="34" refid="structpar2_1_1AxisBoundary_1a02809c9a84aa5686a9e4d06ab66aa44e" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="namespacepar2_1ae51033452f837621e98dd86a6977f72e" kindref="member">BoundaryType</ref><sp/><ref refid="structpar2_1_1AxisBoundary_1a02809c9a84aa5686a9e4d06ab66aa44e" kindref="member">lo</ref><sp/>=<sp/><ref refid="namespacepar2_1ae51033452f837621e98dd86a6977f72ea03f4a47830f97377a35321051685071e" kindref="member">BoundaryType::Closed</ref>;<sp/><sp/></highlight></codeline>
+<codeline lineno="35" refid="structpar2_1_1AxisBoundary_1afc54aae576cc5b256fc16da0979e1783" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="namespacepar2_1ae51033452f837621e98dd86a6977f72e" kindref="member">BoundaryType</ref><sp/><ref refid="structpar2_1_1AxisBoundary_1afc54aae576cc5b256fc16da0979e1783" kindref="member">hi</ref><sp/>=<sp/><ref refid="namespacepar2_1ae51033452f837621e98dd86a6977f72ea03f4a47830f97377a35321051685071e" kindref="member">BoundaryType::Closed</ref>;<sp/><sp/></highlight></codeline>
+<codeline lineno="36"><highlight class="normal"></highlight></codeline>
+<codeline lineno="38" refid="structpar2_1_1AxisBoundary_1a193aff3bd593ac1b629a5982d34ca272" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/><ref refid="structpar2_1_1AxisBoundary" kindref="compound">AxisBoundary</ref><sp/><ref refid="structpar2_1_1AxisBoundary_1a193aff3bd593ac1b629a5982d34ca272" kindref="member">symmetric</ref>(<ref refid="namespacepar2_1ae51033452f837621e98dd86a6977f72e" kindref="member">BoundaryType</ref><sp/>type)<sp/></highlight><highlight class="keyword">noexcept</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="structpar2_1_1AxisBoundary" kindref="compound">AxisBoundary</ref>{type,<sp/>type};</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"></highlight></codeline>
+<codeline lineno="43" refid="structpar2_1_1AxisBoundary_1af760dbd83823f117494bf82e5d61fcf7" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/><ref refid="structpar2_1_1AxisBoundary" kindref="compound">AxisBoundary</ref><sp/><ref refid="structpar2_1_1AxisBoundary_1af760dbd83823f117494bf82e5d61fcf7" kindref="member">closed</ref>()<sp/>noexcept<sp/>{</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="structpar2_1_1AxisBoundary_1a193aff3bd593ac1b629a5982d34ca272" kindref="member">symmetric</ref>(<ref refid="namespacepar2_1ae51033452f837621e98dd86a6977f72ea03f4a47830f97377a35321051685071e" kindref="member">BoundaryType::Closed</ref>);</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"></highlight></codeline>
+<codeline lineno="48" refid="structpar2_1_1AxisBoundary_1a9ad72f81de96125179053c5e1631a514" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/><ref refid="structpar2_1_1AxisBoundary" kindref="compound">AxisBoundary</ref><sp/><ref refid="structpar2_1_1AxisBoundary_1a9ad72f81de96125179053c5e1631a514" kindref="member">periodic</ref>()<sp/>noexcept<sp/>{</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="structpar2_1_1AxisBoundary_1a193aff3bd593ac1b629a5982d34ca272" kindref="member">symmetric</ref>(<ref refid="namespacepar2_1ae51033452f837621e98dd86a6977f72eacdcc32a064503184053bd2018d1c0e7e" kindref="member">BoundaryType::Periodic</ref>);</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"></highlight></codeline>
+<codeline lineno="53" refid="structpar2_1_1AxisBoundary_1a6b57c0c78a4b75851c2588c8172f9698" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/><ref refid="structpar2_1_1AxisBoundary" kindref="compound">AxisBoundary</ref><sp/><ref refid="structpar2_1_1AxisBoundary_1a6b57c0c78a4b75851c2588c8172f9698" kindref="member">open</ref>()<sp/>noexcept<sp/>{</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="structpar2_1_1AxisBoundary_1a193aff3bd593ac1b629a5982d34ca272" kindref="member">symmetric</ref>(<ref refid="namespacepar2_1ae51033452f837621e98dd86a6977f72eac3bf447eabe632720a3aa1a7ce401274" kindref="member">BoundaryType::Open</ref>);</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="56"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"></highlight></codeline>
+<codeline lineno="76"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>T&gt;</highlight></codeline>
+<codeline lineno="77" refid="structpar2_1_1BoundaryConfig" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structpar2_1_1BoundaryConfig" kindref="compound">BoundaryConfig</ref><sp/>{</highlight></codeline>
+<codeline lineno="78" refid="structpar2_1_1BoundaryConfig_1a5f04347d1177c8bc55da08025cd4a462" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structpar2_1_1AxisBoundary" kindref="compound">AxisBoundary&lt;T&gt;</ref><sp/><ref refid="structpar2_1_1BoundaryConfig_1a5f04347d1177c8bc55da08025cd4a462" kindref="member">x</ref><sp/>=<sp/><ref refid="structpar2_1_1AxisBoundary_1af760dbd83823f117494bf82e5d61fcf7" kindref="member">AxisBoundary&lt;T&gt;::closed</ref>();<sp/><sp/></highlight></codeline>
+<codeline lineno="79" refid="structpar2_1_1BoundaryConfig_1a361a7db5154ddfa9133b6cdc004ef3f9" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structpar2_1_1AxisBoundary" kindref="compound">AxisBoundary&lt;T&gt;</ref><sp/><ref refid="structpar2_1_1BoundaryConfig_1a361a7db5154ddfa9133b6cdc004ef3f9" kindref="member">y</ref><sp/>=<sp/><ref refid="structpar2_1_1AxisBoundary_1af760dbd83823f117494bf82e5d61fcf7" kindref="member">AxisBoundary&lt;T&gt;::closed</ref>();<sp/><sp/></highlight></codeline>
+<codeline lineno="80" refid="structpar2_1_1BoundaryConfig_1a8bc1b82c883061a8a6372491c9155b98" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structpar2_1_1AxisBoundary" kindref="compound">AxisBoundary&lt;T&gt;</ref><sp/><ref refid="structpar2_1_1BoundaryConfig_1a8bc1b82c883061a8a6372491c9155b98" kindref="member">z</ref><sp/>=<sp/><ref refid="structpar2_1_1AxisBoundary_1af760dbd83823f117494bf82e5d61fcf7" kindref="member">AxisBoundary&lt;T&gt;::closed</ref>();<sp/><sp/></highlight></codeline>
+<codeline lineno="81"><highlight class="normal"></highlight></codeline>
+<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>=========================================================================</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Factory<sp/>methods<sp/>for<sp/>common<sp/>configurations</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>=========================================================================</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="85"><highlight class="normal"></highlight></codeline>
+<codeline lineno="87" refid="structpar2_1_1BoundaryConfig_1a4519cf579c4c3175ecf0c610c0a78043" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/><ref refid="structpar2_1_1BoundaryConfig" kindref="compound">BoundaryConfig</ref><sp/><ref refid="structpar2_1_1BoundaryConfig_1a4519cf579c4c3175ecf0c610c0a78043" kindref="member">all_closed</ref>()<sp/>noexcept<sp/>{</highlight></codeline>
+<codeline lineno="88"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="structpar2_1_1BoundaryConfig" kindref="compound">BoundaryConfig</ref>{</highlight></codeline>
+<codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structpar2_1_1AxisBoundary_1af760dbd83823f117494bf82e5d61fcf7" kindref="member">AxisBoundary&lt;T&gt;::closed</ref>(),</highlight></codeline>
+<codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structpar2_1_1AxisBoundary_1af760dbd83823f117494bf82e5d61fcf7" kindref="member">AxisBoundary&lt;T&gt;::closed</ref>(),</highlight></codeline>
+<codeline lineno="91"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structpar2_1_1AxisBoundary_1af760dbd83823f117494bf82e5d61fcf7" kindref="member">AxisBoundary&lt;T&gt;::closed</ref>()</highlight></codeline>
+<codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="94"><highlight class="normal"></highlight></codeline>
+<codeline lineno="96" refid="structpar2_1_1BoundaryConfig_1aebe4c041178f21dc0fd37db927ef7ff5" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/><ref refid="structpar2_1_1BoundaryConfig" kindref="compound">BoundaryConfig</ref><sp/><ref refid="structpar2_1_1BoundaryConfig_1aebe4c041178f21dc0fd37db927ef7ff5" kindref="member">all_periodic</ref>()<sp/>noexcept<sp/>{</highlight></codeline>
+<codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="structpar2_1_1BoundaryConfig" kindref="compound">BoundaryConfig</ref>{</highlight></codeline>
+<codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structpar2_1_1AxisBoundary_1a9ad72f81de96125179053c5e1631a514" kindref="member">AxisBoundary&lt;T&gt;::periodic</ref>(),</highlight></codeline>
+<codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structpar2_1_1AxisBoundary_1a9ad72f81de96125179053c5e1631a514" kindref="member">AxisBoundary&lt;T&gt;::periodic</ref>(),</highlight></codeline>
+<codeline lineno="100"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structpar2_1_1AxisBoundary_1a9ad72f81de96125179053c5e1631a514" kindref="member">AxisBoundary&lt;T&gt;::periodic</ref>()</highlight></codeline>
+<codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="102"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="103"><highlight class="normal"></highlight></codeline>
+<codeline lineno="105" refid="structpar2_1_1BoundaryConfig_1a2c14039bd7aee9f940d31c25a1e3f313" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/><ref refid="structpar2_1_1BoundaryConfig" kindref="compound">BoundaryConfig</ref><sp/><ref refid="structpar2_1_1BoundaryConfig_1a2c14039bd7aee9f940d31c25a1e3f313" kindref="member">channel_x</ref>()<sp/>noexcept<sp/>{</highlight></codeline>
+<codeline lineno="106"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="structpar2_1_1BoundaryConfig" kindref="compound">BoundaryConfig</ref>{</highlight></codeline>
+<codeline lineno="107"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structpar2_1_1AxisBoundary_1a9ad72f81de96125179053c5e1631a514" kindref="member">AxisBoundary&lt;T&gt;::periodic</ref>(),</highlight></codeline>
+<codeline lineno="108"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structpar2_1_1AxisBoundary_1af760dbd83823f117494bf82e5d61fcf7" kindref="member">AxisBoundary&lt;T&gt;::closed</ref>(),</highlight></codeline>
+<codeline lineno="109"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structpar2_1_1AxisBoundary_1af760dbd83823f117494bf82e5d61fcf7" kindref="member">AxisBoundary&lt;T&gt;::closed</ref>()</highlight></codeline>
+<codeline lineno="110"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="111"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="112"><highlight class="normal"></highlight></codeline>
+<codeline lineno="114" refid="structpar2_1_1BoundaryConfig_1a4fcc5be907a26875c84c15ed38151818" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/><ref refid="structpar2_1_1BoundaryConfig" kindref="compound">BoundaryConfig</ref><sp/><ref refid="structpar2_1_1BoundaryConfig_1a4fcc5be907a26875c84c15ed38151818" kindref="member">open_x</ref>()<sp/>noexcept<sp/>{</highlight></codeline>
+<codeline lineno="115"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="structpar2_1_1BoundaryConfig" kindref="compound">BoundaryConfig</ref>{</highlight></codeline>
+<codeline lineno="116"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structpar2_1_1AxisBoundary_1a6b57c0c78a4b75851c2588c8172f9698" kindref="member">AxisBoundary&lt;T&gt;::open</ref>(),</highlight></codeline>
+<codeline lineno="117"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structpar2_1_1AxisBoundary_1af760dbd83823f117494bf82e5d61fcf7" kindref="member">AxisBoundary&lt;T&gt;::closed</ref>(),</highlight></codeline>
+<codeline lineno="118"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structpar2_1_1AxisBoundary_1af760dbd83823f117494bf82e5d61fcf7" kindref="member">AxisBoundary&lt;T&gt;::closed</ref>()</highlight></codeline>
+<codeline lineno="119"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="120"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="121"><highlight class="normal"></highlight></codeline>
+<codeline lineno="122"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>=========================================================================</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="123"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Query<sp/>methods</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="124"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>=========================================================================</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="125"><highlight class="normal"></highlight></codeline>
+<codeline lineno="127" refid="structpar2_1_1BoundaryConfig_1a44574c6697d5b7ec33312cfe9c1c849e" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="structpar2_1_1BoundaryConfig_1a44574c6697d5b7ec33312cfe9c1c849e" kindref="member">has_periodic</ref>()<sp/>const<sp/>noexcept<sp/>{</highlight></codeline>
+<codeline lineno="128"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="structpar2_1_1BoundaryConfig_1a5f04347d1177c8bc55da08025cd4a462" kindref="member">x</ref>.lo<sp/>==<sp/><ref refid="namespacepar2_1ae51033452f837621e98dd86a6977f72eacdcc32a064503184053bd2018d1c0e7e" kindref="member">BoundaryType::Periodic</ref><sp/>||<sp/><ref refid="structpar2_1_1BoundaryConfig_1a5f04347d1177c8bc55da08025cd4a462" kindref="member">x</ref>.hi<sp/>==<sp/><ref refid="namespacepar2_1ae51033452f837621e98dd86a6977f72eacdcc32a064503184053bd2018d1c0e7e" kindref="member">BoundaryType::Periodic</ref><sp/>||</highlight></codeline>
+<codeline lineno="129"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structpar2_1_1BoundaryConfig_1a361a7db5154ddfa9133b6cdc004ef3f9" kindref="member">y</ref>.lo<sp/>==<sp/><ref refid="namespacepar2_1ae51033452f837621e98dd86a6977f72eacdcc32a064503184053bd2018d1c0e7e" kindref="member">BoundaryType::Periodic</ref><sp/>||<sp/><ref refid="structpar2_1_1BoundaryConfig_1a361a7db5154ddfa9133b6cdc004ef3f9" kindref="member">y</ref>.hi<sp/>==<sp/><ref refid="namespacepar2_1ae51033452f837621e98dd86a6977f72eacdcc32a064503184053bd2018d1c0e7e" kindref="member">BoundaryType::Periodic</ref><sp/>||</highlight></codeline>
+<codeline lineno="130"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structpar2_1_1BoundaryConfig_1a8bc1b82c883061a8a6372491c9155b98" kindref="member">z</ref>.lo<sp/>==<sp/><ref refid="namespacepar2_1ae51033452f837621e98dd86a6977f72eacdcc32a064503184053bd2018d1c0e7e" kindref="member">BoundaryType::Periodic</ref><sp/>||<sp/><ref refid="structpar2_1_1BoundaryConfig_1a8bc1b82c883061a8a6372491c9155b98" kindref="member">z</ref>.hi<sp/>==<sp/><ref refid="namespacepar2_1ae51033452f837621e98dd86a6977f72eacdcc32a064503184053bd2018d1c0e7e" kindref="member">BoundaryType::Periodic</ref>;</highlight></codeline>
+<codeline lineno="131"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="132"><highlight class="normal"></highlight></codeline>
+<codeline lineno="134" refid="structpar2_1_1BoundaryConfig_1a5c126a72b9f0227501ccb6073a238000" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="structpar2_1_1BoundaryConfig_1a5c126a72b9f0227501ccb6073a238000" kindref="member">has_open</ref>()<sp/>const<sp/>noexcept<sp/>{</highlight></codeline>
+<codeline lineno="135"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="structpar2_1_1BoundaryConfig_1a5f04347d1177c8bc55da08025cd4a462" kindref="member">x</ref>.lo<sp/>==<sp/><ref refid="namespacepar2_1ae51033452f837621e98dd86a6977f72eac3bf447eabe632720a3aa1a7ce401274" kindref="member">BoundaryType::Open</ref><sp/>||<sp/><ref refid="structpar2_1_1BoundaryConfig_1a5f04347d1177c8bc55da08025cd4a462" kindref="member">x</ref>.hi<sp/>==<sp/><ref refid="namespacepar2_1ae51033452f837621e98dd86a6977f72eac3bf447eabe632720a3aa1a7ce401274" kindref="member">BoundaryType::Open</ref><sp/>||</highlight></codeline>
+<codeline lineno="136"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structpar2_1_1BoundaryConfig_1a361a7db5154ddfa9133b6cdc004ef3f9" kindref="member">y</ref>.lo<sp/>==<sp/><ref refid="namespacepar2_1ae51033452f837621e98dd86a6977f72eac3bf447eabe632720a3aa1a7ce401274" kindref="member">BoundaryType::Open</ref><sp/>||<sp/><ref refid="structpar2_1_1BoundaryConfig_1a361a7db5154ddfa9133b6cdc004ef3f9" kindref="member">y</ref>.hi<sp/>==<sp/><ref refid="namespacepar2_1ae51033452f837621e98dd86a6977f72eac3bf447eabe632720a3aa1a7ce401274" kindref="member">BoundaryType::Open</ref><sp/>||</highlight></codeline>
+<codeline lineno="137"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structpar2_1_1BoundaryConfig_1a8bc1b82c883061a8a6372491c9155b98" kindref="member">z</ref>.lo<sp/>==<sp/><ref refid="namespacepar2_1ae51033452f837621e98dd86a6977f72eac3bf447eabe632720a3aa1a7ce401274" kindref="member">BoundaryType::Open</ref><sp/>||<sp/><ref refid="structpar2_1_1BoundaryConfig_1a8bc1b82c883061a8a6372491c9155b98" kindref="member">z</ref>.hi<sp/>==<sp/><ref refid="namespacepar2_1ae51033452f837621e98dd86a6977f72eac3bf447eabe632720a3aa1a7ce401274" kindref="member">BoundaryType::Open</ref>;</highlight></codeline>
+<codeline lineno="138"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="139"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="140"><highlight class="normal"></highlight></codeline>
+<codeline lineno="141"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>par2</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="142"><highlight class="normal"></highlight></codeline>
+<codeline lineno="143"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">//<sp/>PAR2_CORE_BOUNDARY_HPP</highlight><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="include/par2_core/boundary.hpp"/>
+  </compounddef>
+</doxygen>

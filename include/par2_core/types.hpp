@@ -27,11 +27,45 @@ namespace par2 {
 
 /**
  * @brief Boundary condition type for a single axis.
+ *
+ * Applied per-face (lo/hi) via AxisBoundary.  See boundary.hpp for full config.
+ *
+ * @see AxisBoundary, BoundaryConfig
  */
 enum class BoundaryType : uint8_t {
-    Closed,    ///< Reflective: displacement zeroed if exits domain
-    Periodic,  ///< Wrap-around: position wraps to opposite side
-    Open       ///< Allow exit: particle marked inactive (TODO: tracking)
+    /**
+     * @brief Reflective boundary (displacement rejection).
+     *
+     * If the proposed new position exits the domain (strict inequality:
+     * lo < x < hi), the **entire displacement is zeroed** and the particle
+     * stays at its current position.  This is a rejection scheme, not a
+     * bounce/reflection scheme.
+     */
+    Closed,
+
+    /**
+     * @brief Wrap-around: position wraps modulo domain length.
+     *
+     * Both lo and hi faces of the axis must be set to Periodic.
+     * A wrap counter (int32_t) tracks net domain crossings.
+     * Wrapped domain is [lo, hi).
+     *
+     * @note Requires status/wrap arrays to be allocated (via
+     *       ensure_tracking_arrays() or prepare()) for wrap counting.
+     */
+    Periodic,
+
+    /**
+     * @brief Allow exit: particle flagged as Exited.
+     *
+     * If the new position exits the domain, the particle retains its
+     * current position and is marked ParticleStatus::Exited.  Exited
+     * particles are skipped in subsequent step() calls.
+     *
+     * @note Requires status array to be allocated (auto-allocated by
+     *       prepare() / ensure_tracking_arrays()).
+     */
+    Open
 };
 
 // =============================================================================
@@ -169,7 +203,23 @@ struct EngineConfig {
     InterpolationMode interpolation_mode = InterpolationMode::Linear;
     DriftCorrectionMode drift_mode = DriftCorrectionMode::TrilinearOnFly;
 
-    uint64_t rng_seed = 12345ULL;  ///< Seed for RNG state initialization
+    /**
+     * @brief Seed for curand XORWOW initialization.
+     *
+     * Each particle gets independent curandState_t initialized via
+     * curand_init(seed, particle_index, 0, &state).
+     *
+     * ## Reproducibility guarantees
+     *
+     * - Same GPU + same seed + same particle count + same step
+     *   sequence → **bitwise identical** results.
+     * - Changing particle count changes thread-to-state mapping →
+     *   different random streams even with same seed.
+     * - Cross-GPU reproducibility is **not** guaranteed (different
+     *   warp scheduling may affect curand internal state).
+     * - float vs double instantiations produce different results.
+     */
+    uint64_t rng_seed = 12345ULL;
 
     /// Block size for CUDA kernels (0 = auto-select)
     int kernel_block_size = 256;

@@ -258,7 +258,9 @@ private:
  * @return Fraction of particles inside box [0.0, 1.0]
  *
  * @note This function SYNCHRONIZES the stream internally.
- *       For async operation, use StatsComputer.
+ * @warning This blocks the CPU until the stream completes.  Unsuitable
+ *          for the hot path in HPC pipelines.  For async operation,
+ *          use StatsComputer.
  *
  * @note Particles with any status are counted (no filtering).
  *       This matches legacy behavior.
@@ -286,6 +288,8 @@ double concentration_box(
  * @return Fraction of particles with coord > threshold [0.0, 1.0]
  *
  * @note This function SYNCHRONIZES the stream internally.
+ * @warning This blocks the CPU until the stream completes.  Unsuitable
+ *          for the hot path in HPC pipelines.
  *
  * @note All particles counted regardless of status (legacy behavior).
  */

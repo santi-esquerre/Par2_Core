@@ -1,0 +1,118 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.4" xml:lang="en-US">
+  <compounddef id="structpar2_1_1UnwrappedPositionsView" kind="struct" language="C++" prot="public">
+    <compoundname>par2::UnwrappedPositionsView</compoundname>
+    <includes refid="views_8hpp" local="no">views.hpp</includes>
+    <templateparamlist>
+      <param>
+        <type>typename T</type>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structpar2_1_1UnwrappedPositionsView_1aee252d227c42a41ad457d9eec878ad13" prot="public" static="no" mutable="no">
+        <type>T *</type>
+        <definition>T* par2::UnwrappedPositionsView&lt; T &gt;::x_u</definition>
+        <argsstring></argsstring>
+        <name>x_u</name>
+        <qualifiedname>par2::UnwrappedPositionsView::x_u</qualifiedname>
+        <initializer>= nullptr</initializer>
+        <briefdescription>
+<para>Unwrapped X positions [device ptr, writable]. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/par2_core/views.hpp" line="175" column="7" bodyfile="include/par2_core/views.hpp" bodystart="175" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structpar2_1_1UnwrappedPositionsView_1a2ff21672915a1052d01ce26df1a3be31" prot="public" static="no" mutable="no">
+        <type>T *</type>
+        <definition>T* par2::UnwrappedPositionsView&lt; T &gt;::y_u</definition>
+        <argsstring></argsstring>
+        <name>y_u</name>
+        <qualifiedname>par2::UnwrappedPositionsView::y_u</qualifiedname>
+        <initializer>= nullptr</initializer>
+        <briefdescription>
+<para>Unwrapped Y positions [device ptr, writable]. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/par2_core/views.hpp" line="176" column="7" bodyfile="include/par2_core/views.hpp" bodystart="176" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structpar2_1_1UnwrappedPositionsView_1a7745574b3fbbdf9fbd0db822fe3407c8" prot="public" static="no" mutable="no">
+        <type>T *</type>
+        <definition>T* par2::UnwrappedPositionsView&lt; T &gt;::z_u</definition>
+        <argsstring></argsstring>
+        <name>z_u</name>
+        <qualifiedname>par2::UnwrappedPositionsView::z_u</qualifiedname>
+        <initializer>= nullptr</initializer>
+        <briefdescription>
+<para>Unwrapped Z positions [device ptr, writable]. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/par2_core/views.hpp" line="177" column="7" bodyfile="include/par2_core/views.hpp" bodystart="177" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structpar2_1_1UnwrappedPositionsView_1aa6d678be9940354317dd4362e2cb8a63" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int par2::UnwrappedPositionsView&lt; T &gt;::capacity</definition>
+        <argsstring></argsstring>
+        <name>capacity</name>
+        <qualifiedname>par2::UnwrappedPositionsView::capacity</qualifiedname>
+        <initializer>= 0</initializer>
+        <briefdescription>
+<para>Allocated size (must be &gt;= n_particles) </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/par2_core/views.hpp" line="178" column="9" bodyfile="include/par2_core/views.hpp" bodystart="178" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="structpar2_1_1UnwrappedPositionsView_1a562f8fe03736a126ec54b68d8779b552" prot="public" static="no" constexpr="yes" const="yes" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
+        <type>constexpr bool</type>
+        <definition>constexpr bool par2::UnwrappedPositionsView&lt; T &gt;::valid</definition>
+        <argsstring>() const noexcept</argsstring>
+        <name>valid</name>
+        <qualifiedname>par2::UnwrappedPositionsView::valid</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/par2_core/views.hpp" line="180" column="20" bodyfile="include/par2_core/views.hpp" bodystart="180" bodyend="182"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>View of unwrapped (continuous) particle positions. </para>
+    </briefdescription>
+    <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>T</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Floating point type</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+Used as output for compute_unwrapped_positions(): x_u = x + wrapX * Lx y_u = y + wrapY * Ly z_u = z + wrapZ * Lz</para>
+<para>The user must allocate these arrays before calling compute_unwrapped_positions. Size must be &gt;= num_particles. </para>
+    </detaileddescription>
+    <location file="include/par2_core/views.hpp" line="174" column="1" bodyfile="include/par2_core/views.hpp" bodystart="174" bodyend="183"/>
+    <listofallmembers>
+      <member refid="structpar2_1_1UnwrappedPositionsView_1aa6d678be9940354317dd4362e2cb8a63" prot="public" virt="non-virtual"><scope>par2::UnwrappedPositionsView</scope><name>capacity</name></member>
+      <member refid="structpar2_1_1UnwrappedPositionsView_1a562f8fe03736a126ec54b68d8779b552" prot="public" virt="non-virtual"><scope>par2::UnwrappedPositionsView</scope><name>valid</name></member>
+      <member refid="structpar2_1_1UnwrappedPositionsView_1aee252d227c42a41ad457d9eec878ad13" prot="public" virt="non-virtual"><scope>par2::UnwrappedPositionsView</scope><name>x_u</name></member>
+      <member refid="structpar2_1_1UnwrappedPositionsView_1a2ff21672915a1052d01ce26df1a3be31" prot="public" virt="non-virtual"><scope>par2::UnwrappedPositionsView</scope><name>y_u</name></member>
+      <member refid="structpar2_1_1UnwrappedPositionsView_1a7745574b3fbbdf9fbd0db822fe3407c8" prot="public" virt="non-virtual"><scope>par2::UnwrappedPositionsView</scope><name>z_u</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

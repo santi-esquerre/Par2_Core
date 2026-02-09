@@ -1,0 +1,102 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.4" xml:lang="en-US">
+  <compounddef id="structpar2_1_1Moments3" kind="struct" language="C++" prot="public">
+    <compoundname>par2::Moments3</compoundname>
+    <includes refid="stats_8hpp" local="no">stats.hpp</includes>
+    <templateparamlist>
+      <param>
+        <type>typename T</type>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structpar2_1_1Moments3_1a835d62ddcf1398f08de7a2cb7cb932c0" prot="public" static="no" mutable="no">
+        <type>T</type>
+        <definition>T par2::Moments3&lt; T &gt;::mean[3]</definition>
+        <argsstring>[3]</argsstring>
+        <name>mean</name>
+        <qualifiedname>par2::Moments3::mean</qualifiedname>
+        <initializer>= {T(0), T(0), T(0)}</initializer>
+        <briefdescription>
+<para>Mean position (x̄, ȳ, z̄) </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/par2_core/stats.hpp" line="64" column="7" bodyfile="include/par2_core/stats.hpp" bodystart="64" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structpar2_1_1Moments3_1a0f07c172941eaf416b4cb840fa6a82d6" prot="public" static="no" mutable="no">
+        <type>T</type>
+        <definition>T par2::Moments3&lt; T &gt;::var[3]</definition>
+        <argsstring>[3]</argsstring>
+        <name>var</name>
+        <qualifiedname>par2::Moments3::var</qualifiedname>
+        <initializer>= {T(0), T(0), T(0)}</initializer>
+        <briefdescription>
+<para>Variance (σ²_x, σ²_y, σ²_z) </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/par2_core/stats.hpp" line="65" column="7" bodyfile="include/par2_core/stats.hpp" bodystart="65" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structpar2_1_1Moments3_1a7fb92a0bec5323eb0a0575748c6b9b86" prot="public" static="no" mutable="no">
+        <type>T</type>
+        <definition>T par2::Moments3&lt; T &gt;::std[3]</definition>
+        <argsstring>[3]</argsstring>
+        <name>std</name>
+        <qualifiedname>par2::Moments3::std</qualifiedname>
+        <initializer>= {T(0), T(0), T(0)}</initializer>
+        <briefdescription>
+<para>Standard deviation (σ_x, σ_y, σ_z) </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/par2_core/stats.hpp" line="66" column="7" bodyfile="include/par2_core/stats.hpp" bodystart="66" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="structpar2_1_1Moments3_1a30660ebcdd5c14d5b85b0f7e3555129d" prot="public" static="no" const="yes" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool par2::Moments3&lt; T &gt;::has_nan</definition>
+        <argsstring>() const noexcept</argsstring>
+        <name>has_nan</name>
+        <qualifiedname>par2::Moments3::has_nan</qualifiedname>
+        <briefdescription>
+<para>Check if any component is NaN. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/par2_core/stats.hpp" line="69" column="10" bodyfile="include/par2_core/stats.hpp" bodystart="69" bodyend="76"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>3D moment statistics (mean, variance, std). </para>
+    </briefdescription>
+    <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>T</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Floating point type</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+For unwrapped positions under periodic BC: x_unwrap = x + wrapX * Lx</para>
+<para>Variance uses the unbiased estimator (N-1 denominator). </para>
+    </detaileddescription>
+    <location file="include/par2_core/stats.hpp" line="63" column="1" bodyfile="include/par2_core/stats.hpp" bodystart="63" bodyend="77"/>
+    <listofallmembers>
+      <member refid="structpar2_1_1Moments3_1a30660ebcdd5c14d5b85b0f7e3555129d" prot="public" virt="non-virtual"><scope>par2::Moments3</scope><name>has_nan</name></member>
+      <member refid="structpar2_1_1Moments3_1a835d62ddcf1398f08de7a2cb7cb932c0" prot="public" virt="non-virtual"><scope>par2::Moments3</scope><name>mean</name></member>
+      <member refid="structpar2_1_1Moments3_1a7fb92a0bec5323eb0a0575748c6b9b86" prot="public" virt="non-virtual"><scope>par2::Moments3</scope><name>std</name></member>
+      <member refid="structpar2_1_1Moments3_1a0f07c172941eaf416b4cb840fa6a82d6" prot="public" virt="non-virtual"><scope>par2::Moments3</scope><name>var</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

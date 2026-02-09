@@ -21,6 +21,13 @@ namespace par2 {
  *
  * Specifies behavior at both the low (min) and high (max) boundaries.
  * For example, a pipe might have Periodic in X, Closed in Y and Z.
+ *
+ * @warning For Periodic BC, **both** lo and hi must be Periodic
+ *          (symmetric periodic).  Mixed periodic (e.g., lo=Periodic,
+ *          hi=Closed) is treated as **non-periodic** for that axis.
+ *
+ * @note Domain validity uses strict inequalities: lo < x < hi
+ *       (matching legacy PAR² CartesianGrid::validX/Y/Z).
  */
 template <typename T>
 struct AxisBoundary {
@@ -53,8 +60,18 @@ struct AxisBoundary {
  *
  * @tparam T Floating point type
  *
- * Combines boundary conditions for all three axes.
- * Default is closed (reflective) on all boundaries, matching legacy PAR² behavior.
+ * Combines boundary conditions for all three axes (six faces total).
+ * Default is closed (reflective) on all boundaries, matching legacy
+ * PAR² behavior.
+ *
+ * ## Tracking array requirements
+ *
+ * - If any axis is **Open**, a status array (uint8_t per particle)
+ *   is required.  Auto-allocated by prepare() / ensure_tracking_arrays().
+ * - If any axis is **Periodic**, wrap counters (int32_t per particle
+ *   per periodic axis) are required.  Auto-allocated similarly.
+ *
+ * @see TransportEngine::prepare(), TransportEngine::ensure_tracking_arrays()
  */
 template <typename T>
 struct BoundaryConfig {

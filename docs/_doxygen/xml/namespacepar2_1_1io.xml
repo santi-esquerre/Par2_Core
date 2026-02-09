@@ -1,0 +1,380 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.4" xml:lang="en-US">
+  <compounddef id="namespacepar2_1_1io" kind="namespace" language="C++">
+    <compoundname>par2::io</compoundname>
+    <innerclass refid="structpar2_1_1io_1_1CsvSnapshotConfig" prot="public">par2::io::CsvSnapshotConfig</innerclass>
+    <innerclass refid="classpar2_1_1io_1_1CsvSnapshotWriter" prot="public">par2::io::CsvSnapshotWriter</innerclass>
+    <innerclass refid="structpar2_1_1io_1_1HostParticlesBuffer" prot="public">par2::io::HostParticlesBuffer</innerclass>
+    <innerclass refid="classpar2_1_1io_1_1PinnedParticlesBuffer" prot="public">par2::io::PinnedParticlesBuffer</innerclass>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="namespacepar2_1_1io_1af6cc3c2fcea51cfe04ae59feaa9bf95a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename T</type>
+          </param>
+        </templateparamlist>
+        <type>cudaError_t</type>
+        <definition>cudaError_t par2::io::download_positions_async</definition>
+        <argsstring>(HostParticlesBuffer&lt; T &gt; &amp;host, const ConstParticlesView&lt; T &gt; &amp;device, int n, cudaStream_t stream)</argsstring>
+        <name>download_positions_async</name>
+        <qualifiedname>par2::io::download_positions_async</qualifiedname>
+        <param>
+          <type><ref refid="structpar2_1_1io_1_1HostParticlesBuffer" kindref="compound">HostParticlesBuffer</ref>&lt; T &gt; &amp;</type>
+          <declname>host</declname>
+        </param>
+        <param>
+          <type>const <ref refid="structpar2_1_1ConstParticlesView" kindref="compound">ConstParticlesView</ref>&lt; T &gt; &amp;</type>
+          <declname>device</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>n</declname>
+        </param>
+        <param>
+          <type>cudaStream_t</type>
+          <declname>stream</declname>
+        </param>
+        <briefdescription>
+<para>Download wrapped particle positions asynchronously. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>T</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Floating point type</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>host</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Destination host buffer (must have capacity &gt;= n) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>device</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Source device view </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>n</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Number of particles to download </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>stream</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>CUDA stream for async copy</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>cudaSuccess on success, error code otherwise</para>
+</simplesect>
+<bold>Important</bold>: For pinned host memory, copy overlaps with computation. After this call, synchronize the stream before reading host data. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/par2_core/io.hpp" line="100" column="20" bodyfile="include/par2_core/io.hpp" bodystart="100" bodyend="132"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacepar2_1_1io_1a68ccb197c34cc363235d773a59682166" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename T</type>
+          </param>
+        </templateparamlist>
+        <type>cudaError_t</type>
+        <definition>cudaError_t par2::io::download_unwrapped_async</definition>
+        <argsstring>(HostParticlesBuffer&lt; T &gt; &amp;host, const UnwrappedPositionsView&lt; T &gt; &amp;device_unwrap, int n, cudaStream_t stream)</argsstring>
+        <name>download_unwrapped_async</name>
+        <qualifiedname>par2::io::download_unwrapped_async</qualifiedname>
+        <param>
+          <type><ref refid="structpar2_1_1io_1_1HostParticlesBuffer" kindref="compound">HostParticlesBuffer</ref>&lt; T &gt; &amp;</type>
+          <declname>host</declname>
+        </param>
+        <param>
+          <type>const <ref refid="structpar2_1_1UnwrappedPositionsView" kindref="compound">UnwrappedPositionsView</ref>&lt; T &gt; &amp;</type>
+          <declname>device_unwrap</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>n</declname>
+        </param>
+        <param>
+          <type>cudaStream_t</type>
+          <declname>stream</declname>
+        </param>
+        <briefdescription>
+<para>Download unwrapped positions asynchronously. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>T</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Floating point type</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>host</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Destination (must have x_u/y_u/z_u set) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>device_unwrap</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Source device unwrapped view </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>n</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Number of particles </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>stream</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>CUDA stream</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>cudaSuccess on success</para>
+</simplesect>
+Call after engine.compute_unwrapped_positions() to get continuous positions. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/par2_core/io.hpp" line="149" column="20" bodyfile="include/par2_core/io.hpp" bodystart="149" bodyend="172"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacepar2_1_1io_1a9517c7329b8d411d3a84ca7a134ff6e0" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename T</type>
+          </param>
+        </templateparamlist>
+        <type>bool</type>
+        <definition>bool par2::io::write_particles_csv</definition>
+        <argsstring>(const std::string &amp;filename, const HostParticlesBuffer&lt; T &gt; &amp;host, int n, T time, bool include_unwrapped=true, bool include_status=true, bool append=true)</argsstring>
+        <name>write_particles_csv</name>
+        <qualifiedname>par2::io::write_particles_csv</qualifiedname>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>filename</declname>
+        </param>
+        <param>
+          <type>const <ref refid="structpar2_1_1io_1_1HostParticlesBuffer" kindref="compound">HostParticlesBuffer</ref>&lt; T &gt; &amp;</type>
+          <declname>host</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>n</declname>
+        </param>
+        <param>
+          <type>T</type>
+          <declname>time</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>include_unwrapped</declname>
+          <defval>true</defval>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>include_status</declname>
+          <defval>true</defval>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>append</declname>
+          <defval>true</defval>
+        </param>
+        <briefdescription>
+<para>Write particle snapshot to CSV file. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>T</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Floating point type</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>filename</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Output file path </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>host</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Host buffer with downloaded data </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>n</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Number of particles </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>time</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Current simulation time </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>include_unwrapped</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>If true, include x_u,y_u,z_u columns </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>include_status</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>If true, include status column </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>append</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>If true, append to file; otherwise overwrite</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>true on success, false on I/O error</para>
+</simplesect>
+CSV format: t,id,x,y,z[,xu,yu,zu][,status]</para>
+<para><bold>Note</bold>: This is a blocking host-side operation. Call after cudaStreamSynchronize to ensure data is ready. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/par2_core/io.hpp" line="199" column="13" bodyfile="include/par2_core/io.hpp" bodystart="199" bodyend="243"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacepar2_1_1io_1a73a0b9995b28fd6d067ca6360950e18c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename T</type>
+          </param>
+        </templateparamlist>
+        <type>bool</type>
+        <definition>bool par2::io::write_legacy_csv_snapshot</definition>
+        <argsstring>(const ConstParticlesView&lt; T &gt; &amp;particles, const std::string &amp;filename, cudaStream_t stream=nullptr)</argsstring>
+        <name>write_legacy_csv_snapshot</name>
+        <qualifiedname>par2::io::write_legacy_csv_snapshot</qualifiedname>
+        <param>
+          <type>const <ref refid="structpar2_1_1ConstParticlesView" kindref="compound">ConstParticlesView</ref>&lt; T &gt; &amp;</type>
+          <declname>particles</declname>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>filename</declname>
+        </param>
+        <param>
+          <type>cudaStream_t</type>
+          <declname>stream</declname>
+          <defval>nullptr</defval>
+        </param>
+        <briefdescription>
+<para>Write legacy-format CSV snapshot (one-shot, no reused buffers). </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>T</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Floating point type</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+Convenience function that matches legacy PAR² exportCSV() exactly:<itemizedlist>
+<listitem><para>Columns: id, x coord, y coord, z coord</para>
+</listitem><listitem><para>Precision: 15 decimal digits</para>
+</listitem><listitem><para>No status, no wrap, no time</para>
+</listitem></itemizedlist>
+</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>particles</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Particle positions (device) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>filename</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Output file path </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>stream</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>CUDA stream</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>true on success</para>
+</simplesect>
+<simplesect kind="note"><para>Allocates temporary pinned memory. For repeated exports, prefer <ref refid="classpar2_1_1io_1_1CsvSnapshotWriter" kindref="compound">CsvSnapshotWriter</ref> to reuse buffers.</para>
+</simplesect>
+<simplesect kind="note"><para>Synchronizes stream internally. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/par2_core/io.hpp" line="606" column="13" bodyfile="include/par2_core/io.hpp" bodystart="606" bodyend="658"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="include/par2_core/io.hpp" line="42" column="1"/>
+  </compounddef>
+</doxygen>

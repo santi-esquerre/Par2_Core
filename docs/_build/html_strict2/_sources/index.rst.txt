@@ -1,0 +1,62 @@
+Par2_Core Documentation
+=======================
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Scientific Background
+
+   theory/rwpt
+   theory/dispersion_tensor
+   theory/drift_correction
+   theory/interpolation
+   theory/boundaries
+
+.. toctree::
+   :maxdepth: 2
+   :caption: HPC / GPU Architecture
+
+   hpc/memory_layout
+   hpc/streams_events
+   hpc/workspace_allocs
+   hpc/rng_reproducibility
+   hpc/performance_notes
+
+.. toctree::
+   :maxdepth: 2
+   :caption: API Reference
+
+   api/index
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Developer Notes
+
+   dev/semantic_map
+
+
+Overview
+--------
+
+**Par2_Core** is a GPU-native Random Walk Particle Tracking (RWPT) engine
+designed for integration into HPC multi-physics pipelines.  It solves the
+advection–dispersion equation (ADE) via stochastic particle methods on
+NVIDIA GPUs, with zero-copy binding to user-allocated velocity fields and
+particle arrays.
+
+Key features:
+
+* **Pipeline-first**: ``step()`` is async, allocation-free; ``prepare()`` handles workspace setup.
+* **Stream/event semantics**: no ``cudaDeviceSynchronize()`` in the hot path.
+* **Zero-copy views**: the engine operates on your device pointers directly.
+* **Legacy-validated**: numerically verified against the original PAR² codebase.
+
+Quick math test — the advection–dispersion equation:
+
+.. math::
+
+   \frac{\partial C}{\partial t}
+   = -\nabla \cdot (\mathbf{v}\, C)
+   + \nabla \cdot (\mathbf{D}\, \nabla C)
+
+where :math:`C` is concentration, :math:`\mathbf{v}` the velocity field, and
+:math:`\mathbf{D}` the dispersion tensor.

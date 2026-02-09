@@ -1,0 +1,1278 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Semantic Map — Par2_Core Contracts &mdash; Par2_Core Documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=01f34227"></script>
+      <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "displayMath": [["$$", "$$"], ["\\[", "\\]"]]}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+      <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="API Reference" href="../api/index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Par2_Core
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Scientific Background</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../theory/rwpt.html">RWPT: From ADE to Stochastic Particles</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../theory/rwpt.html#the-advectiondispersion-equation">The Advection–Dispersion Equation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../theory/rwpt.html#equivalent-ito-sde">Equivalent Itô SDE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../theory/rwpt.html#eulermaruyama-discretisation">Euler–Maruyama Discretisation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../theory/rwpt.html#references">References</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../theory/dispersion_tensor.html">Dispersion Tensor</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../theory/dispersion_tensor.html#eigenvalues">Eigenvalues</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../theory/dispersion_tensor.html#square-root-decomposition-mathbf-b">Square-Root Decomposition (<span class="math notranslate nohighlight">\(\mathbf{B}\)</span>)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../theory/dispersion_tensor.html#special-case-dispatching">Special-Case Dispatching</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../theory/dispersion_tensor.html#zero-velocity-handling">Zero-Velocity Handling</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../theory/drift_correction.html">Drift Correction</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../theory/drift_correction.html#par2-core-modes">Par2_Core Modes</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../theory/drift_correction.html#trilinearonfly-derivatives">TrilinearOnFly Derivatives</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../theory/drift_correction.html#precomputed-finite-difference-stencil">Precomputed Finite-Difference Stencil</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../theory/interpolation.html">Velocity Interpolation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../theory/interpolation.html#linear-face-centred">Linear (Face-Centred)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../theory/interpolation.html#trilinear-corner-based">Trilinear (Corner-Based)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../theory/interpolation.html#choosing-a-mode">Choosing a Mode</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../theory/boundaries.html">Boundary Conditions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../theory/boundaries.html#wrap-counters-periodic">Wrap Counters (Periodic)</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">HPC / GPU Architecture</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../hpc/memory_layout.html">Memory Layout</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../hpc/memory_layout.html#grid-indexing">Grid Indexing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hpc/memory_layout.html#particle-storage-soa">Particle Storage (SoA)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hpc/memory_layout.html#velocity-views-zero-copy">Velocity Views (Zero-Copy)</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../hpc/streams_events.html">CUDA Streams &amp; Events</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../hpc/streams_events.html#stream-ownership">Stream Ownership</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hpc/streams_events.html#event-based-synchronisation">Event-Based Synchronisation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hpc/streams_events.html#double-buffered-velocity-pattern">Double-Buffered Velocity Pattern</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../hpc/workspace_allocs.html">Workspace Allocations</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../hpc/workspace_allocs.html#prepare-vs-step"><code class="docutils literal notranslate"><span class="pre">prepare()</span></code> vs <code class="docutils literal notranslate"><span class="pre">step()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hpc/workspace_allocs.html#what-prepare-allocates">What <code class="docutils literal notranslate"><span class="pre">prepare()</span></code> Allocates</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hpc/workspace_allocs.html#growth-policy">Growth Policy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hpc/workspace_allocs.html#cudamallocasync-cuda-11-2"><code class="docutils literal notranslate"><span class="pre">cudaMallocAsync</span></code> (CUDA ≥ 11.2)</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../hpc/rng_reproducibility.html">RNG &amp; Reproducibility</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../hpc/rng_reproducibility.html#random-number-generation">Random Number Generation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hpc/rng_reproducibility.html#seeding">Seeding</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hpc/rng_reproducibility.html#reproducibility-guarantees">Reproducibility Guarantees</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../hpc/performance_notes.html">Performance Notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../hpc/performance_notes.html#kernel-block-size">Kernel Block Size</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hpc/performance_notes.html#arithmetic-intensity">Arithmetic Intensity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hpc/performance_notes.html#debug-vs-release">Debug vs Release</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hpc/performance_notes.html#allocation-free-stepping">Allocation-Free Stepping</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hpc/performance_notes.html#known-limitations">Known Limitations</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../api/index.html">API Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../api/index.html#core-engine">Core Engine</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../api/index.html#_CPPv44par2"><code class="docutils literal notranslate"><span class="pre">par2</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#_CPPv4I0EN4par215TransportEngineE"><code class="docutils literal notranslate"><span class="pre">par2::TransportEngine</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#_CPPv4N4par26detailE"><code class="docutils literal notranslate"><span class="pre">par2::detail</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../api/index.html#types-configuration">Types &amp; Configuration</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../api/index.html#_CPPv4N4par212BoundaryTypeE"><code class="docutils literal notranslate"><span class="pre">BoundaryType</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#_CPPv4N4par212BoundaryType6ClosedE"><code class="docutils literal notranslate"><span class="pre">Closed</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#_CPPv4N4par212BoundaryType8PeriodicE"><code class="docutils literal notranslate"><span class="pre">Periodic</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#_CPPv4N4par212BoundaryType4OpenE"><code class="docutils literal notranslate"><span class="pre">Open</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../api/index.html#_CPPv4N4par217InterpolationModeE"><code class="docutils literal notranslate"><span class="pre">InterpolationMode</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#_CPPv4N4par217InterpolationMode6LinearE"><code class="docutils literal notranslate"><span class="pre">Linear</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#_CPPv4N4par217InterpolationMode9TrilinearE"><code class="docutils literal notranslate"><span class="pre">Trilinear</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../api/index.html#_CPPv4N4par219DriftCorrectionModeE"><code class="docutils literal notranslate"><span class="pre">DriftCorrectionMode</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#_CPPv4N4par219DriftCorrectionMode4NoneE"><code class="docutils literal notranslate"><span class="pre">None</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#_CPPv4N4par219DriftCorrectionMode11PrecomputedE"><code class="docutils literal notranslate"><span class="pre">Precomputed</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#_CPPv4N4par219DriftCorrectionMode14TrilinearOnFlyE"><code class="docutils literal notranslate"><span class="pre">TrilinearOnFly</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../api/index.html#_CPPv4N4par214ParticleStatusE"><code class="docutils literal notranslate"><span class="pre">ParticleStatus</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#_CPPv4N4par214ParticleStatus6ActiveE"><code class="docutils literal notranslate"><span class="pre">Active</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#_CPPv4N4par214ParticleStatus6ExitedE"><code class="docutils literal notranslate"><span class="pre">Exited</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#_CPPv4N4par214ParticleStatus8InactiveE"><code class="docutils literal notranslate"><span class="pre">Inactive</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../api/index.html#_CPPv4N4par212EngineConfigE"><code class="docutils literal notranslate"><span class="pre">par2::EngineConfig</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#_CPPv4N4par212EngineConfig18interpolation_modeE"><code class="docutils literal notranslate"><span class="pre">interpolation_mode</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#_CPPv4N4par212EngineConfig10drift_modeE"><code class="docutils literal notranslate"><span class="pre">drift_mode</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#_CPPv4N4par212EngineConfig8rng_seedE"><code class="docutils literal notranslate"><span class="pre">rng_seed</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#_CPPv4N4par212EngineConfig17kernel_block_sizeE"><code class="docutils literal notranslate"><span class="pre">kernel_block_size</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#_CPPv4N4par212EngineConfig12debug_checksE"><code class="docutils literal notranslate"><span class="pre">debug_checks</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#_CPPv4N4par212EngineConfig14nan_preventionE"><code class="docutils literal notranslate"><span class="pre">nan_prevention</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../api/index.html#_CPPv4I0EN4par29StepStatsE"><code class="docutils literal notranslate"><span class="pre">par2::StepStats</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#_CPPv4N4par29StepStats16active_particlesE"><code class="docutils literal notranslate"><span class="pre">active_particles</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#_CPPv4N4par29StepStats16exited_particlesE"><code class="docutils literal notranslate"><span class="pre">exited_particles</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#_CPPv4N4par29StepStats16max_displacementE"><code class="docutils literal notranslate"><span class="pre">max_displacement</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../api/index.html#_CPPv4I0EN4par215TransportParamsE"><code class="docutils literal notranslate"><span class="pre">par2::TransportParams</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#_CPPv4NK4par215TransportParams14has_dispersionEv"><code class="docutils literal notranslate"><span class="pre">has_dispersion()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#_CPPv4N4par215TransportParams19molecular_diffusionE"><code class="docutils literal notranslate"><span class="pre">molecular_diffusion</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#_CPPv4N4par215TransportParams7alpha_lE"><code class="docutils literal notranslate"><span class="pre">alpha_l</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#_CPPv4N4par215TransportParams7alpha_tE"><code class="docutils literal notranslate"><span class="pre">alpha_t</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../api/index.html#grid">Grid</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../api/index.html#_CPPv4I0EN4par29make_gridE8GridDescI1TEiii1T1T1T1T1T1T"><code class="docutils literal notranslate"><span class="pre">make_grid()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/index.html#_CPPv4I0EN4par217make_uniform_gridE8GridDescI1TEiii1T1T1T1T"><code class="docutils literal notranslate"><span class="pre">make_uniform_grid()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/index.html#_CPPv4I0EN4par28GridDescE"><code class="docutils literal notranslate"><span class="pre">par2::GridDesc</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#_CPPv4NK4par28GridDesc9num_cellsEv"><code class="docutils literal notranslate"><span class="pre">num_cells()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#_CPPv4NK4par28GridDesc11num_cornersEv"><code class="docutils literal notranslate"><span class="pre">num_corners()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#_CPPv4NK4par28GridDesc8length_xEv"><code class="docutils literal notranslate"><span class="pre">length_x()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#_CPPv4NK4par28GridDesc8length_yEv"><code class="docutils literal notranslate"><span class="pre">length_y()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#_CPPv4NK4par28GridDesc8length_zEv"><code class="docutils literal notranslate"><span class="pre">length_z()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#_CPPv4NK4par28GridDesc11cell_volumeEv"><code class="docutils literal notranslate"><span class="pre">cell_volume()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#_CPPv4NK4par28GridDesc13domain_volumeEv"><code class="docutils literal notranslate"><span class="pre">domain_volume()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#_CPPv4NK4par28GridDesc5is_2dEv"><code class="docutils literal notranslate"><span class="pre">is_2d()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#_CPPv4NK4par28GridDesc5x_maxEv"><code class="docutils literal notranslate"><span class="pre">x_max()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#_CPPv4NK4par28GridDesc5y_maxEv"><code class="docutils literal notranslate"><span class="pre">y_max()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#_CPPv4NK4par28GridDesc5z_maxEv"><code class="docutils literal notranslate"><span class="pre">z_max()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#_CPPv4N4par28GridDesc2nxE"><code class="docutils literal notranslate"><span class="pre">nx</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#_CPPv4N4par28GridDesc2nyE"><code class="docutils literal notranslate"><span class="pre">ny</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#_CPPv4N4par28GridDesc2nzE"><code class="docutils literal notranslate"><span class="pre">nz</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#_CPPv4N4par28GridDesc2dxE"><code class="docutils literal notranslate"><span class="pre">dx</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#_CPPv4N4par28GridDesc2dyE"><code class="docutils literal notranslate"><span class="pre">dy</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#_CPPv4N4par28GridDesc2dzE"><code class="docutils literal notranslate"><span class="pre">dz</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#_CPPv4N4par28GridDesc2pxE"><code class="docutils literal notranslate"><span class="pre">px</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#_CPPv4N4par28GridDesc2pyE"><code class="docutils literal notranslate"><span class="pre">py</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#_CPPv4N4par28GridDesc2pzE"><code class="docutils literal notranslate"><span class="pre">pz</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../api/index.html#views-zero-copy-binding">Views (Zero-Copy Binding)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../api/index.html#_CPPv4I0EN4par215ConstDeviceSpanE"><code class="docutils literal notranslate"><span class="pre">ConstDeviceSpan</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/index.html#_CPPv4I0EN4par218ConstParticlesViewE"><code class="docutils literal notranslate"><span class="pre">par2::ConstParticlesView</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#_CPPv4NK4par218ConstParticlesView5validEv"><code class="docutils literal notranslate"><span class="pre">valid()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#_CPPv4N4par218ConstParticlesView18ConstParticlesViewEv"><code class="docutils literal notranslate"><span class="pre">ConstParticlesView()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#_CPPv4N4par218ConstParticlesView18ConstParticlesViewERK13ParticlesViewI1TE"><code class="docutils literal notranslate"><span class="pre">ConstParticlesView()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#_CPPv4N4par218ConstParticlesView1xE"><code class="docutils literal notranslate"><span class="pre">x</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#_CPPv4N4par218ConstParticlesView1yE"><code class="docutils literal notranslate"><span class="pre">y</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#_CPPv4N4par218ConstParticlesView1zE"><code class="docutils literal notranslate"><span class="pre">z</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#_CPPv4N4par218ConstParticlesView1nE"><code class="docutils literal notranslate"><span class="pre">n</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#_CPPv4N4par218ConstParticlesView6statusE"><code class="docutils literal notranslate"><span class="pre">status</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#_CPPv4N4par218ConstParticlesView5wrapXE"><code class="docutils literal notranslate"><span class="pre">wrapX</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#_CPPv4N4par218ConstParticlesView5wrapYE"><code class="docutils literal notranslate"><span class="pre">wrapY</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#_CPPv4N4par218ConstParticlesView5wrapZE"><code class="docutils literal notranslate"><span class="pre">wrapZ</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../api/index.html#_CPPv4I0EN4par210DeviceSpanE"><code class="docutils literal notranslate"><span class="pre">par2::DeviceSpan</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#_CPPv4NK4par210DeviceSpan5emptyEv"><code class="docutils literal notranslate"><span class="pre">empty()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#_CPPv4NK4par210DeviceSpan5validEv"><code class="docutils literal notranslate"><span class="pre">valid()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#_CPPv4N4par210DeviceSpan4dataE"><code class="docutils literal notranslate"><span class="pre">data</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#_CPPv4N4par210DeviceSpan4sizeE"><code class="docutils literal notranslate"><span class="pre">size</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../api/index.html#_CPPv4I0EN4par219DriftCorrectionViewE"><code class="docutils literal notranslate"><span class="pre">par2::DriftCorrectionView</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#_CPPv4NK4par219DriftCorrectionView5validEv"><code class="docutils literal notranslate"><span class="pre">valid()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#_CPPv4N4par219DriftCorrectionView3dcxE"><code class="docutils literal notranslate"><span class="pre">dcx</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#_CPPv4N4par219DriftCorrectionView3dcyE"><code class="docutils literal notranslate"><span class="pre">dcy</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#_CPPv4N4par219DriftCorrectionView3dczE"><code class="docutils literal notranslate"><span class="pre">dcz</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#_CPPv4N4par219DriftCorrectionView4sizeE"><code class="docutils literal notranslate"><span class="pre">size</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../api/index.html#_CPPv4I0EN4par213ParticlesViewE"><code class="docutils literal notranslate"><span class="pre">par2::ParticlesView</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#_CPPv4NK4par213ParticlesView5validEv"><code class="docutils literal notranslate"><span class="pre">valid()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#_CPPv4NK4par213ParticlesView10has_statusEv"><code class="docutils literal notranslate"><span class="pre">has_status()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#_CPPv4NK4par213ParticlesView10has_wrap_xEv"><code class="docutils literal notranslate"><span class="pre">has_wrap_x()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#_CPPv4NK4par213ParticlesView10has_wrap_yEv"><code class="docutils literal notranslate"><span class="pre">has_wrap_y()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#_CPPv4NK4par213ParticlesView10has_wrap_zEv"><code class="docutils literal notranslate"><span class="pre">has_wrap_z()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#_CPPv4NK4par213ParticlesView12has_any_wrapEv"><code class="docutils literal notranslate"><span class="pre">has_any_wrap()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#_CPPv4N4par213ParticlesView1xE"><code class="docutils literal notranslate"><span class="pre">x</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#_CPPv4N4par213ParticlesView1yE"><code class="docutils literal notranslate"><span class="pre">y</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#_CPPv4N4par213ParticlesView1zE"><code class="docutils literal notranslate"><span class="pre">z</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#_CPPv4N4par213ParticlesView1nE"><code class="docutils literal notranslate"><span class="pre">n</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#_CPPv4N4par213ParticlesView6statusE"><code class="docutils literal notranslate"><span class="pre">status</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#_CPPv4N4par213ParticlesView5wrapXE"><code class="docutils literal notranslate"><span class="pre">wrapX</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#_CPPv4N4par213ParticlesView5wrapYE"><code class="docutils literal notranslate"><span class="pre">wrapY</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#_CPPv4N4par213ParticlesView5wrapZE"><code class="docutils literal notranslate"><span class="pre">wrapZ</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../api/index.html#_CPPv4I0EN4par222UnwrappedPositionsViewE"><code class="docutils literal notranslate"><span class="pre">par2::UnwrappedPositionsView</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#_CPPv4NK4par222UnwrappedPositionsView5validEv"><code class="docutils literal notranslate"><span class="pre">valid()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#_CPPv4N4par222UnwrappedPositionsView3x_uE"><code class="docutils literal notranslate"><span class="pre">x_u</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#_CPPv4N4par222UnwrappedPositionsView3y_uE"><code class="docutils literal notranslate"><span class="pre">y_u</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#_CPPv4N4par222UnwrappedPositionsView3z_uE"><code class="docutils literal notranslate"><span class="pre">z_u</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#_CPPv4N4par222UnwrappedPositionsView8capacityE"><code class="docutils literal notranslate"><span class="pre">capacity</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../api/index.html#velocity-layout">Velocity Layout</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../api/index.html#_CPPv4I0EN4par212VelocityViewE"><code class="docutils literal notranslate"><span class="pre">VelocityView</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/index.html#_CPPv4I0EN4par218CornerVelocityViewE"><code class="docutils literal notranslate"><span class="pre">CornerVelocityView</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/index.html#_CPPv4N4par28merge_idEiiiii"><code class="docutils literal notranslate"><span class="pre">merge_id()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/index.html#_CPPv4N4par210field_sizeEiii"><code class="docutils literal notranslate"><span class="pre">field_size()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/index.html#_CPPv4I0EN4par210field_sizeE6size_tRK8GridDescI1TE"><code class="docutils literal notranslate"><span class="pre">field_size()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/index.html#_CPPv4I00EN4par219validate_face_fieldEvRK13FaceFieldViewI1TERK8GridDescI5GridTE"><code class="docutils literal notranslate"><span class="pre">validate_face_field()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/index.html#_CPPv4I00EN4par221validate_corner_fieldEvRK15CornerFieldViewI1TERK8GridDescI5GridTE"><code class="docutils literal notranslate"><span class="pre">validate_corner_field()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/index.html#_CPPv4I0EN4par215CornerFieldViewE"><code class="docutils literal notranslate"><span class="pre">par2::CornerFieldView</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#_CPPv4NK4par215CornerFieldView5validEv"><code class="docutils literal notranslate"><span class="pre">valid()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#_CPPv4I0ENK4par215CornerFieldView12matches_gridEbRK8GridDescI5GridTE"><code class="docutils literal notranslate"><span class="pre">matches_grid()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#_CPPv4N4par215CornerFieldView2UcE"><code class="docutils literal notranslate"><span class="pre">Uc</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#_CPPv4N4par215CornerFieldView2VcE"><code class="docutils literal notranslate"><span class="pre">Vc</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#_CPPv4N4par215CornerFieldView2WcE"><code class="docutils literal notranslate"><span class="pre">Wc</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#_CPPv4N4par215CornerFieldView4sizeE"><code class="docutils literal notranslate"><span class="pre">size</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../api/index.html#_CPPv4I0EN4par213FaceFieldViewE"><code class="docutils literal notranslate"><span class="pre">par2::FaceFieldView</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#_CPPv4NK4par213FaceFieldView5validEv"><code class="docutils literal notranslate"><span class="pre">valid()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#_CPPv4I0ENK4par213FaceFieldView12matches_gridEbRK8GridDescI5GridTE"><code class="docutils literal notranslate"><span class="pre">matches_grid()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#_CPPv4N4par213FaceFieldView1UE"><code class="docutils literal notranslate"><span class="pre">U</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#_CPPv4N4par213FaceFieldView1VE"><code class="docutils literal notranslate"><span class="pre">V</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#_CPPv4N4par213FaceFieldView1WE"><code class="docutils literal notranslate"><span class="pre">W</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#_CPPv4N4par213FaceFieldView4sizeE"><code class="docutils literal notranslate"><span class="pre">size</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../api/index.html#boundary-conditions">Boundary Conditions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../api/index.html#_CPPv4I0EN4par212AxisBoundaryE"><code class="docutils literal notranslate"><span class="pre">par2::AxisBoundary</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#_CPPv4N4par212AxisBoundary2loE"><code class="docutils literal notranslate"><span class="pre">lo</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#_CPPv4N4par212AxisBoundary2hiE"><code class="docutils literal notranslate"><span class="pre">hi</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#_CPPv4N4par212AxisBoundary9symmetricE12BoundaryType"><code class="docutils literal notranslate"><span class="pre">symmetric()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#_CPPv4N4par212AxisBoundary6closedEv"><code class="docutils literal notranslate"><span class="pre">closed()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#_CPPv4N4par212AxisBoundary8periodicEv"><code class="docutils literal notranslate"><span class="pre">periodic()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#_CPPv4N4par212AxisBoundary4openEv"><code class="docutils literal notranslate"><span class="pre">open()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../api/index.html#_CPPv4I0EN4par214BoundaryConfigE"><code class="docutils literal notranslate"><span class="pre">par2::BoundaryConfig</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#_CPPv4NK4par214BoundaryConfig12has_periodicEv"><code class="docutils literal notranslate"><span class="pre">has_periodic()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#_CPPv4NK4par214BoundaryConfig8has_openEv"><code class="docutils literal notranslate"><span class="pre">has_open()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#_CPPv4N4par214BoundaryConfig1xE"><code class="docutils literal notranslate"><span class="pre">x</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#_CPPv4N4par214BoundaryConfig1yE"><code class="docutils literal notranslate"><span class="pre">y</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#_CPPv4N4par214BoundaryConfig1zE"><code class="docutils literal notranslate"><span class="pre">z</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#_CPPv4N4par214BoundaryConfig10all_closedEv"><code class="docutils literal notranslate"><span class="pre">all_closed()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#_CPPv4N4par214BoundaryConfig12all_periodicEv"><code class="docutils literal notranslate"><span class="pre">all_periodic()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#_CPPv4N4par214BoundaryConfig9channel_xEv"><code class="docutils literal notranslate"><span class="pre">channel_x()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#_CPPv4N4par214BoundaryConfig6open_xEv"><code class="docutils literal notranslate"><span class="pre">open_x()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../api/index.html#particle-injection">Particle Injection</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../api/index.html#_CPPv4I0EN4par210inject_boxEvRK13ParticlesViewI1TE1T1T1T1T1T1Ty12cudaStream_t"><code class="docutils literal notranslate"><span class="pre">inject_box()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/index.html#_CPPv4I0EN4par211inject_gridEvRK13ParticlesViewI1TE1T1T1T1T1T1Tiii12cudaStream_t"><code class="docutils literal notranslate"><span class="pre">inject_grid()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../api/index.html#statistics">Statistics</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../api/index.html#_CPPv4I0EN4par217concentration_boxEdRK18ConstParticlesViewI1TE1T1T1T1T1T1T12cudaStream_t"><code class="docutils literal notranslate"><span class="pre">concentration_box()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/index.html#_CPPv4I0EN4par224concentration_past_planeEdRK18ConstParticlesViewI1TEi1T12cudaStream_t"><code class="docutils literal notranslate"><span class="pre">concentration_past_plane()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/index.html#_CPPv4I0EN4par215count_by_statusE14ParticleCountsRK18ConstParticlesViewI1TE12cudaStream_t"><code class="docutils literal notranslate"><span class="pre">count_by_status()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/index.html#_CPPv4I0EN4par28Moments3E"><code class="docutils literal notranslate"><span class="pre">par2::Moments3</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#_CPPv4NK4par28Moments37has_nanEv"><code class="docutils literal notranslate"><span class="pre">has_nan()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#_CPPv4N4par28Moments34meanE"><code class="docutils literal notranslate"><span class="pre">mean</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#_CPPv4N4par28Moments33varE"><code class="docutils literal notranslate"><span class="pre">var</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#_CPPv4N4par28Moments3StE"><code class="docutils literal notranslate"><span class="pre">std</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../api/index.html#_CPPv4N4par214ParticleCountsE"><code class="docutils literal notranslate"><span class="pre">par2::ParticleCounts</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#_CPPv4N4par214ParticleCounts5totalE"><code class="docutils literal notranslate"><span class="pre">total</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#_CPPv4N4par214ParticleCounts6activeE"><code class="docutils literal notranslate"><span class="pre">active</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#_CPPv4N4par214ParticleCounts6exitedE"><code class="docutils literal notranslate"><span class="pre">exited</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#_CPPv4N4par214ParticleCounts8inactiveE"><code class="docutils literal notranslate"><span class="pre">inactive</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../api/index.html#_CPPv4I0EN4par213StatsComputerE"><code class="docutils literal notranslate"><span class="pre">par2::StatsComputer</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#_CPPv4N4par213StatsComputer13StatsComputerEi"><code class="docutils literal notranslate"><span class="pre">StatsComputer()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#_CPPv4N4par213StatsComputerD0Ev"><code class="docutils literal notranslate"><span class="pre">~StatsComputer()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#_CPPv4N4par213StatsComputer13StatsComputerERK13StatsComputer"><code class="docutils literal notranslate"><span class="pre">StatsComputer()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#_CPPv4N4par213StatsComputeraSERK13StatsComputer"><code class="docutils literal notranslate"><span class="pre">operator=()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#_CPPv4N4par213StatsComputer13StatsComputerERR13StatsComputer"><code class="docutils literal notranslate"><span class="pre">StatsComputer()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#_CPPv4N4par213StatsComputeraSERR13StatsComputer"><code class="docutils literal notranslate"><span class="pre">operator=()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#_CPPv4N4par213StatsComputer13compute_asyncERK18ConstParticlesViewI1TERK8GridDescI1TERK11StatsConfig12cudaStream_t"><code class="docutils literal notranslate"><span class="pre">compute_async()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#_CPPv4NK4par213StatsComputer12fetch_resultEv"><code class="docutils literal notranslate"><span class="pre">fetch_result()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#_CPPv4NK4par213StatsComputer8capacityEv"><code class="docutils literal notranslate"><span class="pre">capacity()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#_CPPv4N4par213StatsComputer5impl_E"><code class="docutils literal notranslate"><span class="pre">impl_</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../api/index.html#_CPPv4N4par211StatsConfigE"><code class="docutils literal notranslate"><span class="pre">par2::StatsConfig</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#_CPPv4N4par211StatsConfig13use_unwrappedE"><code class="docutils literal notranslate"><span class="pre">use_unwrapped</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#_CPPv4N4par211StatsConfig18filter_active_onlyE"><code class="docutils literal notranslate"><span class="pre">filter_active_only</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../api/index.html#_CPPv4I0EN4par211StatsResultE"><code class="docutils literal notranslate"><span class="pre">par2::StatsResult</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#_CPPv4NK4par211StatsResult5validEv"><code class="docutils literal notranslate"><span class="pre">valid()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#_CPPv4N4par211StatsResult7momentsE"><code class="docutils literal notranslate"><span class="pre">moments</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#_CPPv4N4par211StatsResult6countsE"><code class="docutils literal notranslate"><span class="pre">counts</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#_CPPv4N4par211StatsResult8computedE"><code class="docutils literal notranslate"><span class="pre">computed</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../api/index.html#i-o-helpers">I/O Helpers</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../api/index.html#_CPPv4N4par22ioE"><code class="docutils literal notranslate"><span class="pre">par2::io</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#_CPPv4I0EN4par22io24download_positions_asyncE11cudaError_tR19HostParticlesBufferI1TERK18ConstParticlesViewI1TEi12cudaStream_t"><code class="docutils literal notranslate"><span class="pre">download_positions_async()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#_CPPv4I0EN4par22io24download_unwrapped_asyncE11cudaError_tR19HostParticlesBufferI1TERK22UnwrappedPositionsViewI1TEi12cudaStream_t"><code class="docutils literal notranslate"><span class="pre">download_unwrapped_async()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#_CPPv4I0EN4par22io19write_particles_csvEbRKNSt6stringERK19HostParticlesBufferI1TEi1Tbbb"><code class="docutils literal notranslate"><span class="pre">write_particles_csv()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#_CPPv4I0EN4par22io25write_legacy_csv_snapshotEbRK18ConstParticlesViewI1TERKNSt6stringE12cudaStream_t"><code class="docutils literal notranslate"><span class="pre">write_legacy_csv_snapshot()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#_CPPv4N4par22io17CsvSnapshotConfigE"><code class="docutils literal notranslate"><span class="pre">par2::io::CsvSnapshotConfig</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#_CPPv4I0EN4par22io17CsvSnapshotWriterE"><code class="docutils literal notranslate"><span class="pre">par2::io::CsvSnapshotWriter</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#_CPPv4I0EN4par22io19HostParticlesBufferE"><code class="docutils literal notranslate"><span class="pre">par2::io::HostParticlesBuffer</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#_CPPv4I0EN4par22io21PinnedParticlesBufferE"><code class="docutils literal notranslate"><span class="pre">par2::io::PinnedParticlesBuffer</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../api/index.html#version">Version</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../api/index.html#c.PAR2_CORE_VERSION_MAJOR"><code class="docutils literal notranslate"><span class="pre">PAR2_CORE_VERSION_MAJOR</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/index.html#c.PAR2_CORE_VERSION_MINOR"><code class="docutils literal notranslate"><span class="pre">PAR2_CORE_VERSION_MINOR</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/index.html#c.PAR2_CORE_VERSION_PATCH"><code class="docutils literal notranslate"><span class="pre">PAR2_CORE_VERSION_PATCH</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/index.html#c.PAR2_CORE_VERSION_STRING"><code class="docutils literal notranslate"><span class="pre">PAR2_CORE_VERSION_STRING</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/index.html#_CPPv4N4par27VersionE"><code class="docutils literal notranslate"><span class="pre">par2::Version</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#_CPPv4N4par27Version5majorE"><code class="docutils literal notranslate"><span class="pre">major</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#_CPPv4N4par27Version5minorE"><code class="docutils literal notranslate"><span class="pre">minor</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#_CPPv4N4par27Version5patchE"><code class="docutils literal notranslate"><span class="pre">patch</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/index.html#_CPPv4N4par27Version6stringE"><code class="docutils literal notranslate"><span class="pre">string</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../api/index.html#debug-policy">Debug Policy</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../api/index.html#c.PAR2_DEBUG_LEVEL"><code class="docutils literal notranslate"><span class="pre">PAR2_DEBUG_LEVEL</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/index.html#c.PAR2_ENABLE_CUDA_CHECKS"><code class="docutils literal notranslate"><span class="pre">PAR2_ENABLE_CUDA_CHECKS</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/index.html#c.PAR2_ENABLE_NAN_GUARDS"><code class="docutils literal notranslate"><span class="pre">PAR2_ENABLE_NAN_GUARDS</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/index.html#c.PAR2_ENABLE_BOUNDS_CHECKS"><code class="docutils literal notranslate"><span class="pre">PAR2_ENABLE_BOUNDS_CHECKS</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/index.html#c.PAR2_DEBUG_ONLY"><code class="docutils literal notranslate"><span class="pre">PAR2_DEBUG_ONLY</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/index.html#c.PAR2_NAN_GUARD"><code class="docutils literal notranslate"><span class="pre">PAR2_NAN_GUARD</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/index.html#c.PAR2_DEVICE_ASSERT"><code class="docutils literal notranslate"><span class="pre">PAR2_DEVICE_ASSERT</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Developer Notes</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Semantic Map — Par2_Core Contracts</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#public-api-tree">1  Public API Tree</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#engine-lifecycle-state-machine">2  Engine Lifecycle (State Machine)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#memory-contracts-gpu-native">3  Memory Contracts (GPU-Native)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#ownership-rules">3.1  Ownership Rules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#device-pointer-layout">3.2  Device Pointer Layout</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#workspace-growth-policy">3.3  Workspace Growth Policy</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#stream-and-event-semantics">4  Stream and Event Semantics</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#stream-usage">4.1  Stream Usage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#event-integration">4.2  Event Integration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#execution-order-guarantee">4.3  Execution Order Guarantee</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#boundary-conditions">5  Boundary Conditions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#per-axis-per-face-configuration">5.1  Per-Axis, Per-Face Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#closed-reflective">5.2  Closed (Reflective)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#periodic-wrap-around">5.3  Periodic (Wrap-Around)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#open-exit">5.4  Open (Exit)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#d-mode">5.5  2D Mode</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#rng-and-determinism">6  RNG and Determinism</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#initialization">6.1  Initialization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#per-step-usage">6.2  Per-Step Usage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#reproducibility-guarantees">6.3  Reproducibility Guarantees</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#outputs-stats-and-snapshots">7  Outputs, Stats, and Snapshots</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#position-data">7.1  Position Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#unwrapped-positions">7.2  Unwrapped Positions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#statistics">7.3  Statistics</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#csv-snapshots">7.4  CSV Snapshots</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#snapshot-timing">7.5  Snapshot Timing</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#thread-safety">8  Thread Safety</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#rwpt-algorithm-mathematical-formulation">9  RWPT Algorithm (Mathematical Formulation)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#velocity-layout-and-interpolation">10  Velocity Layout and Interpolation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#staggered-mac-grid-facefield">10.1  Staggered MAC Grid (FaceField)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#linear-interpolation-interpolationmode-linear">10.2  Linear Interpolation (InterpolationMode::Linear)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#trilinear-interpolation-interpolationmode-trilinear">10.3  Trilinear Interpolation (InterpolationMode::Trilinear)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#corner-velocity-computation">10.4  Corner Velocity Computation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#dispersion-tensor-and-displacement-matrix">11  Dispersion Tensor and Displacement Matrix</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#dispersion-tensor-d">11.1  Dispersion Tensor D</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#displacement-matrix-b">11.2  Displacement Matrix B</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#zerovelocity-handling">11.3  Zero‑Velocity Handling</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#specialcase-dispatching">11.4  Special‑Case Dispatching</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#nan-prevention-flag">11.5  <code class="docutils literal notranslate"><span class="pre">nan_prevention</span></code> Flag</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#drift-correction-algorithms">12  Drift Correction Algorithms</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#trilinearonfly-mode">12.1  TrilinearOnFly Mode</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#precomputed-mode-finite-differences">12.2  Precomputed Mode (Finite Differences)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#performance-contracts">13  Performance Contracts</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#allocationfree-stepping">13.1  Allocation‑Free Stepping</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#kernel-launch-configuration">13.2  Kernel Launch Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#memory-access-pattern">13.3  Memory Access Pattern</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#known-limitations">13.4  Known Limitations</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Par2_Core</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Semantic Map — Par2_Core Contracts</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/dev/semantic_map.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="semantic-map-par2-core-contracts">
+<h1>Semantic Map — Par2_Core Contracts<a class="headerlink" href="#semantic-map-par2-core-contracts" title="Link to this heading"></a></h1>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This document records the <strong>real contracts</strong> extracted from the source code
+of Par2_Core v0.1.0.  It is the single source of truth for API
+documentation.  Items marked <strong>TODO/UNKNOWN</strong> require further investigation
+or future design decisions.</p>
+</div>
+<nav class="contents local" id="contents">
+<p class="topic-title">Contents</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#public-api-tree" id="id1">1  Public API Tree</a></p></li>
+<li><p><a class="reference internal" href="#engine-lifecycle-state-machine" id="id2">2  Engine Lifecycle (State Machine)</a></p></li>
+<li><p><a class="reference internal" href="#memory-contracts-gpu-native" id="id3">3  Memory Contracts (GPU-Native)</a></p>
+<ul>
+<li><p><a class="reference internal" href="#ownership-rules" id="id4">3.1  Ownership Rules</a></p></li>
+<li><p><a class="reference internal" href="#device-pointer-layout" id="id5">3.2  Device Pointer Layout</a></p></li>
+<li><p><a class="reference internal" href="#workspace-growth-policy" id="id6">3.3  Workspace Growth Policy</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#stream-and-event-semantics" id="id7">4  Stream and Event Semantics</a></p>
+<ul>
+<li><p><a class="reference internal" href="#stream-usage" id="id8">4.1  Stream Usage</a></p></li>
+<li><p><a class="reference internal" href="#event-integration" id="id9">4.2  Event Integration</a></p></li>
+<li><p><a class="reference internal" href="#execution-order-guarantee" id="id10">4.3  Execution Order Guarantee</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#boundary-conditions" id="id11">5  Boundary Conditions</a></p>
+<ul>
+<li><p><a class="reference internal" href="#per-axis-per-face-configuration" id="id12">5.1  Per-Axis, Per-Face Configuration</a></p></li>
+<li><p><a class="reference internal" href="#closed-reflective" id="id13">5.2  Closed (Reflective)</a></p></li>
+<li><p><a class="reference internal" href="#periodic-wrap-around" id="id14">5.3  Periodic (Wrap-Around)</a></p></li>
+<li><p><a class="reference internal" href="#open-exit" id="id15">5.4  Open (Exit)</a></p></li>
+<li><p><a class="reference internal" href="#d-mode" id="id16">5.5  2D Mode</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#rng-and-determinism" id="id17">6  RNG and Determinism</a></p>
+<ul>
+<li><p><a class="reference internal" href="#initialization" id="id18">6.1  Initialization</a></p></li>
+<li><p><a class="reference internal" href="#per-step-usage" id="id19">6.2  Per-Step Usage</a></p></li>
+<li><p><a class="reference internal" href="#reproducibility-guarantees" id="id20">6.3  Reproducibility Guarantees</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#outputs-stats-and-snapshots" id="id21">7  Outputs, Stats, and Snapshots</a></p>
+<ul>
+<li><p><a class="reference internal" href="#position-data" id="id22">7.1  Position Data</a></p></li>
+<li><p><a class="reference internal" href="#unwrapped-positions" id="id23">7.2  Unwrapped Positions</a></p></li>
+<li><p><a class="reference internal" href="#statistics" id="id24">7.3  Statistics</a></p></li>
+<li><p><a class="reference internal" href="#csv-snapshots" id="id25">7.4  CSV Snapshots</a></p></li>
+<li><p><a class="reference internal" href="#snapshot-timing" id="id26">7.5  Snapshot Timing</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#thread-safety" id="id27">8  Thread Safety</a></p></li>
+<li><p><a class="reference internal" href="#rwpt-algorithm-mathematical-formulation" id="id28">9  RWPT Algorithm (Mathematical Formulation)</a></p></li>
+<li><p><a class="reference internal" href="#velocity-layout-and-interpolation" id="id29">10  Velocity Layout and Interpolation</a></p>
+<ul>
+<li><p><a class="reference internal" href="#staggered-mac-grid-facefield" id="id30">10.1  Staggered MAC Grid (FaceField)</a></p></li>
+<li><p><a class="reference internal" href="#linear-interpolation-interpolationmode-linear" id="id31">10.2  Linear Interpolation (InterpolationMode::Linear)</a></p></li>
+<li><p><a class="reference internal" href="#trilinear-interpolation-interpolationmode-trilinear" id="id32">10.3  Trilinear Interpolation (InterpolationMode::Trilinear)</a></p></li>
+<li><p><a class="reference internal" href="#corner-velocity-computation" id="id33">10.4  Corner Velocity Computation</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#dispersion-tensor-and-displacement-matrix" id="id34">11  Dispersion Tensor and Displacement Matrix</a></p>
+<ul>
+<li><p><a class="reference internal" href="#dispersion-tensor-d" id="id35">11.1  Dispersion Tensor D</a></p></li>
+<li><p><a class="reference internal" href="#displacement-matrix-b" id="id36">11.2  Displacement Matrix B</a></p></li>
+<li><p><a class="reference internal" href="#zerovelocity-handling" id="id37">11.3  Zero‑Velocity Handling</a></p></li>
+<li><p><a class="reference internal" href="#specialcase-dispatching" id="id38">11.4  Special‑Case Dispatching</a></p></li>
+<li><p><a class="reference internal" href="#nan-prevention-flag" id="id39">11.5  <code class="docutils literal notranslate"><span class="pre">nan_prevention</span></code> Flag</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#drift-correction-algorithms" id="id40">12  Drift Correction Algorithms</a></p>
+<ul>
+<li><p><a class="reference internal" href="#trilinearonfly-mode" id="id41">12.1  TrilinearOnFly Mode</a></p></li>
+<li><p><a class="reference internal" href="#precomputed-mode-finite-differences" id="id42">12.2  Precomputed Mode (Finite Differences)</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#performance-contracts" id="id43">13  Performance Contracts</a></p>
+<ul>
+<li><p><a class="reference internal" href="#allocationfree-stepping" id="id44">13.1  Allocation‑Free Stepping</a></p></li>
+<li><p><a class="reference internal" href="#kernel-launch-configuration" id="id45">13.2  Kernel Launch Configuration</a></p></li>
+<li><p><a class="reference internal" href="#memory-access-pattern" id="id46">13.3  Memory Access Pattern</a></p></li>
+<li><p><a class="reference internal" href="#known-limitations" id="id47">13.4  Known Limitations</a></p></li>
+</ul>
+</li>
+</ul>
+</nav>
+<section id="public-api-tree">
+<h2><a class="toc-backref" href="#id1" role="doc-backlink">1  Public API Tree</a><a class="headerlink" href="#public-api-tree" title="Link to this heading"></a></h2>
+<p>Each header in <code class="docutils literal notranslate"><span class="pre">include/par2_core/</span></code> and its responsibilities:</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Header</p></th>
+<th class="head"><p>Responsibilities</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">par2_core.hpp</span></code></p></td>
+<td><p>Umbrella header — includes all public API.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">transport_engine.hpp</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">TransportEngine&lt;T&gt;</span></code> class: lifecycle, binding, stepping,
+stream/event management, injection, unwrapping.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">types.hpp</span></code></p></td>
+<td><p>Value types: <code class="docutils literal notranslate"><span class="pre">TransportParams</span></code>, <code class="docutils literal notranslate"><span class="pre">EngineConfig</span></code>,
+<code class="docutils literal notranslate"><span class="pre">BoundaryType</span></code>, <code class="docutils literal notranslate"><span class="pre">InterpolationMode</span></code>,
+<code class="docutils literal notranslate"><span class="pre">DriftCorrectionMode</span></code>, <code class="docutils literal notranslate"><span class="pre">ParticleStatus</span></code>, <code class="docutils literal notranslate"><span class="pre">StepStats</span></code>.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">grid.hpp</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">GridDesc&lt;T&gt;</span></code>: lightweight POD for uniform Cartesian
+grid geometry.  Factory helpers <code class="docutils literal notranslate"><span class="pre">make_grid</span></code>,
+<code class="docutils literal notranslate"><span class="pre">make_uniform_grid</span></code>.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">views.hpp</span></code></p></td>
+<td><p>Non-owning GPU memory views: <code class="docutils literal notranslate"><span class="pre">ParticlesView</span></code>,
+<code class="docutils literal notranslate"><span class="pre">ConstParticlesView</span></code>, <code class="docutils literal notranslate"><span class="pre">UnwrappedPositionsView</span></code>,
+<code class="docutils literal notranslate"><span class="pre">DriftCorrectionView</span></code>, <code class="docutils literal notranslate"><span class="pre">DeviceSpan</span></code>.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">velocity_layout.hpp</span></code></p></td>
+<td><p>Velocity field layout contracts: <code class="docutils literal notranslate"><span class="pre">FaceFieldView</span></code> (MAC
+staggered), <code class="docutils literal notranslate"><span class="pre">CornerFieldView</span></code>.  Aliases
+<code class="docutils literal notranslate"><span class="pre">VelocityView</span> <span class="pre">=</span> <span class="pre">FaceFieldView</span></code>,
+<code class="docutils literal notranslate"><span class="pre">CornerVelocityView</span> <span class="pre">=</span> <span class="pre">CornerFieldView</span></code>.
+Utility: <code class="docutils literal notranslate"><span class="pre">merge_id()</span></code>, <code class="docutils literal notranslate"><span class="pre">field_size()</span></code>.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">boundary.hpp</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">AxisBoundary&lt;T&gt;</span></code>, <code class="docutils literal notranslate"><span class="pre">BoundaryConfig&lt;T&gt;</span></code>: per-axis,
+per-face boundary specification with factory helpers.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">injectors.hpp</span></code></p></td>
+<td><p>Standalone GPU injection functions: <code class="docutils literal notranslate"><span class="pre">inject_box</span></code>,
+<code class="docutils literal notranslate"><span class="pre">inject_grid</span></code>.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">stats.hpp</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">StatsComputer&lt;T&gt;</span></code> (async, no hidden alloc),
+<code class="docutils literal notranslate"><span class="pre">Moments3</span></code>, <code class="docutils literal notranslate"><span class="pre">ParticleCounts</span></code>, <code class="docutils literal notranslate"><span class="pre">StatsResult</span></code>.
+Legacy helpers: <code class="docutils literal notranslate"><span class="pre">concentration_box</span></code>,
+<code class="docutils literal notranslate"><span class="pre">concentration_past_plane</span></code>, <code class="docutils literal notranslate"><span class="pre">count_by_status</span></code>.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">io.hpp</span></code></p></td>
+<td><p>Host-side I/O: <code class="docutils literal notranslate"><span class="pre">download_positions_async</span></code>,
+<code class="docutils literal notranslate"><span class="pre">write_particles_csv</span></code>, <code class="docutils literal notranslate"><span class="pre">CsvSnapshotWriter</span></code>,
+<code class="docutils literal notranslate"><span class="pre">PinnedParticlesBuffer</span></code>, <code class="docutils literal notranslate"><span class="pre">write_legacy_csv_snapshot</span></code>.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">debug_policy.hpp</span></code></p></td>
+<td><p>Compile-time debug macros (<code class="docutils literal notranslate"><span class="pre">PAR2_DEBUG_LEVEL</span></code> 0/1/2),
+derived feature flags, device-side assertion helpers.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">version.hpp</span></code></p></td>
+<td><p>Version constants (<code class="docutils literal notranslate"><span class="pre">0.1.0</span></code>).</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="engine-lifecycle-state-machine">
+<h2><a class="toc-backref" href="#id2" role="doc-backlink">2  Engine Lifecycle (State Machine)</a><a class="headerlink" href="#engine-lifecycle-state-machine" title="Link to this heading"></a></h2>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>┌──────────────┐
+│  Constructed  │  (grid, params, bc, config stored; stream = default)
+└──────┬───────┘
+       │
+       ▼
+┌──────────────┐     bind_velocity(vel)
+│ Velocity     │◄────────────────────────
+│ Bound        │     sets corner_dirty=true, drift_dirty=true
+└──────┬───────┘
+       │  bind_particles(part)
+       ▼  sets prepared=false
+┌──────────────┐
+│ Particles    │
+│ Bound        │
+└──────┬───────┘
+       │  prepare(stream)
+       │   ├─ init_rng_states()
+       │   ├─ ensure_tracking_arrays()
+       │   └─ update_derived_fields() if needed
+       ▼
+┌──────────────┐
+│  Prepared     │  prepared=true
+└──────┬───────┘
+       │
+       │  step(dt) / advance(dt, n)
+       │   └─ Asserts: has_velocity, has_particles, prepared
+       │      Asserts: NOT corner_dirty, NOT drift_dirty
+       │      Launches move_particles kernel
+       │      NO alloc, NO sync
+       ▼
+┌──────────────┐
+│  Stepping     │  (can loop N times without leaving this state)
+└──────┬───────┘
+       │
+       │  synchronize()  ←  the ONLY sync point exposed
+       ▼
+┌──────────────┐
+│  Synced      │  particle data readable on CPU after D2H copy
+└──────────────┘
+</pre></div>
+</div>
+<p><strong>Re-binding rules:</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">bind_velocity()</span></code> → marks <code class="docutils literal notranslate"><span class="pre">corner_dirty</span> <span class="pre">=</span> <span class="pre">true</span></code>, <code class="docutils literal notranslate"><span class="pre">drift_dirty</span> <span class="pre">=</span> <span class="pre">true</span></code>.
+Must call <code class="docutils literal notranslate"><span class="pre">update_derived_fields()</span></code> before next <code class="docutils literal notranslate"><span class="pre">step()</span></code> if using
+trilinear interpolation or on-the-fly drift.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">bind_particles()</span></code> → resets <code class="docutils literal notranslate"><span class="pre">prepared</span> <span class="pre">=</span> <span class="pre">false</span></code>.
+Must call <code class="docutils literal notranslate"><span class="pre">prepare()</span></code> before next <code class="docutils literal notranslate"><span class="pre">step()</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">bind_corner_velocity()</span></code> → sets <code class="docutils literal notranslate"><span class="pre">corner_external</span> <span class="pre">=</span> <span class="pre">true</span></code>,
+<code class="docutils literal notranslate"><span class="pre">corner_dirty</span> <span class="pre">=</span> <span class="pre">false</span></code>.  Overrides internal computation.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">bind_drift_correction()</span></code> → sets <code class="docutils literal notranslate"><span class="pre">drift_external</span> <span class="pre">=</span> <span class="pre">true</span></code>,
+<code class="docutils literal notranslate"><span class="pre">drift_dirty</span> <span class="pre">=</span> <span class="pre">false</span></code>.  Overrides internal computation.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">set_stream()</span></code> → can be called at any time; does NOT require re-prepare.</p></li>
+</ul>
+<p><strong>What happens if you violate the lifecycle:</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">step()</span></code> without <code class="docutils literal notranslate"><span class="pre">prepare()</span></code> → <strong>assertion failure</strong> (debug) or
+undefined behavior (release).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">step()</span></code> with <code class="docutils literal notranslate"><span class="pre">corner_dirty</span></code> or <code class="docutils literal notranslate"><span class="pre">drift_dirty</span></code> still <code class="docutils literal notranslate"><span class="pre">true</span></code> →
+<strong>assertion failure</strong> (kernel will use stale/uninitialized data).</p></li>
+</ul>
+</section>
+<section id="memory-contracts-gpu-native">
+<h2><a class="toc-backref" href="#id3" role="doc-backlink">3  Memory Contracts (GPU-Native)</a><a class="headerlink" href="#memory-contracts-gpu-native" title="Link to this heading"></a></h2>
+<section id="ownership-rules">
+<h3><a class="toc-backref" href="#id4" role="doc-backlink">3.1  Ownership Rules</a><a class="headerlink" href="#ownership-rules" title="Link to this heading"></a></h3>
+</section>
+<section id="device-pointer-layout">
+<h3><a class="toc-backref" href="#id5" role="doc-backlink">3.2  Device Pointer Layout</a><a class="headerlink" href="#device-pointer-layout" title="Link to this heading"></a></h3>
+<p><strong>Velocity fields</strong> (both Face and Corner):</p>
+<ul class="simple">
+<li><p>Size: <code class="docutils literal notranslate"><span class="pre">(nx+1)</span> <span class="pre">×</span> <span class="pre">(ny+1)</span> <span class="pre">×</span> <span class="pre">(nz+1)</span></code> elements per component</p></li>
+<li><p>Indexing: <code class="docutils literal notranslate"><span class="pre">index</span> <span class="pre">=</span> <span class="pre">iz</span> <span class="pre">×</span> <span class="pre">(ny+1)</span> <span class="pre">×</span> <span class="pre">(nx+1)</span> <span class="pre">+</span> <span class="pre">iy</span> <span class="pre">×</span> <span class="pre">(nx+1)</span> <span class="pre">+</span> <span class="pre">ix</span></code>
+(legacy <code class="docutils literal notranslate"><span class="pre">mergeId</span></code> convention)</p></li>
+<li><p>Three separate arrays: U (x-faces), V (y-faces), W (z-faces)</p></li>
+</ul>
+<p><strong>Particle arrays</strong> (SoA):</p>
+<ul class="simple">
+<li><p>Three separate arrays: <code class="docutils literal notranslate"><span class="pre">x[n]</span></code>, <code class="docutils literal notranslate"><span class="pre">y[n]</span></code>, <code class="docutils literal notranslate"><span class="pre">z[n]</span></code></p></li>
+<li><p>Optional: <code class="docutils literal notranslate"><span class="pre">status[n]</span></code> (<code class="docutils literal notranslate"><span class="pre">uint8_t</span></code>), <code class="docutils literal notranslate"><span class="pre">wrapX[n]</span></code>, <code class="docutils literal notranslate"><span class="pre">wrapY[n]</span></code>,
+<code class="docutils literal notranslate"><span class="pre">wrapZ[n]</span></code> (<code class="docutils literal notranslate"><span class="pre">int32_t</span></code>)</p></li>
+<li><p>Coalesced access in kernels (SoA optimal for GPU)</p></li>
+</ul>
+</section>
+<section id="workspace-growth-policy">
+<h3><a class="toc-backref" href="#id6" role="doc-backlink">3.3  Workspace Growth Policy</a><a class="headerlink" href="#workspace-growth-policy" title="Link to this heading"></a></h3>
+<p>Workspace buffers use a <strong>25% growth factor + 64 minimum</strong>:
+<code class="docutils literal notranslate"><span class="pre">new_cap</span> <span class="pre">=</span> <span class="pre">(n</span> <span class="pre">*</span> <span class="pre">5</span> <span class="pre">/</span> <span class="pre">4)</span> <span class="pre">+</span> <span class="pre">64</span></code>.  Buffers are only freed and re-allocated
+when the requested count exceeds current capacity.  This ensures
+<code class="docutils literal notranslate"><span class="pre">step()</span></code> is allocation-free once <code class="docutils literal notranslate"><span class="pre">prepare()</span></code> has been called.</p>
+<p>When <code class="docutils literal notranslate"><span class="pre">cudaMallocAsync</span></code> is available (CUDA ≥ 11.2), allocations are
+stream-ordered.  Otherwise, they fall back to <code class="docutils literal notranslate"><span class="pre">cudaMalloc</span></code>.</p>
+</section>
+</section>
+<section id="stream-and-event-semantics">
+<h2><a class="toc-backref" href="#id7" role="doc-backlink">4  Stream and Event Semantics</a><a class="headerlink" href="#stream-and-event-semantics" title="Link to this heading"></a></h2>
+<section id="stream-usage">
+<h3><a class="toc-backref" href="#id8" role="doc-backlink">4.1  Stream Usage</a><a class="headerlink" href="#stream-usage" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>The engine operates on <strong>a single user-provided CUDA stream</strong> (set via
+<code class="docutils literal notranslate"><span class="pre">set_stream()</span></code>; defaults to the default stream / <code class="docutils literal notranslate"><span class="pre">nullptr</span></code>).</p></li>
+<li><p>All kernel launches (<code class="docutils literal notranslate"><span class="pre">step</span></code>, <code class="docutils literal notranslate"><span class="pre">inject_box</span></code>, <code class="docutils literal notranslate"><span class="pre">update_derived_fields</span></code>,
+<code class="docutils literal notranslate"><span class="pre">compute_unwrapped_positions</span></code>) are <strong>enqueued</strong> on this stream.</p></li>
+<li><p>The engine <strong>never</strong> calls <code class="docutils literal notranslate"><span class="pre">cudaDeviceSynchronize()</span></code>.  The only
+synchronization it performs is through <code class="docutils literal notranslate"><span class="pre">synchronize()</span></code>
+(= <code class="docutils literal notranslate"><span class="pre">cudaStreamSynchronize(stream_)</span></code>).</p></li>
+</ul>
+</section>
+<section id="event-integration">
+<h3><a class="toc-backref" href="#id9" role="doc-backlink">4.2  Event Integration</a><a class="headerlink" href="#event-integration" title="Link to this heading"></a></h3>
+<p>For multi-solver pipelines:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">record_event(event)</span></code> — records a CUDA event on the engine stream.
+Other streams can <code class="docutils literal notranslate"><span class="pre">cudaStreamWaitEvent</span></code> on it.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">wait_event(event)</span></code> — makes the engine stream wait for an external
+event.  <strong>GPU-side wait</strong>, does not block the CPU host.</p></li>
+</ul>
+</section>
+<section id="execution-order-guarantee">
+<h3><a class="toc-backref" href="#id10" role="doc-backlink">4.3  Execution Order Guarantee</a><a class="headerlink" href="#execution-order-guarantee" title="Link to this heading"></a></h3>
+<p>Within the engine stream, all operations execute in enqueue order.  A
+typical pipeline cycle:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>wait_event(vel_ready)     ← GPU waits for flow solver
+step(dt)                  ← kernel enqueued
+record_event(step_done)   ← signal for downstream
+</pre></div>
+</div>
+<p>No CPU blocking occurs in this sequence.</p>
+</section>
+</section>
+<section id="boundary-conditions">
+<h2><a class="toc-backref" href="#id11" role="doc-backlink">5  Boundary Conditions</a><a class="headerlink" href="#boundary-conditions" title="Link to this heading"></a></h2>
+<section id="per-axis-per-face-configuration">
+<h3><a class="toc-backref" href="#id12" role="doc-backlink">5.1  Per-Axis, Per-Face Configuration</a><a class="headerlink" href="#per-axis-per-face-configuration" title="Link to this heading"></a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">BoundaryConfig&lt;T&gt;</span></code> defines six faces via three <code class="docutils literal notranslate"><span class="pre">AxisBoundary&lt;T&gt;</span></code>
+structs (<code class="docutils literal notranslate"><span class="pre">x.lo</span></code>, <code class="docutils literal notranslate"><span class="pre">x.hi</span></code>, <code class="docutils literal notranslate"><span class="pre">y.lo</span></code>, <code class="docutils literal notranslate"><span class="pre">y.hi</span></code>, <code class="docutils literal notranslate"><span class="pre">z.lo</span></code>, <code class="docutils literal notranslate"><span class="pre">z.hi</span></code>).</p>
+</section>
+<section id="closed-reflective">
+<h3><a class="toc-backref" href="#id13" role="doc-backlink">5.2  Closed (Reflective)</a><a class="headerlink" href="#closed-reflective" title="Link to this heading"></a></h3>
+<p><strong>Semantics:</strong> if the proposed new position falls outside the domain
+(using <strong>strict inequalities</strong>), the displacement is <strong>zeroed</strong> and the
+particle stays at its current position.</p>
+<ul class="simple">
+<li><p>Domain validity: <code class="docutils literal notranslate"><span class="pre">lo</span> <span class="pre">&lt;</span> <span class="pre">x</span> <span class="pre">&lt;</span> <span class="pre">hi</span></code> (strict, matching legacy
+<code class="docutils literal notranslate"><span class="pre">grid::validX/Y/Z</span></code>).</p></li>
+<li><p>An epsilon buffer <code class="docutils literal notranslate"><span class="pre">ε</span> <span class="pre">=</span> <span class="pre">L</span> <span class="pre">×</span> <span class="pre">1e-14</span></code> is applied internally for
+floating-point robustness (<strong>deviation from legacy</strong>, which uses exact
+strict inequality without epsilon).  This prevents edge-case particle
+freezing at positions infinitesimally close to the boundary.</p></li>
+<li><p>This is a <em>rejection</em> scheme, not a bounce/reflection scheme:
+the particle simply does not move on that step.</p></li>
+</ul>
+</section>
+<section id="periodic-wrap-around">
+<h3><a class="toc-backref" href="#id14" role="doc-backlink">5.3  Periodic (Wrap-Around)</a><a class="headerlink" href="#periodic-wrap-around" title="Link to this heading"></a></h3>
+<p><strong>Semantics:</strong> the position wraps modulo the domain length <code class="docutils literal notranslate"><span class="pre">L</span> <span class="pre">=</span> <span class="pre">hi</span> <span class="pre">-</span> <span class="pre">lo</span></code>.</p>
+<ul class="simple">
+<li><p>Wrap counter (<code class="docutils literal notranslate"><span class="pre">int32_t</span></code>) tracks <strong>net domain crossings</strong> (can be
+negative).</p></li>
+<li><p>Fast path assumes <code class="docutils literal notranslate"><span class="pre">|dp|</span> <span class="pre">&lt;</span> <span class="pre">L</span></code>; falls back to robust floor-based
+algorithm for multi-domain crossings.</p></li>
+<li><p>Wrapped domain is <code class="docutils literal notranslate"><span class="pre">[lo,</span> <span class="pre">hi)</span></code> — position is snapped to <code class="docutils literal notranslate"><span class="pre">lo</span></code> if it
+lands exactly on <code class="docutils literal notranslate"><span class="pre">hi</span></code>.</p></li>
+<li><p>Periodic BC must be symmetric (both <code class="docutils literal notranslate"><span class="pre">lo</span></code> and <code class="docutils literal notranslate"><span class="pre">hi</span></code> set to
+<code class="docutils literal notranslate"><span class="pre">Periodic</span></code>); mixed periodic is treated as non-periodic for that axis.</p></li>
+</ul>
+</section>
+<section id="open-exit">
+<h3><a class="toc-backref" href="#id15" role="doc-backlink">5.4  Open (Exit)</a><a class="headerlink" href="#open-exit" title="Link to this heading"></a></h3>
+<p><strong>Semantics:</strong> if the proposed new position falls outside the domain, the
+particle is flagged as <code class="docutils literal notranslate"><span class="pre">ParticleStatus::Exited</span></code> and <strong>retains its current
+position</strong> (it does not advance to the out-of-bounds location).</p>
+<ul class="simple">
+<li><p>Requires <code class="docutils literal notranslate"><span class="pre">status</span></code> array to be bound (auto-allocated by
+<code class="docutils literal notranslate"><span class="pre">ensure_tracking_arrays()</span></code> if boundary <code class="docutils literal notranslate"><span class="pre">has_open()</span></code>).</p></li>
+<li><p>Exited particles are skipped in subsequent <code class="docutils literal notranslate"><span class="pre">step()</span></code> calls (the
+kernel checks <code class="docutils literal notranslate"><span class="pre">status[i]</span> <span class="pre">!=</span> <span class="pre">Active</span></code> before moving).</p></li>
+</ul>
+</section>
+<section id="d-mode">
+<h3><a class="toc-backref" href="#id16" role="doc-backlink">5.5  2D Mode</a><a class="headerlink" href="#d-mode" title="Link to this heading"></a></h3>
+<p>When <code class="docutils literal notranslate"><span class="pre">nz</span> <span class="pre">==</span> <span class="pre">1</span></code>, the Z displacement is forced to zero and the Z boundary
+is skipped.  This is handled inside the kernel, not by the boundary
+configuration.</p>
+</section>
+</section>
+<section id="rng-and-determinism">
+<h2><a class="toc-backref" href="#id17" role="doc-backlink">6  RNG and Determinism</a><a class="headerlink" href="#rng-and-determinism" title="Link to this heading"></a></h2>
+<section id="initialization">
+<h3><a class="toc-backref" href="#id18" role="doc-backlink">6.1  Initialization</a><a class="headerlink" href="#initialization" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>Each particle gets its own <code class="docutils literal notranslate"><span class="pre">curandState_t</span></code> (XORWOW generator).</p></li>
+<li><p>Initialized by <code class="docutils literal notranslate"><span class="pre">curand_init(seed,</span> <span class="pre">tid,</span> <span class="pre">0,</span> <span class="pre">&amp;state)</span></code> where <code class="docutils literal notranslate"><span class="pre">seed</span></code>
+is <code class="docutils literal notranslate"><span class="pre">EngineConfig::rng_seed</span></code> (default <code class="docutils literal notranslate"><span class="pre">12345ULL</span></code>) and <code class="docutils literal notranslate"><span class="pre">tid</span></code> is
+the particle index.</p></li>
+<li><p>Initialization runs as a kernel on the engine stream during
+<code class="docutils literal notranslate"><span class="pre">prepare()</span></code>.</p></li>
+</ul>
+</section>
+<section id="per-step-usage">
+<h3><a class="toc-backref" href="#id19" role="doc-backlink">6.2  Per-Step Usage</a><a class="headerlink" href="#per-step-usage" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>Three independent <span class="math notranslate nohighlight">\(N(0,1)\)</span> variates are drawn per particle per
+step via <code class="docutils literal notranslate"><span class="pre">curand_normal_double()</span></code>.</p></li>
+<li><p>The state is loaded from global memory, used, then written back.</p></li>
+<li><p>State persistence: the curand state array persists in the workspace
+across steps — this is essential for correct statistical properties.</p></li>
+</ul>
+</section>
+<section id="reproducibility-guarantees">
+<h3><a class="toc-backref" href="#id20" role="doc-backlink">6.3  Reproducibility Guarantees</a><a class="headerlink" href="#reproducibility-guarantees" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><strong>Same GPU + same seed + same particle count + same step sequence →
+identical results</strong> (bitwise).</p></li>
+<li><p>Changing the number of particles changes the <code class="docutils literal notranslate"><span class="pre">tid</span></code> mapping → different
+streams of random numbers even for the same seed.</p></li>
+<li><p>Cross-GPU reproducibility is <strong>NOT guaranteed</strong> (different warp
+scheduling can affect curand internal state sequence).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">float</span></code> vs <code class="docutils literal notranslate"><span class="pre">double</span></code> instantiations produce different results (expected).</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>TODO:</strong> PhiloxPolicy (counter-based RNG) is defined in internal headers
+but not yet wired into the public API.  This would enable
+cross-GPU reproducibility and skip-ahead capabilities.</p>
+</div>
+</section>
+</section>
+<section id="outputs-stats-and-snapshots">
+<h2><a class="toc-backref" href="#id21" role="doc-backlink">7  Outputs, Stats, and Snapshots</a><a class="headerlink" href="#outputs-stats-and-snapshots" title="Link to this heading"></a></h2>
+<section id="position-data">
+<h3><a class="toc-backref" href="#id22" role="doc-backlink">7.1  Position Data</a><a class="headerlink" href="#position-data" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">particles()</span></code> returns a <code class="docutils literal notranslate"><span class="pre">ConstParticlesView&lt;T&gt;</span></code> with <strong>device pointers</strong>
+to wrapped positions (x, y, z), plus status and wrap counters if tracking
+is enabled.</p></li>
+<li><p>To read on host: <code class="docutils literal notranslate"><span class="pre">synchronize()</span></code> → <code class="docutils literal notranslate"><span class="pre">cudaMemcpy</span></code> (or use
+<code class="docutils literal notranslate"><span class="pre">io::download_positions_async</span></code>).</p></li>
+</ul>
+</section>
+<section id="unwrapped-positions">
+<h3><a class="toc-backref" href="#id23" role="doc-backlink">7.2  Unwrapped Positions</a><a class="headerlink" href="#unwrapped-positions" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">compute_unwrapped_positions(out)</span></code> computes on-demand:
+<code class="docutils literal notranslate"><span class="pre">x_u</span> <span class="pre">=</span> <span class="pre">x</span> <span class="pre">+</span> <span class="pre">wrapX</span> <span class="pre">×</span> <span class="pre">Lx</span></code> (for periodic axes).</p></li>
+<li><p>Non-periodic axes: <code class="docutils literal notranslate"><span class="pre">x_u</span> <span class="pre">=</span> <span class="pre">x</span></code> (identity copy).</p></li>
+<li><p>This is a <strong>kernel launch</strong> (async, no sync, no alloc).</p></li>
+<li><p>Output arrays must be user-allocated on device.</p></li>
+</ul>
+</section>
+<section id="statistics">
+<h3><a class="toc-backref" href="#id24" role="doc-backlink">7.3  Statistics</a><a class="headerlink" href="#statistics" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">StatsComputer&lt;T&gt;</span></code> performs GPU reduction for moments (mean, variance,
+std) and status counts.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">compute_async()</span></code> → async; <code class="docutils literal notranslate"><span class="pre">fetch_result()</span></code> → after sync.</p></li>
+<li><p>Variance uses unbiased estimator (N-1 denominator).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">use_unwrapped</span> <span class="pre">=</span> <span class="pre">true</span></code> computes stats from unwrapped positions (essential
+for correct dispersion measurements under periodic BC).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">filter_active_only</span> <span class="pre">=</span> <span class="pre">true</span></code> excludes Exited/Inactive particles from
+moment computation.</p></li>
+</ul>
+</section>
+<section id="csv-snapshots">
+<h3><a class="toc-backref" href="#id25" role="doc-backlink">7.4  CSV Snapshots</a><a class="headerlink" href="#csv-snapshots" title="Link to this heading"></a></h3>
+<p><strong>Legacy format</strong> (<code class="docutils literal notranslate"><span class="pre">CsvSnapshotConfig::legacy_format</span> <span class="pre">=</span> <span class="pre">true</span></code>):</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>id,x coord,y coord,z coord
+0,1.234567890123456,2.345678901234567,3.456789012345678
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Precision: 15 decimal digits (full <code class="docutils literal notranslate"><span class="pre">double</span></code>).</p></li>
+<li><p>No time, no status, no wrap columns.</p></li>
+</ul>
+<p><strong>Extended format</strong> — adds optional columns: <code class="docutils literal notranslate"><span class="pre">t</span></code>, <code class="docutils literal notranslate"><span class="pre">xu</span></code>, <code class="docutils literal notranslate"><span class="pre">yu</span></code>, <code class="docutils literal notranslate"><span class="pre">zu</span></code>,
+<code class="docutils literal notranslate"><span class="pre">status</span></code>, <code class="docutils literal notranslate"><span class="pre">wrapX</span></code>, <code class="docutils literal notranslate"><span class="pre">wrapY</span></code>, <code class="docutils literal notranslate"><span class="pre">wrapZ</span></code>.</p>
+</section>
+<section id="snapshot-timing">
+<h3><a class="toc-backref" href="#id26" role="doc-backlink">7.5  Snapshot Timing</a><a class="headerlink" href="#snapshot-timing" title="Link to this heading"></a></h3>
+<p>Snapshots reflect the state <strong>after</strong> the most recent <code class="docutils literal notranslate"><span class="pre">step()</span></code> that has
+been synchronized.  Step 0 (initial state before any stepping) can be
+exported after <code class="docutils literal notranslate"><span class="pre">inject_*()</span></code> + <code class="docutils literal notranslate"><span class="pre">synchronize()</span></code> if the user wants it.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>TODO:</strong> There is no built-in snapshot-scheduling facility.  The user
+loop controls when to export (e.g., <code class="docutils literal notranslate"><span class="pre">if</span> <span class="pre">step</span> <span class="pre">%</span> <span class="pre">interval</span> <span class="pre">==</span> <span class="pre">0</span></code>).</p>
+</div>
+</section>
+</section>
+<section id="thread-safety">
+<h2><a class="toc-backref" href="#id27" role="doc-backlink">8  Thread Safety</a><a class="headerlink" href="#thread-safety" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">TransportEngine</span></code> is <strong>NOT thread-safe</strong> for concurrent host calls.
+All <code class="docutils literal notranslate"><span class="pre">bind_*</span></code>, <code class="docutils literal notranslate"><span class="pre">step()</span></code>, <code class="docutils literal notranslate"><span class="pre">synchronize()</span></code> etc. must be serialized
+from the host side.</p></li>
+<li><p>Multiple engines on <strong>different CUDA streams</strong> can run concurrently
+(one host thread per engine or explicit serialization).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">StatsComputer</span></code> and <code class="docutils literal notranslate"><span class="pre">CsvSnapshotWriter</span></code> are <strong>NOT thread-safe</strong>
+individually; use separate instances per thread.</p></li>
+<li><p>GPU kernels launched by different engines on different streams execute
+concurrently if GPU resources allow.</p></li>
+</ul>
+</section>
+<section id="rwpt-algorithm-mathematical-formulation">
+<h2><a class="toc-backref" href="#id28" role="doc-backlink">9  RWPT Algorithm (Mathematical Formulation)</a><a class="headerlink" href="#rwpt-algorithm-mathematical-formulation" title="Link to this heading"></a></h2>
+<p>The Random Walk Particle Tracking (RWPT) method solves the
+advection-dispersion equation (ADE) in Lagrangian form.  Each particle
+represents a passive tracer whose position evolves per timestep as:</p>
+<div class="math notranslate nohighlight">
+\[\Delta\mathbf{x} = (\mathbf{v}_{\text{interp}} + \mathbf{v}_{\text{drift}}) \, dt
+                    + \mathbf{B} \cdot \boldsymbol{\xi}\]</div>
+<p>where:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\mathbf{v}_{\text{interp}}\)</span> — velocity at the particle position,
+sampled via linear face-field interpolation or trilinear corner-field
+interpolation (see Section 10).</p></li>
+<li><p><span class="math notranslate nohighlight">\(\mathbf{v}_{\text{drift}} = \nabla \cdot \mathbf{D}\)</span> — drift
+correction ensuring correct Fokker–Planck behaviour
+(see Section 12).</p></li>
+<li><p><span class="math notranslate nohighlight">\(\mathbf{B}\)</span> — displacement matrix satisfying
+<span class="math notranslate nohighlight">\(\mathbf{B}\mathbf{B}^T = 2\,\mathbf{D}\,dt\)</span>
+(see Section 11).</p></li>
+<li><p><span class="math notranslate nohighlight">\(\boldsymbol{\xi} = (\xi_0, \xi_1, \xi_2)\)</span> — three independent
+<span class="math notranslate nohighlight">\(N(0,1)\)</span> random variates from <code class="docutils literal notranslate"><span class="pre">curand_normal_double()</span></code>.</p></li>
+<li><p><span class="math notranslate nohighlight">\(dt\)</span> — time step.</p></li>
+</ul>
+<p><strong>Per-particle kernel pseudocode:</strong></p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>for each active particle i:
+  1. (idx, idy, idz) = cell_from_position(p[i])
+  2. v = sample_velocity(interp_mode, p[i])
+  3. v_drift = compute_drift(drift_mode, p[i])
+  4. v_B = sample_corner_velocity(p[i])     ← for B computation
+  5. B = displacement_matrix(v_B, Dm, αL, αT, dt)
+  6. ξ = (N(0,1), N(0,1), N(0,1))
+  7. Δp = (v + v_drift)·dt + B·ξ
+  8. p[i] = apply_boundary(p[i], Δp)
+</pre></div>
+</div>
+<p><strong>Important detail:</strong> Step 4 always prefers <strong>corner velocity</strong> for
+computing B, even under <code class="docutils literal notranslate"><span class="pre">InterpolationMode::Linear</span></code>.  If corner velocity
+is available, it is re-sampled at the particle position for B; if not, the
+face-centered velocity serves as fallback.  This matches legacy PAR²
+behaviour where dispersion was always based on corner-field values.</p>
+</section>
+<section id="velocity-layout-and-interpolation">
+<h2><a class="toc-backref" href="#id29" role="doc-backlink">10  Velocity Layout and Interpolation</a><a class="headerlink" href="#velocity-layout-and-interpolation" title="Link to this heading"></a></h2>
+<section id="staggered-mac-grid-facefield">
+<h3><a class="toc-backref" href="#id30" role="doc-backlink">10.1  Staggered MAC Grid (FaceField)</a><a class="headerlink" href="#staggered-mac-grid-facefield" title="Link to this heading"></a></h3>
+<p>Par2_Core inherits the legacy PAR² staggered MAC grid layout.  Each velocity
+component (U, V, W) is stored as a flat array with size:</p>
+<div class="math notranslate nohighlight">
+\[N_{\text{field}} = (n_x + 1)(n_y + 1)(n_z + 1)\]</div>
+<p>Indexing:</p>
+<div class="math notranslate nohighlight">
+\[\mathrm{mergeId}(i_x, i_y, i_z)
+  = i_z \cdot (n_y+1)(n_x+1) + i_y \cdot (n_x+1) + i_x\]</div>
+<p><strong>Semantic meaning:</strong> despite using corner-point indexing, these are
+<strong>face-centred</strong> values:</p>
+</section>
+<section id="linear-interpolation-interpolationmode-linear">
+<h3><a class="toc-backref" href="#id31" role="doc-backlink">10.2  Linear Interpolation (InterpolationMode::Linear)</a><a class="headerlink" href="#linear-interpolation-interpolationmode-linear" title="Link to this heading"></a></h3>
+<p>Source: <code class="docutils literal notranslate"><span class="pre">internal/fields/facefield_accessor.cuh</span></code></p>
+<p>For a particle inside cell <code class="docutils literal notranslate"><span class="pre">(idx,</span> <span class="pre">idy,</span> <span class="pre">idz)</span></code> with cell centre
+<code class="docutils literal notranslate"><span class="pre">(cx,</span> <span class="pre">cy,</span> <span class="pre">cz)</span></code>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}t_x &amp;= \frac{p_x - c_x}{\Delta x} + 0.5 \quad \in [0, 1] \\
+v_x &amp;= (1 - t_x) \cdot U[\text{left}] + t_x \cdot U[\text{right}]\end{split}\]</div>
+<p>Similarly for <span class="math notranslate nohighlight">\(v_y\)</span> and <span class="math notranslate nohighlight">\(v_z\)</span>.  Each component is interpolated
+independently on its own staggered axis.</p>
+</section>
+<section id="trilinear-interpolation-interpolationmode-trilinear">
+<h3><a class="toc-backref" href="#id32" role="doc-backlink">10.3  Trilinear Interpolation (InterpolationMode::Trilinear)</a><a class="headerlink" href="#trilinear-interpolation-interpolationmode-trilinear" title="Link to this heading"></a></h3>
+<p>Source: <code class="docutils literal notranslate"><span class="pre">internal/fields/cornerfield_accessor.cuh</span></code></p>
+<p>Uses the 8 <strong>corner-centred</strong> velocity values of the containing cell.
+Normalized coordinates:</p>
+<div class="math notranslate nohighlight">
+\[t = \frac{\mathbf{p} - \mathbf{c}}{\Delta \mathbf{h}} + 0.5
+  \quad \in [0, 1]^3\]</div>
+<p>Standard trilinear formula:  interpolate along X for all 4 YZ pairs →
+interpolate along Y for the 2 Z pairs → interpolate along Z.</p>
+</section>
+<section id="corner-velocity-computation">
+<h3><a class="toc-backref" href="#id33" role="doc-backlink">10.4  Corner Velocity Computation</a><a class="headerlink" href="#corner-velocity-computation" title="Link to this heading"></a></h3>
+<p>Source: <code class="docutils literal notranslate"><span class="pre">kernels/cornerfield.cu</span></code></p>
+<p>Corner velocity is computed from face velocity by averaging adjacent faces:</p>
+<div class="math notranslate nohighlight">
+\[U_c(i_x, i_y, i_z) = \frac{1}{|\mathcal{S}|}
+  \sum_{(j_y, j_z) \in \mathcal{S}}
+    U_{\text{face}}(i_x^{\prime}, j_y, j_z)\]</div>
+<p>where <span class="math notranslate nohighlight">\(\mathcal{S}\)</span> is the 2×2 stencil of valid adjacent cells in
+the YZ plane, and <span class="math notranslate nohighlight">\(i_x^{\prime}\)</span> selects the left or right face
+(<code class="docutils literal notranslate"><span class="pre">XM</span></code> if <code class="docutils literal notranslate"><span class="pre">ix</span> <span class="pre">&lt;</span> <span class="pre">nx</span></code>, <code class="docutils literal notranslate"><span class="pre">XP</span></code> if <code class="docutils literal notranslate"><span class="pre">ix</span> <span class="pre">==</span> <span class="pre">nx</span></code>).  Boundary corners have
+fewer contributing faces (1 or 2 instead of 4).</p>
+</section>
+</section>
+<section id="dispersion-tensor-and-displacement-matrix">
+<h2><a class="toc-backref" href="#id34" role="doc-backlink">11  Dispersion Tensor and Displacement Matrix</a><a class="headerlink" href="#dispersion-tensor-and-displacement-matrix" title="Link to this heading"></a></h2>
+<section id="dispersion-tensor-d">
+<h3><a class="toc-backref" href="#id35" role="doc-backlink">11.1  Dispersion Tensor D</a><a class="headerlink" href="#dispersion-tensor-d" title="Link to this heading"></a></h3>
+<div class="math notranslate nohighlight">
+\[D_{ij} = (\alpha_T |\mathbf{v}| + D_m)\,\delta_{ij}
+         + \frac{\alpha_L - \alpha_T}{|\mathbf{v}|}\,v_i\,v_j\]</div>
+<p>Eigenvalues:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\lambda_L &amp;= \alpha_L |\mathbf{v}| + D_m
+  \qquad \text{(longitudinal, along } \mathbf{v}\text{)} \\
+\lambda_T &amp;= \alpha_T |\mathbf{v}| + D_m
+  \qquad \text{(transverse, 2× degenerate, } \perp \mathbf{v}\text{)}\end{split}\]</div>
+</section>
+<section id="displacement-matrix-b">
+<h3><a class="toc-backref" href="#id36" role="doc-backlink">11.2  Displacement Matrix B</a><a class="headerlink" href="#displacement-matrix-b" title="Link to this heading"></a></h3>
+<p><span class="math notranslate nohighlight">\(\mathbf{B}\)</span> is symmetric and satisfies
+<span class="math notranslate nohighlight">\(\mathbf{B}\mathbf{B}^T = 2\,\mathbf{D}\,dt\)</span>.
+It is constructed via eigendecomposition:</p>
+<div class="math notranslate nohighlight">
+\[\mathbf{B} = \sqrt{2\,dt}
+  \sum_{i=0}^{2} \gamma_i \;(\mathbf{e}_i \otimes \mathbf{e}_i)\]</div>
+<p>where the unnormalized eigenvectors are:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\mathbf{e}_0 &amp;= (v_x, \; v_y, \; v_z)
+  \qquad \text{(along flow)} \\
+\mathbf{e}_1 &amp;= (-v_y, \; v_x, \; 0)
+  \qquad \text{(⊥ in XY plane)} \\
+\mathbf{e}_2 &amp;= (-v_z v_x, \; -v_z v_y, \; v_x^2 + v_y^2)
+  \qquad \text{(⊥ to both)}\end{split}\]</div>
+<p>and the gamma coefficients incorporate the eigenvalue and normalization:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\gamma_0 &amp;= \frac{\sqrt{\lambda_L}}{|\mathbf{e}_0|^2}
+  = \frac{\sqrt{\alpha_L |\mathbf{v}| + D_m}}{|\mathbf{v}|^2} \\
+\gamma_1 &amp;= \frac{\sqrt{\lambda_T}}{|\mathbf{e}_1|^2}
+  = \frac{\sqrt{\alpha_T |\mathbf{v}| + D_m}}{v_x^2 + v_y^2} \\
+\gamma_2 &amp;= \frac{\sqrt{\lambda_T}}{|\mathbf{e}_2|^2}
+  = \frac{\sqrt{\alpha_T |\mathbf{v}| + D_m}}{(v_x^2 + v_y^2)(v_x^2 + v_y^2 + v_z^2)}\end{split}\]</div>
+<p>The 6 unique components of symmetric B:</p>
+<div class="math notranslate nohighlight">
+\[B_{jk} = \sqrt{2\,dt} \sum_{i=0}^{2} \gamma_i \; e_i[j] \; e_i[k]\]</div>
+</section>
+<section id="zerovelocity-handling">
+<h3><a class="toc-backref" href="#id37" role="doc-backlink">11.3  Zero‑Velocity Handling</a><a class="headerlink" href="#zerovelocity-handling" title="Link to this heading"></a></h3>
+<p>Two mechanisms prevent NaN from <span class="math notranslate nohighlight">\(|\mathbf{v}| \to 0\)</span>:</p>
+<p><strong>Mechanism 1 — Displacement matrix</strong> (legacy line 432):</p>
+<div class="math notranslate nohighlight">
+\[\text{toll} = 0.01 \cdot D_m / \alpha_L, \qquad
+v_x \leftarrow \max(v_x, \text{toll})\]</div>
+<p>Only <span class="math notranslate nohighlight">\(v_x\)</span> is clamped.  This ensures <span class="math notranslate nohighlight">\(|\mathbf{v}| &gt; 0\)</span> and
+<span class="math notranslate nohighlight">\(|\mathbf{e}_1|^2, |\mathbf{e}_2|^2 &gt; 0\)</span>.</p>
+<p><strong>Mechanism 2 — Drift correction</strong> (legacy line 278):</p>
+<div class="math notranslate nohighlight">
+\[\text{if } v_x &lt; \text{toll} \;\wedge\; v_y &lt; \text{toll}
+           \;\wedge\; v_z &lt; \text{toll}:
+\quad v_x \leftarrow \text{toll}\]</div>
+<p>Applied at each of the 8 corners independently.</p>
+<p><strong>Legacy bug fix:</strong>  When <span class="math notranslate nohighlight">\(\alpha_L = 0\)</span>, legacy computes
+<code class="docutils literal notranslate"><span class="pre">toll</span> <span class="pre">=</span> <span class="pre">NaN</span></code>.  Par2_Core returns <code class="docutils literal notranslate"><span class="pre">toll</span> <span class="pre">=</span> <span class="pre">1e-15</span></code> instead, which produces
+correct zero drift without NaN propagation.</p>
+</section>
+<section id="specialcase-dispatching">
+<h3><a class="toc-backref" href="#id38" role="doc-backlink">11.4  Special‑Case Dispatching</a><a class="headerlink" href="#specialcase-dispatching" title="Link to this heading"></a></h3>
+<p>Source: <code class="docutils literal notranslate"><span class="pre">internal/math/dispersion.cuh</span></code>, <code class="docutils literal notranslate"><span class="pre">compute_B_matrix()</span></code></p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Condition</p></th>
+<th class="head"><p>Behaviour</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Dm = αL = αT = 0</p></td>
+<td><p>B = 0 (zero matrix, no diffusion)</p></td>
+</tr>
+<tr class="row-odd"><td><p>αL = αT = 0, Dm &gt; 0</p></td>
+<td><p>B = √(2·Dm·dt) · I (isotropic)</p></td>
+</tr>
+<tr class="row-even"><td><p>otherwise</p></td>
+<td><p>Full eigendecomposition (legacy path)</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="nan-prevention-flag">
+<h3><a class="toc-backref" href="#id39" role="doc-backlink">11.5  <code class="docutils literal notranslate"><span class="pre">nan_prevention</span></code> Flag</a><a class="headerlink" href="#nan-prevention-flag" title="Link to this heading"></a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">EngineConfig::nan_prevention</span></code> adds guards <strong>not present in legacy</strong>:</p>
+<ul class="simple">
+<li><p>In the B-matrix: clamps <span class="math notranslate nohighlight">\(|\mathbf{e}_1|^2\)</span> and
+<span class="math notranslate nohighlight">\(|\mathbf{e}_2|^2\)</span> to <span class="math notranslate nohighlight">\(\text{toll}^2\)</span> if they approach zero
+(e.g., flow purely in Z).</p></li>
+<li><p>In precomputed drift: when <span class="math notranslate nohighlight">\(|\mathbf{v}| &lt; \text{toll}\)</span> at a cell
+centre, sets <span class="math notranslate nohighlight">\(\mathbf{D} = D_m \mathbf{I}\)</span> directly.</p></li>
+</ul>
+</section>
+</section>
+<section id="drift-correction-algorithms">
+<h2><a class="toc-backref" href="#id40" role="doc-backlink">12  Drift Correction Algorithms</a><a class="headerlink" href="#drift-correction-algorithms" title="Link to this heading"></a></h2>
+<section id="trilinearonfly-mode">
+<h3><a class="toc-backref" href="#id41" role="doc-backlink">12.1  TrilinearOnFly Mode</a><a class="headerlink" href="#trilinearonfly-mode" title="Link to this heading"></a></h3>
+<p>Source: <code class="docutils literal notranslate"><span class="pre">internal/fields/cornerfield_accessor.cuh</span></code>,
+<code class="docutils literal notranslate"><span class="pre">compute_drift_trilinear()</span></code></p>
+<p>Computes <span class="math notranslate nohighlight">\(\nabla \cdot \mathbf{D}\)</span> at the <strong>particle position</strong>
+using trilinear derivative interpolation of D-tensor components evaluated
+at the 8 cell corners:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}v_{\text{drift},x} &amp;= \frac{\partial D_{xx}}{\partial x}
+                       + \frac{\partial D_{xy}}{\partial y}
+                       + \frac{\partial D_{xz}}{\partial z} \\
+v_{\text{drift},y} &amp;= \frac{\partial D_{xy}}{\partial x}
+                       + \frac{\partial D_{yy}}{\partial y}
+                       + \frac{\partial D_{yz}}{\partial z} \\
+v_{\text{drift},z} &amp;= \frac{\partial D_{xz}}{\partial x}
+                       + \frac{\partial D_{yz}}{\partial y}
+                       + \frac{\partial D_{zz}}{\partial z}\end{split}\]</div>
+<p>The partial derivatives use trilinear derivative interpolation functions
+(<code class="docutils literal notranslate"><span class="pre">trilinear_dx/dy/dz</span></code>) which compute <span class="math notranslate nohighlight">\((v_1 - v_0)/h\)</span> on the
+differentiation axis, then interpolate in the remaining two dimensions.</p>
+<p><strong>Computational cost:</strong>  8 corner lookups × 3 components = 24 velocity
+loads, 6 D-tensor evaluations × 8 corners = 48 D computations, plus
+9 trilinear derivative evaluations.</p>
+</section>
+<section id="precomputed-mode-finite-differences">
+<h3><a class="toc-backref" href="#id42" role="doc-backlink">12.2  Precomputed Mode (Finite Differences)</a><a class="headerlink" href="#precomputed-mode-finite-differences" title="Link to this heading"></a></h3>
+<p>Source: <code class="docutils literal notranslate"><span class="pre">kernels/drift_correction.cu</span></code></p>
+<p>Two-step process:</p>
+<ol class="arabic">
+<li><p><strong>Step 1 — D tensor at cell centres:</strong>  For each cell, sample
+face-field velocity at the cell centre, compute <span class="math notranslate nohighlight">\(|\mathbf{v}|\)</span>,
+and evaluate the 6 unique D-tensor components.</p></li>
+<li><p><strong>Step 2 — Finite differences:</strong></p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\frac{\partial D_{ij}}{\partial x}\bigg|_k =
+\begin{cases}
+  (D_{ij}[k+1] - D_{ij}[k]) / \Delta x
+    &amp; k = 0 \text{ (one-sided)} \\
+  (D_{ij}[k+1] - D_{ij}[k-1]) / (2\Delta x)
+    &amp; 0 &lt; k &lt; n_x-1 \text{ (central)} \\
+  (D_{ij}[k] - D_{ij}[k-1]) / \Delta x
+    &amp; k = n_x-1 \text{ (one-sided)}
+\end{cases}\end{split}\]</div>
+<p>The result is stored per cell and looked up in the kernel as a
+piecewise-constant field (no interpolation within the cell).</p>
+</li>
+</ol>
+<p><strong>Trade-off:</strong>  Precomputed mode is cheaper per particle per step
+(one cell-index lookup vs. 48 D computations) but requires an extra
+compute pass and 9 temporary arrays (6 D + 3 drift) of <code class="docutils literal notranslate"><span class="pre">num_cells</span></code>
+elements each.  Best for large particle counts with slowly-changing
+velocity.</p>
+</section>
+</section>
+<section id="performance-contracts">
+<h2><a class="toc-backref" href="#id43" role="doc-backlink">13  Performance Contracts</a><a class="headerlink" href="#performance-contracts" title="Link to this heading"></a></h2>
+<section id="allocationfree-stepping">
+<h3><a class="toc-backref" href="#id44" role="doc-backlink">13.1  Allocation‑Free Stepping</a><a class="headerlink" href="#allocationfree-stepping" title="Link to this heading"></a></h3>
+<p>Once <code class="docutils literal notranslate"><span class="pre">prepare()</span></code> has been called, <code class="docutils literal notranslate"><span class="pre">step()</span></code> performs <strong>zero</strong>
+device-memory allocations.  All GPU buffers (RNG states, corner velocity,
+drift, status, wrap counters) are pre-allocated with a 25% growth margin
+and only re-allocated if the particle count exceeds the workspace capacity.</p>
+<p>This is critical for real-time coupling and deterministic performance.</p>
+</section>
+<section id="kernel-launch-configuration">
+<h3><a class="toc-backref" href="#id45" role="doc-backlink">13.2  Kernel Launch Configuration</a><a class="headerlink" href="#kernel-launch-configuration" title="Link to this heading"></a></h3>
+<p>All kernels use <code class="docutils literal notranslate"><span class="pre">EngineConfig::kernel_block_size</span></code> (default 256).
+Grid size: <code class="docutils literal notranslate"><span class="pre">(n</span> <span class="pre">+</span> <span class="pre">block_size</span> <span class="pre">-</span> <span class="pre">1)</span> <span class="pre">/</span> <span class="pre">block_size</span></code>.  Grid-stride loops
+ensure correctness for arbitrary <code class="docutils literal notranslate"><span class="pre">n</span></code>.</p>
+</section>
+<section id="memory-access-pattern">
+<h3><a class="toc-backref" href="#id46" role="doc-backlink">13.3  Memory Access Pattern</a><a class="headerlink" href="#memory-access-pattern" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><strong>Particle data:</strong> coalesced SoA reads/writes (separate x, y, z arrays).</p></li>
+<li><p><strong>RNG state:</strong> per-particle, 48 bytes per <code class="docutils literal notranslate"><span class="pre">curandState_t</span></code> —
+coalesced by thread index.</p></li>
+<li><p><strong>Velocity fields:</strong> indirect lookups via cell index — <strong>not</strong> coalesced
+for randomly distributed particles.</p></li>
+<li><p><strong>Zero shared memory</strong> used in the move kernel (each thread is
+independent).</p></li>
+</ul>
+</section>
+<section id="known-limitations">
+<h3><a class="toc-backref" href="#id47" role="doc-backlink">13.4  Known Limitations</a><a class="headerlink" href="#known-limitations" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">float</span></code> instantiations still generate double-precision random
+numbers (<code class="docutils literal notranslate"><span class="pre">curand_normal_double</span></code>), wasting FP64 throughput.</p></li>
+<li><p>PhiloxPolicy is defined but not wired — XORWOW is the only option.</p></li>
+<li><p>The legacy kernel (<code class="docutils literal notranslate"><span class="pre">move_particles_kernel</span></code>, without <code class="docutils literal notranslate"><span class="pre">_full</span></code>) is
+dead code still compiled into the library.</p></li>
+<li><p>Moments reduction (<code class="docutils literal notranslate"><span class="pre">moments.cuh</span></code>) uses global atomics — may become a
+bottleneck above ~1024 thread blocks.</p></li>
+</ul>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../api/index.html" class="btn btn-neutral float-left" title="API Reference" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, Par2_Core contributors.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
