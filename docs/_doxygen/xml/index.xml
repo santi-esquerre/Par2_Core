@@ -1,0 +1,338 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygenindex xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="index.xsd" version="1.9.4" xml:lang="en-US">
+  <compound refid="structpar2_1_1AxisBoundary" kind="struct"><name>par2::AxisBoundary</name>
+    <member refid="structpar2_1_1AxisBoundary_1a02809c9a84aa5686a9e4d06ab66aa44e" kind="variable"><name>lo</name></member>
+    <member refid="structpar2_1_1AxisBoundary_1afc54aae576cc5b256fc16da0979e1783" kind="variable"><name>hi</name></member>
+    <member refid="structpar2_1_1AxisBoundary_1a193aff3bd593ac1b629a5982d34ca272" kind="function"><name>symmetric</name></member>
+    <member refid="structpar2_1_1AxisBoundary_1af760dbd83823f117494bf82e5d61fcf7" kind="function"><name>closed</name></member>
+    <member refid="structpar2_1_1AxisBoundary_1a9ad72f81de96125179053c5e1631a514" kind="function"><name>periodic</name></member>
+    <member refid="structpar2_1_1AxisBoundary_1a6b57c0c78a4b75851c2588c8172f9698" kind="function"><name>open</name></member>
+  </compound>
+  <compound refid="structpar2_1_1BoundaryConfig" kind="struct"><name>par2::BoundaryConfig</name>
+    <member refid="structpar2_1_1BoundaryConfig_1a5f04347d1177c8bc55da08025cd4a462" kind="variable"><name>x</name></member>
+    <member refid="structpar2_1_1BoundaryConfig_1a361a7db5154ddfa9133b6cdc004ef3f9" kind="variable"><name>y</name></member>
+    <member refid="structpar2_1_1BoundaryConfig_1a8bc1b82c883061a8a6372491c9155b98" kind="variable"><name>z</name></member>
+    <member refid="structpar2_1_1BoundaryConfig_1a4519cf579c4c3175ecf0c610c0a78043" kind="function"><name>all_closed</name></member>
+    <member refid="structpar2_1_1BoundaryConfig_1aebe4c041178f21dc0fd37db927ef7ff5" kind="function"><name>all_periodic</name></member>
+    <member refid="structpar2_1_1BoundaryConfig_1a2c14039bd7aee9f940d31c25a1e3f313" kind="function"><name>channel_x</name></member>
+    <member refid="structpar2_1_1BoundaryConfig_1a4fcc5be907a26875c84c15ed38151818" kind="function"><name>open_x</name></member>
+    <member refid="structpar2_1_1BoundaryConfig_1a44574c6697d5b7ec33312cfe9c1c849e" kind="function"><name>has_periodic</name></member>
+    <member refid="structpar2_1_1BoundaryConfig_1a5c126a72b9f0227501ccb6073a238000" kind="function"><name>has_open</name></member>
+  </compound>
+  <compound refid="structpar2_1_1ConstParticlesView" kind="struct"><name>par2::ConstParticlesView</name>
+    <member refid="structpar2_1_1ConstParticlesView_1a75e39ac7eca1d26c13f4f05b82f86dd3" kind="variable"><name>x</name></member>
+    <member refid="structpar2_1_1ConstParticlesView_1aadef95124bd0e08d79630d658825500d" kind="variable"><name>y</name></member>
+    <member refid="structpar2_1_1ConstParticlesView_1a8e28bec89373c72cccf8f07c15479e09" kind="variable"><name>z</name></member>
+    <member refid="structpar2_1_1ConstParticlesView_1aae0d0dbff67b7c7b911f231db0cd23ba" kind="variable"><name>n</name></member>
+    <member refid="structpar2_1_1ConstParticlesView_1a499008086cabe34babfde8b3d13193e1" kind="variable"><name>status</name></member>
+    <member refid="structpar2_1_1ConstParticlesView_1a9bbc2f7437d4d33b8ce5c1133a1e4128" kind="variable"><name>wrapX</name></member>
+    <member refid="structpar2_1_1ConstParticlesView_1a166a3e21c1d21560867693e295cc168d" kind="variable"><name>wrapY</name></member>
+    <member refid="structpar2_1_1ConstParticlesView_1a0b3d7a3dd00cf1f76ad9e6847989ddef" kind="variable"><name>wrapZ</name></member>
+    <member refid="structpar2_1_1ConstParticlesView_1a6cfbcb682db6409528f2304d1811606f" kind="function"><name>valid</name></member>
+    <member refid="structpar2_1_1ConstParticlesView_1a6691d9cd9a6b0a0ca047375f1840458b" kind="function"><name>ConstParticlesView</name></member>
+    <member refid="structpar2_1_1ConstParticlesView_1a2ac00a7f4d23850b5079c0e557decb01" kind="function"><name>ConstParticlesView</name></member>
+  </compound>
+  <compound refid="structpar2_1_1CornerFieldView" kind="struct"><name>par2::CornerFieldView</name>
+    <member refid="structpar2_1_1CornerFieldView_1a8d980895e3df5f6ba4d62f489c5db8e9" kind="variable"><name>Uc</name></member>
+    <member refid="structpar2_1_1CornerFieldView_1ae628841736a90e5fc820bd1b40d435a7" kind="variable"><name>Vc</name></member>
+    <member refid="structpar2_1_1CornerFieldView_1a9cea82f86239acfbfb949e92b9f7c9d5" kind="variable"><name>Wc</name></member>
+    <member refid="structpar2_1_1CornerFieldView_1a24dea1f9a20497f189ea5f983f43cb9f" kind="variable"><name>size</name></member>
+    <member refid="structpar2_1_1CornerFieldView_1a9733501eb61113567bd2310c302e3233" kind="function"><name>valid</name></member>
+    <member refid="structpar2_1_1CornerFieldView_1ad71b925924851ff6fe2953e0a139fb5d" kind="function"><name>matches_grid</name></member>
+  </compound>
+  <compound refid="structpar2_1_1io_1_1CsvSnapshotConfig" kind="struct"><name>par2::io::CsvSnapshotConfig</name>
+    <member refid="structpar2_1_1io_1_1CsvSnapshotConfig_1a1446df872c8b1da73a5dce679945d879" kind="variable"><name>legacy_format</name></member>
+    <member refid="structpar2_1_1io_1_1CsvSnapshotConfig_1a3ed4e5c61338b879f328c31a988dbab9" kind="variable"><name>include_id</name></member>
+    <member refid="structpar2_1_1io_1_1CsvSnapshotConfig_1a79ada6e0f83f4ea89c2a23761a9d8c2b" kind="variable"><name>include_time</name></member>
+    <member refid="structpar2_1_1io_1_1CsvSnapshotConfig_1a8299aedc250e3b0b0da33ec4a078cde6" kind="variable"><name>include_status</name></member>
+    <member refid="structpar2_1_1io_1_1CsvSnapshotConfig_1a63e59b0cdb71c029bad114a2699624d0" kind="variable"><name>include_wrap_counts</name></member>
+    <member refid="structpar2_1_1io_1_1CsvSnapshotConfig_1a813f58d0c5358db03bead31f80e3d619" kind="variable"><name>include_unwrapped</name></member>
+    <member refid="structpar2_1_1io_1_1CsvSnapshotConfig_1abc3a787547d9d5b4f6d5cc3ecf3c0e37" kind="variable"><name>precision</name></member>
+    <member refid="structpar2_1_1io_1_1CsvSnapshotConfig_1a503d7cd01b242d817d3f3b24aaaeba5b" kind="variable"><name>stride</name></member>
+    <member refid="structpar2_1_1io_1_1CsvSnapshotConfig_1a2c697308c80bf858203d59b0d8879767" kind="variable"><name>max_particles</name></member>
+  </compound>
+  <compound refid="classpar2_1_1io_1_1CsvSnapshotWriter" kind="class"><name>par2::io::CsvSnapshotWriter</name>
+    <member refid="classpar2_1_1io_1_1CsvSnapshotWriter_1afea24356e56310b058e08934f45bb273" kind="variable"><name>impl_</name></member>
+    <member refid="classpar2_1_1io_1_1CsvSnapshotWriter_1a8af46eb71a60bd69880a9fb8d6a5fba5" kind="function"><name>CsvSnapshotWriter</name></member>
+    <member refid="classpar2_1_1io_1_1CsvSnapshotWriter_1a581757dd9603a70da35147ffbbc9b4a0" kind="function"><name>~CsvSnapshotWriter</name></member>
+    <member refid="classpar2_1_1io_1_1CsvSnapshotWriter_1ad6a3e1c020995b26de8ebaebd2c925c4" kind="function"><name>CsvSnapshotWriter</name></member>
+    <member refid="classpar2_1_1io_1_1CsvSnapshotWriter_1aa890f23741a9a50cf78d22070a5986b1" kind="function"><name>operator=</name></member>
+    <member refid="classpar2_1_1io_1_1CsvSnapshotWriter_1aaa3c92790b6f0402601aac4c9ad497cd" kind="function"><name>CsvSnapshotWriter</name></member>
+    <member refid="classpar2_1_1io_1_1CsvSnapshotWriter_1a522bcf0f371e3005e22d328e5f173d14" kind="function"><name>operator=</name></member>
+    <member refid="classpar2_1_1io_1_1CsvSnapshotWriter_1af8c98e79c2c46c3aa3f5c1acf849fa98" kind="function"><name>write_snapshot</name></member>
+    <member refid="classpar2_1_1io_1_1CsvSnapshotWriter_1acd77fa101b45b4e434eb90ab1f93c353" kind="function"><name>write_snapshot_chunked</name></member>
+    <member refid="classpar2_1_1io_1_1CsvSnapshotWriter_1a6b2119a6a55e300b18af2f21fb5812b9" kind="function"><name>config</name></member>
+    <member refid="classpar2_1_1io_1_1CsvSnapshotWriter_1a07411c97f2bd1515fa00ff97e2f93b0f" kind="function"><name>capacity</name></member>
+  </compound>
+  <compound refid="structpar2_1_1DeviceSpan" kind="struct"><name>par2::DeviceSpan</name>
+    <member refid="structpar2_1_1DeviceSpan_1a8e7b9e0ef1bd55f44f1c92ec9032fa49" kind="variable"><name>data</name></member>
+    <member refid="structpar2_1_1DeviceSpan_1a8b5e514ae01e8c72a698666e6f688cac" kind="variable"><name>size</name></member>
+    <member refid="structpar2_1_1DeviceSpan_1a23b1855c73cfe1a4e33c91e4ca0b8e83" kind="function"><name>empty</name></member>
+    <member refid="structpar2_1_1DeviceSpan_1a5d64b8282d32b3ae2a85d9e0ba532fb5" kind="function"><name>valid</name></member>
+  </compound>
+  <compound refid="structpar2_1_1DriftCorrectionView" kind="struct"><name>par2::DriftCorrectionView</name>
+    <member refid="structpar2_1_1DriftCorrectionView_1ab37bc84e8de736a427f2e7878f70a6dd" kind="variable"><name>dcx</name></member>
+    <member refid="structpar2_1_1DriftCorrectionView_1a658507c5bd6149332920af485641af83" kind="variable"><name>dcy</name></member>
+    <member refid="structpar2_1_1DriftCorrectionView_1a3774c012ba70a74eb68798cb903dacab" kind="variable"><name>dcz</name></member>
+    <member refid="structpar2_1_1DriftCorrectionView_1a9f20ac12d837dbdd20a6e43eddc12c30" kind="variable"><name>size</name></member>
+    <member refid="structpar2_1_1DriftCorrectionView_1ac11d93bf43c0621355442694ef26b12a" kind="function"><name>valid</name></member>
+  </compound>
+  <compound refid="structpar2_1_1EngineConfig" kind="struct"><name>par2::EngineConfig</name>
+    <member refid="structpar2_1_1EngineConfig_1a4dcaf47758f162d8f489eab1aad73e47" kind="variable"><name>interpolation_mode</name></member>
+    <member refid="structpar2_1_1EngineConfig_1a19e775dd5696c06c55096c8d27c09d82" kind="variable"><name>drift_mode</name></member>
+    <member refid="structpar2_1_1EngineConfig_1a5f1ee14667cb8cfd5629b3ba0b3520d9" kind="variable"><name>rng_seed</name></member>
+    <member refid="structpar2_1_1EngineConfig_1a4f0d4554d0c526cfd680d2569449034f" kind="variable"><name>kernel_block_size</name></member>
+    <member refid="structpar2_1_1EngineConfig_1ab81902eb1552d990b0902dcd6574abb4" kind="variable"><name>debug_checks</name></member>
+    <member refid="structpar2_1_1EngineConfig_1a7b4639e46d29f167ab4151d01b1bfbea" kind="variable"><name>nan_prevention</name></member>
+  </compound>
+  <compound refid="structpar2_1_1detail_1_1EngineImpl" kind="struct"><name>par2::detail::EngineImpl</name>
+  </compound>
+  <compound refid="structpar2_1_1FaceFieldView" kind="struct"><name>par2::FaceFieldView</name>
+    <member refid="structpar2_1_1FaceFieldView_1ab933d4c0f4412cb2a0bbdd6be9768cf4" kind="variable"><name>U</name></member>
+    <member refid="structpar2_1_1FaceFieldView_1a7c44e636e180ff1e973a79e052897f2d" kind="variable"><name>V</name></member>
+    <member refid="structpar2_1_1FaceFieldView_1adf6e9512c186b65108888815399b39c9" kind="variable"><name>W</name></member>
+    <member refid="structpar2_1_1FaceFieldView_1a82b6a9cdc06fce36128dee4bc2de9212" kind="variable"><name>size</name></member>
+    <member refid="structpar2_1_1FaceFieldView_1ae657102a5db89cb80d097807e5f60b64" kind="function"><name>valid</name></member>
+    <member refid="structpar2_1_1FaceFieldView_1a0aa39d3492319bf1debf1bae21f7d7f4" kind="function"><name>matches_grid</name></member>
+  </compound>
+  <compound refid="structpar2_1_1GridDesc" kind="struct"><name>par2::GridDesc</name>
+    <member refid="structpar2_1_1GridDesc_1a2abe9b3191dfb3b077aa10bc1bf86479" kind="variable"><name>nx</name></member>
+    <member refid="structpar2_1_1GridDesc_1a6c2f59f87dbcc787636748f4aeddb997" kind="variable"><name>ny</name></member>
+    <member refid="structpar2_1_1GridDesc_1adf3c3c8bb21b9cffa5da6d476da445f5" kind="variable"><name>nz</name></member>
+    <member refid="structpar2_1_1GridDesc_1a08c17ce77559b34c842a0f07b6ffecc5" kind="variable"><name>dx</name></member>
+    <member refid="structpar2_1_1GridDesc_1a9116ec29aacb5aae053a1dd095ff4f65" kind="variable"><name>dy</name></member>
+    <member refid="structpar2_1_1GridDesc_1a7c1c6c8e3b6c9d7fb2f845cacc107aed" kind="variable"><name>dz</name></member>
+    <member refid="structpar2_1_1GridDesc_1a92e43684a05381fcd91aafb26457b204" kind="variable"><name>px</name></member>
+    <member refid="structpar2_1_1GridDesc_1a89282173fe1c17dd52cb6d21f7a53d35" kind="variable"><name>py</name></member>
+    <member refid="structpar2_1_1GridDesc_1a9d9c209faaf795d357ce3f1379776d33" kind="variable"><name>pz</name></member>
+    <member refid="structpar2_1_1GridDesc_1a7bf2cfb45d5472e916a86c7c470685ef" kind="function"><name>num_cells</name></member>
+    <member refid="structpar2_1_1GridDesc_1ab9e86379cff9d1130dfdd78d6f0ba546" kind="function"><name>num_corners</name></member>
+    <member refid="structpar2_1_1GridDesc_1a4ec430ad543048b8dca216c6df6c2272" kind="function"><name>length_x</name></member>
+    <member refid="structpar2_1_1GridDesc_1ab841928782deb261230168b0ed9b891a" kind="function"><name>length_y</name></member>
+    <member refid="structpar2_1_1GridDesc_1a59c0c1a922d5f5d68a695fcd3c3c4992" kind="function"><name>length_z</name></member>
+    <member refid="structpar2_1_1GridDesc_1ae07dfc7d7aea0a354ea39e2372212e82" kind="function"><name>cell_volume</name></member>
+    <member refid="structpar2_1_1GridDesc_1a9ac2d2bb5d5b4d6a32d3f27bc787fb98" kind="function"><name>domain_volume</name></member>
+    <member refid="structpar2_1_1GridDesc_1abcafee817e9d34778434d93b919da709" kind="function"><name>is_2d</name></member>
+    <member refid="structpar2_1_1GridDesc_1a1aa60e995e105774b135e3036bba4b2d" kind="function"><name>x_max</name></member>
+    <member refid="structpar2_1_1GridDesc_1ae9a615833c9017937fabf1ab9bc86dad" kind="function"><name>y_max</name></member>
+    <member refid="structpar2_1_1GridDesc_1a6eae0ab953aa33fecb431b812d8efa7b" kind="function"><name>z_max</name></member>
+  </compound>
+  <compound refid="structpar2_1_1io_1_1HostParticlesBuffer" kind="struct"><name>par2::io::HostParticlesBuffer</name>
+    <member refid="structpar2_1_1io_1_1HostParticlesBuffer_1add7b33f9838dd49627cec455306fd561" kind="variable"><name>x</name></member>
+    <member refid="structpar2_1_1io_1_1HostParticlesBuffer_1adfa0408ff7fb6714b6d2027d54a8ca5b" kind="variable"><name>y</name></member>
+    <member refid="structpar2_1_1io_1_1HostParticlesBuffer_1a697c18d1147ad5d264f520bbb2ff4caa" kind="variable"><name>z</name></member>
+    <member refid="structpar2_1_1io_1_1HostParticlesBuffer_1af6044eccb48b82a0140d09d76692239e" kind="variable"><name>capacity</name></member>
+    <member refid="structpar2_1_1io_1_1HostParticlesBuffer_1a3f60b557d4dbe6456ce8b79d90c48aa6" kind="variable"><name>x_u</name></member>
+    <member refid="structpar2_1_1io_1_1HostParticlesBuffer_1aadd0f0a295ced93153779286bc19f35c" kind="variable"><name>y_u</name></member>
+    <member refid="structpar2_1_1io_1_1HostParticlesBuffer_1a08cc77ae7fc092c903c106c0837f62d3" kind="variable"><name>z_u</name></member>
+    <member refid="structpar2_1_1io_1_1HostParticlesBuffer_1a1c404211219148bb27b2c3c771179255" kind="variable"><name>status</name></member>
+    <member refid="structpar2_1_1io_1_1HostParticlesBuffer_1a80bcebda93056c12d0149e8d3552d302" kind="function"><name>valid</name></member>
+    <member refid="structpar2_1_1io_1_1HostParticlesBuffer_1a56f5080bb4be09097bd078616544de08" kind="function"><name>has_unwrapped</name></member>
+  </compound>
+  <compound refid="structpar2_1_1Moments3" kind="struct"><name>par2::Moments3</name>
+    <member refid="structpar2_1_1Moments3_1a835d62ddcf1398f08de7a2cb7cb932c0" kind="variable"><name>mean</name></member>
+    <member refid="structpar2_1_1Moments3_1a0f07c172941eaf416b4cb840fa6a82d6" kind="variable"><name>var</name></member>
+    <member refid="structpar2_1_1Moments3_1a7fb92a0bec5323eb0a0575748c6b9b86" kind="variable"><name>std</name></member>
+    <member refid="structpar2_1_1Moments3_1a30660ebcdd5c14d5b85b0f7e3555129d" kind="function"><name>has_nan</name></member>
+  </compound>
+  <compound refid="structpar2_1_1ParticleCounts" kind="struct"><name>par2::ParticleCounts</name>
+    <member refid="structpar2_1_1ParticleCounts_1ae4590abbfaa02528ca15cbc64750d179" kind="variable"><name>total</name></member>
+    <member refid="structpar2_1_1ParticleCounts_1a14897a2acbd520688ee2e8c0cb055903" kind="variable"><name>active</name></member>
+    <member refid="structpar2_1_1ParticleCounts_1abd299589ccb012c12a3d08a8ea03e117" kind="variable"><name>exited</name></member>
+    <member refid="structpar2_1_1ParticleCounts_1adcb49f625d86def619f444118ffaefa8" kind="variable"><name>inactive</name></member>
+  </compound>
+  <compound refid="structpar2_1_1ParticlesView" kind="struct"><name>par2::ParticlesView</name>
+    <member refid="structpar2_1_1ParticlesView_1ac73d1e1013a1756b602222362cb0d792" kind="variable"><name>x</name></member>
+    <member refid="structpar2_1_1ParticlesView_1ae4ba3b711cc6c1a332d545ac2cf9e44c" kind="variable"><name>y</name></member>
+    <member refid="structpar2_1_1ParticlesView_1a0f36c78eb75940a727b768d475de4454" kind="variable"><name>z</name></member>
+    <member refid="structpar2_1_1ParticlesView_1a29198abc370d3f159300ec79a3c202f8" kind="variable"><name>n</name></member>
+    <member refid="structpar2_1_1ParticlesView_1a9826b60a3b25ac80417981f9978474a8" kind="variable"><name>status</name></member>
+    <member refid="structpar2_1_1ParticlesView_1adfa283b7bcb86cbb2d39331946a00917" kind="variable"><name>wrapX</name></member>
+    <member refid="structpar2_1_1ParticlesView_1a42de71cb32c0c5c876c93e5aa0d93cc2" kind="variable"><name>wrapY</name></member>
+    <member refid="structpar2_1_1ParticlesView_1a921ba260f6e679596bd47a7375267ea9" kind="variable"><name>wrapZ</name></member>
+    <member refid="structpar2_1_1ParticlesView_1a3f15f5e4f0e407ad08aa2dd35664199a" kind="function"><name>valid</name></member>
+    <member refid="structpar2_1_1ParticlesView_1ab668da5080a445792977eb3207b4d672" kind="function"><name>has_status</name></member>
+    <member refid="structpar2_1_1ParticlesView_1a33b0a00d503ffdb8d825e67aa2573150" kind="function"><name>has_wrap_x</name></member>
+    <member refid="structpar2_1_1ParticlesView_1aac702222a36dd0e8c5cf05cb17556cd6" kind="function"><name>has_wrap_y</name></member>
+    <member refid="structpar2_1_1ParticlesView_1abb3ee48bfc2432331b0d367e70a3177f" kind="function"><name>has_wrap_z</name></member>
+    <member refid="structpar2_1_1ParticlesView_1acf04d03b39890877cae9608216703bb1" kind="function"><name>has_any_wrap</name></member>
+  </compound>
+  <compound refid="classpar2_1_1io_1_1PinnedParticlesBuffer" kind="class"><name>par2::io::PinnedParticlesBuffer</name>
+    <member refid="classpar2_1_1io_1_1PinnedParticlesBuffer_1a7cad6c201da996d6e12c1470f18f087c" kind="variable"><name>buffer</name></member>
+    <member refid="classpar2_1_1io_1_1PinnedParticlesBuffer_1abb27c905649af9669b1fa3526886bf87" kind="function"><name>PinnedParticlesBuffer</name></member>
+    <member refid="classpar2_1_1io_1_1PinnedParticlesBuffer_1a45d913e643400d364cb6b21b872f5c7e" kind="function"><name>allocate</name></member>
+    <member refid="classpar2_1_1io_1_1PinnedParticlesBuffer_1a44a76574cf835483cd3459a63a58f915" kind="function"><name>free</name></member>
+    <member refid="classpar2_1_1io_1_1PinnedParticlesBuffer_1a638152fb6895d37748318768d835c996" kind="function"><name>~PinnedParticlesBuffer</name></member>
+    <member refid="classpar2_1_1io_1_1PinnedParticlesBuffer_1aab63a6c24c7cce4b771e2261e0693635" kind="function"><name>PinnedParticlesBuffer</name></member>
+    <member refid="classpar2_1_1io_1_1PinnedParticlesBuffer_1ad2915952c37021836d83c9bdb05ad8ad" kind="function"><name>operator=</name></member>
+    <member refid="classpar2_1_1io_1_1PinnedParticlesBuffer_1a9723ad29ac16701d1a683cd84dbd0b59" kind="function"><name>PinnedParticlesBuffer</name></member>
+    <member refid="classpar2_1_1io_1_1PinnedParticlesBuffer_1aef9b4b025eb311e99b291f5dd4a11089" kind="function"><name>operator=</name></member>
+  </compound>
+  <compound refid="classpar2_1_1StatsComputer" kind="class"><name>par2::StatsComputer</name>
+    <member refid="classpar2_1_1StatsComputer_1ab7c10ccbbd9b65466a02a8518542ca2e" kind="variable"><name>impl_</name></member>
+    <member refid="classpar2_1_1StatsComputer_1a6cadba63284214173a6701625be7463f" kind="function"><name>StatsComputer</name></member>
+    <member refid="classpar2_1_1StatsComputer_1a3115b8956e498d3e51c42ec807c4f2e0" kind="function"><name>~StatsComputer</name></member>
+    <member refid="classpar2_1_1StatsComputer_1ac23d76ce5f3a700735f0c989fb73c5d1" kind="function"><name>StatsComputer</name></member>
+    <member refid="classpar2_1_1StatsComputer_1a4b993efa911878cca7c1fed44887f642" kind="function"><name>operator=</name></member>
+    <member refid="classpar2_1_1StatsComputer_1aeec413c4e43fb9226f13bf317fa2b9a8" kind="function"><name>StatsComputer</name></member>
+    <member refid="classpar2_1_1StatsComputer_1a408a69b66fe50b40e57768307337f3a8" kind="function"><name>operator=</name></member>
+    <member refid="classpar2_1_1StatsComputer_1aa6637dee6851cfcbd77bbff1ec6d62c8" kind="function"><name>compute_async</name></member>
+    <member refid="classpar2_1_1StatsComputer_1a13c5539a0d595310bd06eabc5922876b" kind="function"><name>fetch_result</name></member>
+    <member refid="classpar2_1_1StatsComputer_1a2e6998cf0b9980b601937e359c715502" kind="function"><name>capacity</name></member>
+  </compound>
+  <compound refid="structpar2_1_1StatsConfig" kind="struct"><name>par2::StatsConfig</name>
+    <member refid="structpar2_1_1StatsConfig_1ac6a95f250505087ccd447f8008099c63" kind="variable"><name>use_unwrapped</name></member>
+    <member refid="structpar2_1_1StatsConfig_1a58677d86507194408e0f42d194c8533e" kind="variable"><name>filter_active_only</name></member>
+  </compound>
+  <compound refid="structpar2_1_1StatsResult" kind="struct"><name>par2::StatsResult</name>
+    <member refid="structpar2_1_1StatsResult_1a2c0177a8e58f4eebafb6330a5c91574f" kind="variable"><name>moments</name></member>
+    <member refid="structpar2_1_1StatsResult_1afac5c76cbb66f990a2d5e1eb9fd6f7a8" kind="variable"><name>counts</name></member>
+    <member refid="structpar2_1_1StatsResult_1a385ea74d3232d7a1ffb06888f3a94c2b" kind="variable"><name>computed</name></member>
+    <member refid="structpar2_1_1StatsResult_1a7238fd79bc9f164eafb92ed362fc58af" kind="function"><name>valid</name></member>
+  </compound>
+  <compound refid="structpar2_1_1StepStats" kind="struct"><name>par2::StepStats</name>
+    <member refid="structpar2_1_1StepStats_1a512d0b852b43a6119c968f3d7d90ab1b" kind="variable"><name>active_particles</name></member>
+    <member refid="structpar2_1_1StepStats_1ab47b8de0f4d850c890cc435660f83c8f" kind="variable"><name>exited_particles</name></member>
+    <member refid="structpar2_1_1StepStats_1a7c29864ad3d5deceb9cd64a1f7767efa" kind="variable"><name>max_displacement</name></member>
+  </compound>
+  <compound refid="classpar2_1_1TransportEngine" kind="class"><name>par2::TransportEngine</name>
+    <member refid="classpar2_1_1TransportEngine_1a719d195ca4f764cf10d674c67496cadb" kind="variable"><name>impl_</name></member>
+    <member refid="classpar2_1_1TransportEngine_1ad50e83cc6ed8bb68b07379e2663a7836" kind="function"><name>TransportEngine</name></member>
+    <member refid="classpar2_1_1TransportEngine_1a2383c36aa2ee4ad0a64d9080aefba631" kind="function"><name>~TransportEngine</name></member>
+    <member refid="classpar2_1_1TransportEngine_1a4f43bb8e9b41ef56bbfe527e581db931" kind="function"><name>TransportEngine</name></member>
+    <member refid="classpar2_1_1TransportEngine_1aae804abaff03a2be45e657b1e5ad1030" kind="function"><name>operator=</name></member>
+    <member refid="classpar2_1_1TransportEngine_1adcacb981976e59e322c9e4571d62d498" kind="function"><name>TransportEngine</name></member>
+    <member refid="classpar2_1_1TransportEngine_1a5f44ae90b3832391dbab05c391312dfa" kind="function"><name>operator=</name></member>
+    <member refid="classpar2_1_1TransportEngine_1a626e300583384da22ec9a637c9b1b255" kind="function"><name>set_stream</name></member>
+    <member refid="classpar2_1_1TransportEngine_1a7c2fb73be13c916d078720da1d98087a" kind="function"><name>stream</name></member>
+    <member refid="classpar2_1_1TransportEngine_1acf68d4ffc86aaee00660117d01427f92" kind="function"><name>bind_velocity</name></member>
+    <member refid="classpar2_1_1TransportEngine_1a3e54b01b268455f4a5962e9fc62798e8" kind="function"><name>bind_corner_velocity</name></member>
+    <member refid="classpar2_1_1TransportEngine_1ae44759dc107d28f9d43904c8ba66c1a1" kind="function"><name>bind_particles</name></member>
+    <member refid="classpar2_1_1TransportEngine_1affb783f13b196cfb841020bfc71ae962" kind="function"><name>bind_drift_correction</name></member>
+    <member refid="classpar2_1_1TransportEngine_1affb69d449a3c1e5f05da35a8459defcc" kind="function"><name>update_derived_fields</name></member>
+    <member refid="classpar2_1_1TransportEngine_1a54a6150f822240a32fb1e5fc07edbc78" kind="function"><name>needs_corner_update</name></member>
+    <member refid="classpar2_1_1TransportEngine_1a90ad66fcd78e43673b98ef3af44a819d" kind="function"><name>needs_drift_update</name></member>
+    <member refid="classpar2_1_1TransportEngine_1afa6a9cd031dc86fa4b40444bf532b59a" kind="function"><name>step</name></member>
+    <member refid="classpar2_1_1TransportEngine_1a451d1dbcba471fe55d2ee0f63ad3f075" kind="function"><name>advance</name></member>
+    <member refid="classpar2_1_1TransportEngine_1ac104270e0963816b21585e33f89be79f" kind="function"><name>inject_box</name></member>
+    <member refid="classpar2_1_1TransportEngine_1a597eab8aa3e35e1dd3a28f4334009ee2" kind="function"><name>grid</name></member>
+    <member refid="classpar2_1_1TransportEngine_1abefeecf8f9983638017cef5616200492" kind="function"><name>params</name></member>
+    <member refid="classpar2_1_1TransportEngine_1a37523a6ad247099d71507f459fe5a017" kind="function"><name>boundary</name></member>
+    <member refid="classpar2_1_1TransportEngine_1aa55b61239f51e746237574c86efe58d8" kind="function"><name>config</name></member>
+    <member refid="classpar2_1_1TransportEngine_1afc86ab33f59e50210d839abe96e1ae1e" kind="function"><name>num_particles</name></member>
+    <member refid="classpar2_1_1TransportEngine_1a798a9da31d5ac9ca77516a7be0db3156" kind="function"><name>has_velocity</name></member>
+    <member refid="classpar2_1_1TransportEngine_1ac5e8147446a0af95cb63ff980d458dad" kind="function"><name>has_particles</name></member>
+    <member refid="classpar2_1_1TransportEngine_1a34d0552a0f43862cba2fb3c80a0e7341" kind="function"><name>ensure_tracking_arrays</name></member>
+    <member refid="classpar2_1_1TransportEngine_1ad6789ef1a213665542e57b2f693d5653" kind="function"><name>prepare</name></member>
+    <member refid="classpar2_1_1TransportEngine_1a48a0c43bedd7d095602672855a24cdbe" kind="function"><name>is_prepared</name></member>
+    <member refid="classpar2_1_1TransportEngine_1a4a740df188604ac7655428afdd44650c" kind="function"><name>synchronize</name></member>
+    <member refid="classpar2_1_1TransportEngine_1aec74ff569be592641fedd6286ac3888d" kind="function"><name>record_event</name></member>
+    <member refid="classpar2_1_1TransportEngine_1a0d9b39f75639df294f3173d66b8ce35e" kind="function"><name>wait_event</name></member>
+    <member refid="classpar2_1_1TransportEngine_1a989b022a19f3990fa324493280521832" kind="function"><name>particles</name></member>
+    <member refid="classpar2_1_1TransportEngine_1a49909c7eff5f21b0b37df8baa37613b8" kind="function"><name>compute_unwrapped_positions</name></member>
+  </compound>
+  <compound refid="structpar2_1_1TransportParams" kind="struct"><name>par2::TransportParams</name>
+    <member refid="structpar2_1_1TransportParams_1adb0ad03a6b5713d4bc80d322c7f615b9" kind="variable"><name>molecular_diffusion</name></member>
+    <member refid="structpar2_1_1TransportParams_1a0e930c4ffd743cc0fa8062569ba51b57" kind="variable"><name>alpha_l</name></member>
+    <member refid="structpar2_1_1TransportParams_1a8a0a1001fbf7a19d2741057eeb4c86c2" kind="variable"><name>alpha_t</name></member>
+    <member refid="structpar2_1_1TransportParams_1a667b24825526fb59874376ccf22259cf" kind="function"><name>has_dispersion</name></member>
+  </compound>
+  <compound refid="structpar2_1_1UnwrappedPositionsView" kind="struct"><name>par2::UnwrappedPositionsView</name>
+    <member refid="structpar2_1_1UnwrappedPositionsView_1aee252d227c42a41ad457d9eec878ad13" kind="variable"><name>x_u</name></member>
+    <member refid="structpar2_1_1UnwrappedPositionsView_1a2ff21672915a1052d01ce26df1a3be31" kind="variable"><name>y_u</name></member>
+    <member refid="structpar2_1_1UnwrappedPositionsView_1a7745574b3fbbdf9fbd0db822fe3407c8" kind="variable"><name>z_u</name></member>
+    <member refid="structpar2_1_1UnwrappedPositionsView_1aa6d678be9940354317dd4362e2cb8a63" kind="variable"><name>capacity</name></member>
+    <member refid="structpar2_1_1UnwrappedPositionsView_1a562f8fe03736a126ec54b68d8779b552" kind="function"><name>valid</name></member>
+  </compound>
+  <compound refid="structpar2_1_1Version" kind="struct"><name>par2::Version</name>
+    <member refid="structpar2_1_1Version_1aef4962e2ca9ee6cfdd381887d6f5a384" kind="variable"><name>major</name></member>
+    <member refid="structpar2_1_1Version_1a2d42afa8f54232d9318e2177188cf65d" kind="variable"><name>minor</name></member>
+    <member refid="structpar2_1_1Version_1a05be3f3833d6d50b672aad667cb9ab2f" kind="variable"><name>patch</name></member>
+    <member refid="structpar2_1_1Version_1ad3fc883acf27d83724cd795dbee8dbd1" kind="variable"><name>string</name></member>
+  </compound>
+  <compound refid="namespacepar2" kind="namespace"><name>par2</name>
+    <member refid="namespacepar2_1ae51033452f837621e98dd86a6977f72e" kind="enum"><name>BoundaryType</name></member>
+    <member refid="namespacepar2_1ae51033452f837621e98dd86a6977f72ea03f4a47830f97377a35321051685071e" kind="enumvalue"><name>Closed</name></member>
+    <member refid="namespacepar2_1ae51033452f837621e98dd86a6977f72eacdcc32a064503184053bd2018d1c0e7e" kind="enumvalue"><name>Periodic</name></member>
+    <member refid="namespacepar2_1ae51033452f837621e98dd86a6977f72eac3bf447eabe632720a3aa1a7ce401274" kind="enumvalue"><name>Open</name></member>
+    <member refid="namespacepar2_1a7c8f4da66964574b306027d770c0f963" kind="enum"><name>InterpolationMode</name></member>
+    <member refid="namespacepar2_1a7c8f4da66964574b306027d770c0f963a32a843da6ea40ab3b17a3421ccdf671b" kind="enumvalue"><name>Linear</name></member>
+    <member refid="namespacepar2_1a7c8f4da66964574b306027d770c0f963a969a7b6f1f3951ef293b3ff281dc293d" kind="enumvalue"><name>Trilinear</name></member>
+    <member refid="namespacepar2_1a2e9b0a2b6e4d6f65763b00f8c87aa181" kind="enum"><name>DriftCorrectionMode</name></member>
+    <member refid="namespacepar2_1a2e9b0a2b6e4d6f65763b00f8c87aa181a6adf97f83acf6453d4a6a4b1070f3754" kind="enumvalue"><name>None</name></member>
+    <member refid="namespacepar2_1a2e9b0a2b6e4d6f65763b00f8c87aa181a04021d95a37003c16d27a38d407e3304" kind="enumvalue"><name>Precomputed</name></member>
+    <member refid="namespacepar2_1a2e9b0a2b6e4d6f65763b00f8c87aa181aba8be745c90c7d1c79753cd7dda9b925" kind="enumvalue"><name>TrilinearOnFly</name></member>
+    <member refid="namespacepar2_1a7c204ae8d485714ee4a7935edc563101" kind="enum"><name>ParticleStatus</name></member>
+    <member refid="namespacepar2_1a7c204ae8d485714ee4a7935edc563101a4d3d769b812b6faa6b76e1a8abaece2d" kind="enumvalue"><name>Active</name></member>
+    <member refid="namespacepar2_1a7c204ae8d485714ee4a7935edc563101a268ce394e277db759f5d6ee76c59f0e7" kind="enumvalue"><name>Exited</name></member>
+    <member refid="namespacepar2_1a7c204ae8d485714ee4a7935edc563101a3cab03c00dbd11bc3569afa0748013f0" kind="enumvalue"><name>Inactive</name></member>
+    <member refid="namespacepar2_1a7f83eb45eb57c7110fb2f83369f17c03" kind="typedef"><name>VelocityView</name></member>
+    <member refid="namespacepar2_1adcaef34a5fba7ed6b9a0bef9fd519046" kind="typedef"><name>CornerVelocityView</name></member>
+    <member refid="namespacepar2_1ae3350f9b866313b2d6377e166241f2c0" kind="typedef"><name>ConstDeviceSpan</name></member>
+    <member refid="namespacepar2_1afb55ec367056066af329d25184ae68c5" kind="function"><name>make_grid</name></member>
+    <member refid="namespacepar2_1a8d9deed7320c41adfe7d35338362443f" kind="function"><name>make_uniform_grid</name></member>
+    <member refid="namespacepar2_1a30900d048d64c7b0bb3891393943b727" kind="function"><name>inject_box</name></member>
+    <member refid="namespacepar2_1a56cf396b9bbc13ad93080a9144bfcbe9" kind="function"><name>inject_grid</name></member>
+    <member refid="namespacepar2_1a0eaccbf22f25d80ed8b516d5290792ad" kind="function"><name>inject_box&lt; float &gt;</name></member>
+    <member refid="namespacepar2_1ae8f95ea711d3188099c1acedef032594" kind="function"><name>inject_box&lt; double &gt;</name></member>
+    <member refid="namespacepar2_1a770790c753e2c1e702444601a7d43f36" kind="function"><name>concentration_box</name></member>
+    <member refid="namespacepar2_1a9bce5aded6bb06c022dd23ab5bccc411" kind="function"><name>concentration_past_plane</name></member>
+    <member refid="namespacepar2_1a891f2f48e8cee966243f37d1f22878f7" kind="function"><name>count_by_status</name></member>
+    <member refid="namespacepar2_1a3418d81ddd9dc28320621a3ade3760e6" kind="function"><name>merge_id</name></member>
+    <member refid="namespacepar2_1a9df49898861da6df112626217994392e" kind="function"><name>field_size</name></member>
+    <member refid="namespacepar2_1a2691b6c86b488eb7032b4611fa1ba982" kind="function"><name>field_size</name></member>
+    <member refid="namespacepar2_1ae02a56f80f564eb73fd3fda24f473113" kind="function"><name>validate_face_field</name></member>
+    <member refid="namespacepar2_1a81293dc39b62d4a934c8b39ba3a08326" kind="function"><name>validate_corner_field</name></member>
+  </compound>
+  <compound refid="namespacepar2_1_1detail" kind="namespace"><name>par2::detail</name>
+  </compound>
+  <compound refid="namespacepar2_1_1io" kind="namespace"><name>par2::io</name>
+    <member refid="namespacepar2_1_1io_1af6cc3c2fcea51cfe04ae59feaa9bf95a" kind="function"><name>download_positions_async</name></member>
+    <member refid="namespacepar2_1_1io_1a68ccb197c34cc363235d773a59682166" kind="function"><name>download_unwrapped_async</name></member>
+    <member refid="namespacepar2_1_1io_1a9517c7329b8d411d3a84ca7a134ff6e0" kind="function"><name>write_particles_csv</name></member>
+    <member refid="namespacepar2_1_1io_1a73a0b9995b28fd6d067ca6360950e18c" kind="function"><name>write_legacy_csv_snapshot</name></member>
+  </compound>
+  <compound refid="boundary_8hpp" kind="file"><name>boundary.hpp</name>
+  </compound>
+  <compound refid="debug__policy_8hpp" kind="file"><name>debug_policy.hpp</name>
+    <member refid="debug__policy_8hpp_1ab580aa2441865ad28e7c82f43dd642b4" kind="define"><name>PAR2_DEBUG_LEVEL</name></member>
+    <member refid="debug__policy_8hpp_1a439a5b5e8739d673c373dfa3e8fb90e7" kind="define"><name>PAR2_ENABLE_CUDA_CHECKS</name></member>
+    <member refid="debug__policy_8hpp_1a6021a171b13091a4f314b032e514b4ae" kind="define"><name>PAR2_ENABLE_NAN_GUARDS</name></member>
+    <member refid="debug__policy_8hpp_1a5aaaf5372fd99661a3a7ca3635de9aa4" kind="define"><name>PAR2_ENABLE_BOUNDS_CHECKS</name></member>
+    <member refid="debug__policy_8hpp_1ad90d3d600e0ce3f692232ac7635ed8f0" kind="define"><name>PAR2_DEBUG_ONLY</name></member>
+    <member refid="debug__policy_8hpp_1ab4725fc915429bcfe4bce0c873afb425" kind="define"><name>PAR2_NAN_GUARD</name></member>
+    <member refid="debug__policy_8hpp_1ab0b2ad422e840b79bd9ef73633c94aa6" kind="define"><name>PAR2_DEVICE_ASSERT</name></member>
+  </compound>
+  <compound refid="grid_8hpp" kind="file"><name>grid.hpp</name>
+  </compound>
+  <compound refid="injectors_8hpp" kind="file"><name>injectors.hpp</name>
+  </compound>
+  <compound refid="io_8hpp" kind="file"><name>io.hpp</name>
+  </compound>
+  <compound refid="par2__core_8hpp" kind="file"><name>par2_core.hpp</name>
+  </compound>
+  <compound refid="stats_8hpp" kind="file"><name>stats.hpp</name>
+  </compound>
+  <compound refid="transport__engine_8hpp" kind="file"><name>transport_engine.hpp</name>
+  </compound>
+  <compound refid="types_8hpp" kind="file"><name>types.hpp</name>
+  </compound>
+  <compound refid="velocity__layout_8hpp" kind="file"><name>velocity_layout.hpp</name>
+  </compound>
+  <compound refid="version_8hpp" kind="file"><name>version.hpp</name>
+    <member refid="version_8hpp_1a3b0818665b63c775ded705f1c5382932" kind="define"><name>PAR2_CORE_VERSION_MAJOR</name></member>
+    <member refid="version_8hpp_1a92f538029b5a30d12ae484d182f59972" kind="define"><name>PAR2_CORE_VERSION_MINOR</name></member>
+    <member refid="version_8hpp_1afffcc284f50402c071957a3e5a26a623" kind="define"><name>PAR2_CORE_VERSION_PATCH</name></member>
+    <member refid="version_8hpp_1a4d37d89ef644efe054c7a5721f2f5128" kind="define"><name>PAR2_CORE_VERSION_STRING</name></member>
+  </compound>
+  <compound refid="views_8hpp" kind="file"><name>views.hpp</name>
+  </compound>
+  <compound refid="deprecated" kind="page"><name>deprecated</name>
+  </compound>
+  <compound refid="dir_d44c64559bbebec7f509842c48db8b23" kind="dir"><name>include</name>
+  </compound>
+  <compound refid="dir_bc077c70e56531db32c9e07bcf5c74c8" kind="dir"><name>include/par2_core</name>
+  </compound>
+  <compound refid="_2home_2sesquerre_2Par2_Core_2include_2par2_core_2par2_core_8hpp-example" kind="example"><name>/home/sesquerre/Par2_Core/include/par2_core/par2_core.hpp</name>
+  </compound>
+</doxygenindex>

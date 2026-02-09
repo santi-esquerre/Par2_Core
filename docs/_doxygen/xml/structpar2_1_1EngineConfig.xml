@@ -1,0 +1,178 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.4" xml:lang="en-US">
+  <compounddef id="structpar2_1_1EngineConfig" kind="struct" language="C++" prot="public">
+    <compoundname>par2::EngineConfig</compoundname>
+    <includes refid="types_8hpp" local="no">types.hpp</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structpar2_1_1EngineConfig_1a4dcaf47758f162d8f489eab1aad73e47" prot="public" static="no" mutable="no">
+        <type><ref refid="namespacepar2_1a7c8f4da66964574b306027d770c0f963" kindref="member">InterpolationMode</ref></type>
+        <definition>InterpolationMode par2::EngineConfig::interpolation_mode</definition>
+        <argsstring></argsstring>
+        <name>interpolation_mode</name>
+        <qualifiedname>par2::EngineConfig::interpolation_mode</qualifiedname>
+        <initializer>= <ref refid="namespacepar2_1a7c8f4da66964574b306027d770c0f963a32a843da6ea40ab3b17a3421ccdf671b" kindref="member">InterpolationMode::Linear</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/par2_core/types.hpp" line="203" column="23" bodyfile="include/par2_core/types.hpp" bodystart="203" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structpar2_1_1EngineConfig_1a19e775dd5696c06c55096c8d27c09d82" prot="public" static="no" mutable="no">
+        <type><ref refid="namespacepar2_1a2e9b0a2b6e4d6f65763b00f8c87aa181" kindref="member">DriftCorrectionMode</ref></type>
+        <definition>DriftCorrectionMode par2::EngineConfig::drift_mode</definition>
+        <argsstring></argsstring>
+        <name>drift_mode</name>
+        <qualifiedname>par2::EngineConfig::drift_mode</qualifiedname>
+        <initializer>= <ref refid="namespacepar2_1a2e9b0a2b6e4d6f65763b00f8c87aa181aba8be745c90c7d1c79753cd7dda9b925" kindref="member">DriftCorrectionMode::TrilinearOnFly</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/par2_core/types.hpp" line="204" column="25" bodyfile="include/par2_core/types.hpp" bodystart="204" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structpar2_1_1EngineConfig_1a5f1ee14667cb8cfd5629b3ba0b3520d9" prot="public" static="no" mutable="no">
+        <type>uint64_t</type>
+        <definition>uint64_t par2::EngineConfig::rng_seed</definition>
+        <argsstring></argsstring>
+        <name>rng_seed</name>
+        <qualifiedname>par2::EngineConfig::rng_seed</qualifiedname>
+        <initializer>= 12345ULL</initializer>
+        <briefdescription>
+<para>Seed for curand XORWOW initialization. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Each particle gets independent curandState_t initialized via curand_init(seed, particle_index, 0, &amp;state).</para>
+<sect2 id="structpar2_1_1EngineConfig_1autotoc_md26">
+<title>Reproducibility guarantees</title>
+<para><itemizedlist>
+<listitem><para>Same GPU + same seed + same particle count + same step sequence → <bold>bitwise identical</bold> results.</para>
+</listitem><listitem><para>Changing particle count changes thread-to-state mapping → different random streams even with same seed.</para>
+</listitem><listitem><para>Cross-GPU reproducibility is <bold>not</bold> guaranteed (different warp scheduling may affect curand internal state).</para>
+</listitem><listitem><para>float vs double instantiations produce different results. </para>
+</listitem></itemizedlist>
+</para>
+</sect2>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/par2_core/types.hpp" line="222" column="14" bodyfile="include/par2_core/types.hpp" bodystart="222" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structpar2_1_1EngineConfig_1a4f0d4554d0c526cfd680d2569449034f" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int par2::EngineConfig::kernel_block_size</definition>
+        <argsstring></argsstring>
+        <name>kernel_block_size</name>
+        <qualifiedname>par2::EngineConfig::kernel_block_size</qualifiedname>
+        <initializer>= 256</initializer>
+        <briefdescription>
+<para>Block size for CUDA kernels (0 = auto-select) </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/par2_core/types.hpp" line="225" column="9" bodyfile="include/par2_core/types.hpp" bodystart="225" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structpar2_1_1EngineConfig_1ab81902eb1552d990b0902dcd6574abb4" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool par2::EngineConfig::debug_checks</definition>
+        <argsstring></argsstring>
+        <name>debug_checks</name>
+        <qualifiedname>par2::EngineConfig::debug_checks</qualifiedname>
+        <initializer>= false</initializer>
+        <briefdescription>
+<para>Enable runtime debug checks (default: false). </para>
+        </briefdescription>
+        <detaileddescription>
+<para>When true, the engine checks for CUDA errors after kernel launches. This adds a cudaPeekAtLastError() call per launch (no sync, but overhead).</para>
+<para>For HPC builds, prefer compile-time control via PAR2_DEBUG_LEVEL.</para>
+<para><xrefsect id="deprecated_1_deprecated000002"><xreftitle>Deprecated</xreftitle><xrefdescription><para>Use PAR2_DEBUG_LEVEL compile-time flag for zero-overhead debug. </para>
+</xrefdescription></xrefsect></para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/par2_core/types.hpp" line="237" column="10" bodyfile="include/par2_core/types.hpp" bodystart="237" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structpar2_1_1EngineConfig_1a7b4639e46d29f167ab4151d01b1bfbea" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool par2::EngineConfig::nan_prevention</definition>
+        <argsstring></argsstring>
+        <name>nan_prevention</name>
+        <qualifiedname>par2::EngineConfig::nan_prevention</qualifiedname>
+        <initializer>= true</initializer>
+        <briefdescription>
+<para>Enable extra NaN-prevention guards (default: true = safe). </para>
+        </briefdescription>
+        <detaileddescription>
+<para>When true (default), applies tolerance checks in places where legacy PAR² could produce NaN due to division by zero (e.g., D tensor computation in Precomputed drift mode when |v| ≈ 0).</para>
+<para>When false (legacy-strict), disables these guards to match legacy behavior exactly. Use only for regression testing against original PAR².</para>
+<para><simplesect kind="note"><para>This creates a branch per particle in the kernel. For maximum HPC performance with known-safe velocity fields, set to false.</para>
+</simplesect>
+<simplesect kind="note"><para>The tolerance in TrilinearOnFly mode exists in legacy and is NOT affected by this flag. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/par2_core/types.hpp" line="255" column="10" bodyfile="include/par2_core/types.hpp" bodystart="255" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Engine runtime configuration. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>Configures the algorithm modes for RWPT simulation:</para>
+<para><table rows="5" cols="3"><row>
+<entry thead="yes"><para>interpolation_mode   </para>
+</entry><entry thead="yes"><para>drift_mode   </para>
+</entry><entry thead="yes"><para>Description    </para>
+</entry></row>
+<row>
+<entry thead="no"><para>Linear   </para>
+</entry><entry thead="no"><para>Precomputed   </para>
+</entry><entry thead="no"><para>Fast, good for steady flow    </para>
+</entry></row>
+<row>
+<entry thead="no"><para>Linear   </para>
+</entry><entry thead="no"><para>TrilinearOnFly   </para>
+</entry><entry thead="no"><para>Accurate drift, linear v    </para>
+</entry></row>
+<row>
+<entry thead="no"><para>Trilinear   </para>
+</entry><entry thead="no"><para>TrilinearOnFly   </para>
+</entry><entry thead="no"><para>Full legacy parity (smoothest)    </para>
+</entry></row>
+<row>
+<entry thead="no"><para>Trilinear   </para>
+</entry><entry thead="no"><para>Precomputed   </para>
+</entry><entry thead="no"><para>Valid but uncommon   </para>
+</entry></row>
+</table>
+</para>
+<sect2 id="structpar2_1_1EngineConfig_1autotoc_md25">
+<title>Debug/Release Policies</title>
+<para>For HPC pipelines, debug checks should be controlled at <bold>compile-time</bold> to avoid any overhead in production. Set <computeroutput>PAR2_DEBUG_LEVEL</computeroutput> via CMake:</para>
+<para><programlisting filename=".cmake"><codeline><highlight class="normal">target_compile_definitions(myapp<sp/>PRIVATE<sp/>PAR2_DEBUG_LEVEL=0)<sp/><sp/>#<sp/>Release</highlight></codeline>
+<codeline><highlight class="normal">target_compile_definitions(myapp<sp/>PRIVATE<sp/>PAR2_DEBUG_LEVEL=1)<sp/><sp/>#<sp/>Basic<sp/>debug</highlight></codeline>
+</programlisting></para>
+<para>The runtime <computeroutput>debug_checks</computeroutput> flag is provided for convenience during development but may add per-launch overhead. For zero-overhead HPC builds, leave <computeroutput>debug_checks=false</computeroutput> and compile with <computeroutput>PAR2_DEBUG_LEVEL=0</computeroutput>.</para>
+<para><simplesect kind="see"><para><ref refid="debug__policy_8hpp" kindref="compound">debug_policy.hpp</ref> for compile-time debug configuration. </para>
+</simplesect>
+</para>
+</sect2>
+    </detaileddescription>
+    <location file="include/par2_core/types.hpp" line="202" column="1" bodyfile="include/par2_core/types.hpp" bodystart="202" bodyend="256"/>
+    <listofallmembers>
+      <member refid="structpar2_1_1EngineConfig_1ab81902eb1552d990b0902dcd6574abb4" prot="public" virt="non-virtual"><scope>par2::EngineConfig</scope><name>debug_checks</name></member>
+      <member refid="structpar2_1_1EngineConfig_1a19e775dd5696c06c55096c8d27c09d82" prot="public" virt="non-virtual"><scope>par2::EngineConfig</scope><name>drift_mode</name></member>
+      <member refid="structpar2_1_1EngineConfig_1a4dcaf47758f162d8f489eab1aad73e47" prot="public" virt="non-virtual"><scope>par2::EngineConfig</scope><name>interpolation_mode</name></member>
+      <member refid="structpar2_1_1EngineConfig_1a4f0d4554d0c526cfd680d2569449034f" prot="public" virt="non-virtual"><scope>par2::EngineConfig</scope><name>kernel_block_size</name></member>
+      <member refid="structpar2_1_1EngineConfig_1a7b4639e46d29f167ab4151d01b1bfbea" prot="public" virt="non-virtual"><scope>par2::EngineConfig</scope><name>nan_prevention</name></member>
+      <member refid="structpar2_1_1EngineConfig_1a5f1ee14667cb8cfd5629b3ba0b3520d9" prot="public" virt="non-virtual"><scope>par2::EngineConfig</scope><name>rng_seed</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

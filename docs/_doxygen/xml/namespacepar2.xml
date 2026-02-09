@@ -1,0 +1,1262 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.4" xml:lang="en-US">
+  <compounddef id="namespacepar2" kind="namespace" language="C++">
+    <compoundname>par2</compoundname>
+    <innerclass refid="structpar2_1_1AxisBoundary" prot="public">par2::AxisBoundary</innerclass>
+    <innerclass refid="structpar2_1_1BoundaryConfig" prot="public">par2::BoundaryConfig</innerclass>
+    <innerclass refid="structpar2_1_1ConstParticlesView" prot="public">par2::ConstParticlesView</innerclass>
+    <innerclass refid="structpar2_1_1CornerFieldView" prot="public">par2::CornerFieldView</innerclass>
+    <innerclass refid="structpar2_1_1DeviceSpan" prot="public">par2::DeviceSpan</innerclass>
+    <innerclass refid="structpar2_1_1DriftCorrectionView" prot="public">par2::DriftCorrectionView</innerclass>
+    <innerclass refid="structpar2_1_1EngineConfig" prot="public">par2::EngineConfig</innerclass>
+    <innerclass refid="structpar2_1_1FaceFieldView" prot="public">par2::FaceFieldView</innerclass>
+    <innerclass refid="structpar2_1_1GridDesc" prot="public">par2::GridDesc</innerclass>
+    <innerclass refid="structpar2_1_1Moments3" prot="public">par2::Moments3</innerclass>
+    <innerclass refid="structpar2_1_1ParticleCounts" prot="public">par2::ParticleCounts</innerclass>
+    <innerclass refid="structpar2_1_1ParticlesView" prot="public">par2::ParticlesView</innerclass>
+    <innerclass refid="classpar2_1_1StatsComputer" prot="public">par2::StatsComputer</innerclass>
+    <innerclass refid="structpar2_1_1StatsConfig" prot="public">par2::StatsConfig</innerclass>
+    <innerclass refid="structpar2_1_1StatsResult" prot="public">par2::StatsResult</innerclass>
+    <innerclass refid="structpar2_1_1StepStats" prot="public">par2::StepStats</innerclass>
+    <innerclass refid="classpar2_1_1TransportEngine" prot="public">par2::TransportEngine</innerclass>
+    <innerclass refid="structpar2_1_1TransportParams" prot="public">par2::TransportParams</innerclass>
+    <innerclass refid="structpar2_1_1UnwrappedPositionsView" prot="public">par2::UnwrappedPositionsView</innerclass>
+    <innerclass refid="structpar2_1_1Version" prot="public">par2::Version</innerclass>
+    <innernamespace refid="namespacepar2_1_1detail">par2::detail</innernamespace>
+    <innernamespace refid="namespacepar2_1_1io">par2::io</innernamespace>
+      <sectiondef kind="enum">
+      <memberdef kind="enum" id="namespacepar2_1ae51033452f837621e98dd86a6977f72e" prot="public" static="no" strong="yes">
+        <type>uint8_t</type>
+        <name>BoundaryType</name>
+        <qualifiedname>par2::BoundaryType</qualifiedname>
+        <enumvalue id="namespacepar2_1ae51033452f837621e98dd86a6977f72ea03f4a47830f97377a35321051685071e" prot="public">
+          <name>Closed</name>
+          <briefdescription>
+<para>Reflective boundary (displacement rejection). </para>
+          </briefdescription>
+          <detaileddescription>
+<para>If the proposed new position exits the domain (strict inequality: lo &lt; x &lt; hi), the <bold>entire displacement is zeroed</bold> and the particle stays at its current position. This is a rejection scheme, not a bounce/reflection scheme. </para>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="namespacepar2_1ae51033452f837621e98dd86a6977f72eacdcc32a064503184053bd2018d1c0e7e" prot="public">
+          <name>Periodic</name>
+          <briefdescription>
+<para>Wrap-around: position wraps modulo domain length. </para>
+          </briefdescription>
+          <detaileddescription>
+<para>Both lo and hi faces of the axis must be set to Periodic. A wrap counter (int32_t) tracks net domain crossings. Wrapped domain is [lo, hi).</para>
+<para><simplesect kind="note"><para>Requires status/wrap arrays to be allocated (via ensure_tracking_arrays() or prepare()) for wrap counting. </para>
+</simplesect>
+</para>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="namespacepar2_1ae51033452f837621e98dd86a6977f72eac3bf447eabe632720a3aa1a7ce401274" prot="public">
+          <name>Open</name>
+          <briefdescription>
+<para>Allow exit: particle flagged as Exited. </para>
+          </briefdescription>
+          <detaileddescription>
+<para>If the new position exits the domain, the particle retains its current position and is marked <ref refid="namespacepar2_1a7c204ae8d485714ee4a7935edc563101a268ce394e277db759f5d6ee76c59f0e7" kindref="member">ParticleStatus::Exited</ref>. Exited particles are skipped in subsequent step() calls.</para>
+<para><simplesect kind="note"><para>Requires status array to be allocated (auto-allocated by prepare() / ensure_tracking_arrays()). </para>
+</simplesect>
+</para>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+<para>Boundary condition type for a single axis. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Applied per-face (lo/hi) via <ref refid="structpar2_1_1AxisBoundary" kindref="compound">AxisBoundary</ref>. See <ref refid="boundary_8hpp" kindref="compound">boundary.hpp</ref> for full config.</para>
+<para><simplesect kind="see"><para><ref refid="structpar2_1_1AxisBoundary" kindref="compound">AxisBoundary</ref>, <ref refid="structpar2_1_1BoundaryConfig" kindref="compound">BoundaryConfig</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/par2_core/types.hpp" line="35" column="1" bodyfile="include/par2_core/types.hpp" bodystart="35" bodyend="69"/>
+      </memberdef>
+      <memberdef kind="enum" id="namespacepar2_1a7c8f4da66964574b306027d770c0f963" prot="public" static="no" strong="yes">
+        <type>uint8_t</type>
+        <name>InterpolationMode</name>
+        <qualifiedname>par2::InterpolationMode</qualifiedname>
+        <enumvalue id="namespacepar2_1a7c8f4da66964574b306027d770c0f963a32a843da6ea40ab3b17a3421ccdf671b" prot="public">
+          <name>Linear</name>
+          <briefdescription>
+<para>Face-centered linear interpolation (faster) </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="namespacepar2_1a7c8f4da66964574b306027d770c0f963a969a7b6f1f3951ef293b3ff281dc293d" prot="public">
+          <name>Trilinear</name>
+          <briefdescription>
+<para>Corner-based trilinear interpolation (smoother) </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+<para>Velocity interpolation mode. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Controls how velocity is sampled at particle positions.</para>
+<para><itemizedlist>
+<listitem><para><bold>Linear</bold>: Face-centered bilinear interpolation (faster)</para>
+</listitem><listitem><para><bold>Trilinear</bold>: Corner-based trilinear interpolation (smoother)</para>
+</listitem></itemizedlist>
+</para>
+<para><simplesect kind="note"><para>Legacy PAR² uses Linear interpolation ALWAYS. The YAML &quot;interpolation&quot; field in legacy configs controls the DRIFT mode, not velocity interpolation. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/par2_core/types.hpp" line="111" column="1" bodyfile="include/par2_core/types.hpp" bodystart="111" bodyend="114"/>
+      </memberdef>
+      <memberdef kind="enum" id="namespacepar2_1a2e9b0a2b6e4d6f65763b00f8c87aa181" prot="public" static="no" strong="yes">
+        <type>uint8_t</type>
+        <name>DriftCorrectionMode</name>
+        <qualifiedname>par2::DriftCorrectionMode</qualifiedname>
+        <enumvalue id="namespacepar2_1a2e9b0a2b6e4d6f65763b00f8c87aa181a6adf97f83acf6453d4a6a4b1070f3754" prot="public">
+          <name>None</name>
+          <briefdescription>
+<para>No drift correction (only valid if dispersion is zero) </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="namespacepar2_1a2e9b0a2b6e4d6f65763b00f8c87aa181a04021d95a37003c16d27a38d407e3304" prot="public">
+          <name>Precomputed</name>
+          <briefdescription>
+<para>Use precomputed cell-centered div(D) field (legacy: &quot;finite difference&quot;) </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="namespacepar2_1a2e9b0a2b6e4d6f65763b00f8c87aa181aba8be745c90c7d1c79753cd7dda9b925" prot="public">
+          <name>TrilinearOnFly</name>
+          <briefdescription>
+<para>Compute div(D) on-the-fly via trilinear derivatives (legacy: &quot;trilinear&quot;) </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+<para>Drift correction computation mode. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>The drift correction term (div(D)) arises from the Fokker-Planck equation and compensates for the spatial variation of the dispersion tensor D. Without this term, particles would accumulate in low-dispersion regions.</para>
+<para><bold>The dispersion tensor D is defined as:</bold> <formula id="0">\[
+  D_{ij} = (\alpha_T |v| + D_m) \delta_{ij} + (\alpha_L - \alpha_T) \frac{v_i v_j}{|v|}
+\]</formula></para>
+<para><bold>The drift correction term is:</bold> <formula id="1">\[
+  v_{drift,i} = \sum_j \frac{\partial D_{ij}}{\partial x_j}
+\]</formula></para>
+<sect2 id="namespacepar2_1autotoc_md20">
+<title>Mode Descriptions</title>
+<sect3 id="namespacepar2_1autotoc_md21">
+<title>None</title>
+<para>No drift correction. Only valid when dispersion parameters are zero.</para>
+</sect3>
+<sect3 id="namespacepar2_1autotoc_md22">
+<title>Precomputed (legacy: &quot;finite difference&quot;)</title>
+<para>Computes div(D) once per timestep at cell centers using finite differences:<itemizedlist>
+<listitem><para>Central differences in interior cells: (D[i+1] - D[i-1]) / (2·dx)</para>
+</listitem><listitem><para>One-sided differences at boundaries: (D[i+1] - D[i]) / dx or (D[i] - D[i-1]) / dx</para>
+</listitem></itemizedlist>
+</para>
+<para><bold>Advantages:</bold> Can be computed once if velocity is steady. <bold>Storage:</bold> Requires 3×num_cells floats for drift + 6×num_cells for D tensor.</para>
+</sect3>
+<sect3 id="namespacepar2_1autotoc_md23">
+<title>TrilinearOnFly (legacy: &quot;trilinear&quot;)</title>
+<para>Computes div(D) at each particle position using trilinear derivatives of corner velocities. This is the default legacy PAR² mode.</para>
+<para>The implementation samples 8 corner velocities and uses their analytical trilinear derivatives to compute ∂D/∂x, ∂D/∂y, ∂D/∂z.</para>
+<para><bold>Advantages:</bold> No precomputation, works with time-varying velocity. <bold>Cost:</bold> ~8 corner velocity reads + math per particle per step.</para>
+</sect3>
+</sect2>
+<sect2 id="namespacepar2_1autotoc_md24">
+<title>Legacy PAR² Mapping</title>
+<para><table rows="3" cols="2"><row>
+<entry thead="yes"><para>Legacy YAML &quot;interpolation&quot;   </para>
+</entry><entry thead="yes"><para>Par2_Core drift_mode    </para>
+</entry></row>
+<row>
+<entry thead="no"><para>&quot;trilinear&quot;   </para>
+</entry><entry thead="no"><para>TrilinearOnFly    </para>
+</entry></row>
+<row>
+<entry thead="no"><para>&quot;finite difference&quot;   </para>
+</entry><entry thead="no"><para>Precomputed   </para>
+</entry></row>
+</table>
+</para>
+<para><simplesect kind="note"><para>Legacy PAR² always uses Linear velocity interpolation.</para>
+</simplesect>
+<simplesect kind="see"><para>cornerfield::velocityCorrection() for TrilinearOnFly implementation </para>
+</simplesect>
+<simplesect kind="see"><para>launch_compute_drift_precomputed() for Precomputed implementation </para>
+</simplesect>
+</para>
+</sect2>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/par2_core/types.hpp" line="168" column="1" bodyfile="include/par2_core/types.hpp" bodystart="168" bodyend="172"/>
+      </memberdef>
+      <memberdef kind="enum" id="namespacepar2_1a7c204ae8d485714ee4a7935edc563101" prot="public" static="no" strong="yes">
+        <type>uint8_t</type>
+        <name>ParticleStatus</name>
+        <qualifiedname>par2::ParticleStatus</qualifiedname>
+        <enumvalue id="namespacepar2_1a7c204ae8d485714ee4a7935edc563101a4d3d769b812b6faa6b76e1a8abaece2d" prot="public">
+          <name>Active</name>
+          <initializer>= 0</initializer>
+          <briefdescription>
+<para>Particle is active in simulation. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="namespacepar2_1a7c204ae8d485714ee4a7935edc563101a268ce394e277db759f5d6ee76c59f0e7" prot="public">
+          <name>Exited</name>
+          <initializer>= 1</initializer>
+          <briefdescription>
+<para>Particle exited via open boundary. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="namespacepar2_1a7c204ae8d485714ee4a7935edc563101a3cab03c00dbd11bc3569afa0748013f0" prot="public">
+          <name>Inactive</name>
+          <initializer>= 255</initializer>
+          <briefdescription>
+<para>Particle slot is unused. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+<para>Status flags for particles. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/par2_core/types.hpp" line="265" column="1" bodyfile="include/par2_core/types.hpp" bodystart="265" bodyend="269"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="typedef">
+      <memberdef kind="typedef" id="namespacepar2_1a7f83eb45eb57c7110fb2f83369f17c03" prot="public" static="no">
+        <templateparamlist>
+          <param>
+            <type>typename T</type>
+          </param>
+        </templateparamlist>
+        <type><ref refid="structpar2_1_1FaceFieldView" kindref="compound">FaceFieldView</ref>&lt; T &gt;</type>
+        <definition>using par2::VelocityView = typedef FaceFieldView&lt;T&gt;</definition>
+        <argsstring></argsstring>
+        <name>VelocityView</name>
+        <qualifiedname>par2::VelocityView</qualifiedname>
+        <briefdescription>
+<para>Alias: VelocityView is a <ref refid="structpar2_1_1FaceFieldView" kindref="compound">FaceFieldView</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>The name <computeroutput>VelocityView</computeroutput> is kept for backwards compatibility. New code should prefer <computeroutput><ref refid="structpar2_1_1FaceFieldView" kindref="compound">FaceFieldView</ref></computeroutput> for clarity.</para>
+<para><xrefsect id="deprecated_1_deprecated000003"><xreftitle>Deprecated</xreftitle><xrefdescription><para>Use FaceFieldView&lt;T&gt; in new code. </para>
+</xrefdescription></xrefsect></para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/par2_core/velocity_layout.hpp" line="250" column="1" bodyfile="include/par2_core/velocity_layout.hpp" bodystart="250" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="namespacepar2_1adcaef34a5fba7ed6b9a0bef9fd519046" prot="public" static="no">
+        <templateparamlist>
+          <param>
+            <type>typename T</type>
+          </param>
+        </templateparamlist>
+        <type><ref refid="structpar2_1_1CornerFieldView" kindref="compound">CornerFieldView</ref>&lt; T &gt;</type>
+        <definition>using par2::CornerVelocityView = typedef CornerFieldView&lt;T&gt;</definition>
+        <argsstring></argsstring>
+        <name>CornerVelocityView</name>
+        <qualifiedname>par2::CornerVelocityView</qualifiedname>
+        <briefdescription>
+<para>Alias: CornerVelocityView is a <ref refid="structpar2_1_1CornerFieldView" kindref="compound">CornerFieldView</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><xrefsect id="deprecated_1_deprecated000004"><xreftitle>Deprecated</xreftitle><xrefdescription><para>Use CornerFieldView&lt;T&gt; in new code. </para>
+</xrefdescription></xrefsect></para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/par2_core/velocity_layout.hpp" line="258" column="1" bodyfile="include/par2_core/velocity_layout.hpp" bodystart="258" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="namespacepar2_1ae3350f9b866313b2d6377e166241f2c0" prot="public" static="no">
+        <templateparamlist>
+          <param>
+            <type>typename T</type>
+          </param>
+        </templateparamlist>
+        <type><ref refid="structpar2_1_1DeviceSpan" kindref="compound">DeviceSpan</ref>&lt; const T &gt;</type>
+        <definition>using par2::ConstDeviceSpan = typedef DeviceSpan&lt;const T&gt;</definition>
+        <argsstring></argsstring>
+        <name>ConstDeviceSpan</name>
+        <qualifiedname>par2::ConstDeviceSpan</qualifiedname>
+        <briefdescription>
+<para>Convenience alias for const views. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/par2_core/views.hpp" line="55" column="1" bodyfile="include/par2_core/views.hpp" bodystart="55" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="namespacepar2_1afb55ec367056066af329d25184ae68c5" prot="public" static="no" constexpr="yes" const="no" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename T</type>
+          </param>
+        </templateparamlist>
+        <type>constexpr <ref refid="structpar2_1_1GridDesc" kindref="compound">GridDesc</ref>&lt; T &gt;</type>
+        <definition>constexpr GridDesc&lt; T &gt; par2::make_grid</definition>
+        <argsstring>(int nx, int ny, int nz, T dx, T dy, T dz, T px=T(0), T py=T(0), T pz=T(0)) noexcept</argsstring>
+        <name>make_grid</name>
+        <qualifiedname>par2::make_grid</qualifiedname>
+        <param>
+          <type>int</type>
+          <declname>nx</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>ny</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>nz</declname>
+        </param>
+        <param>
+          <type>T</type>
+          <declname>dx</declname>
+        </param>
+        <param>
+          <type>T</type>
+          <declname>dy</declname>
+        </param>
+        <param>
+          <type>T</type>
+          <declname>dz</declname>
+        </param>
+        <param>
+          <type>T</type>
+          <declname>px</declname>
+          <defval>T(0)</defval>
+        </param>
+        <param>
+          <type>T</type>
+          <declname>py</declname>
+          <defval>T(0)</defval>
+        </param>
+        <param>
+          <type>T</type>
+          <declname>pz</declname>
+          <defval>T(0)</defval>
+        </param>
+        <briefdescription>
+<para>Create a uniform grid descriptor. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>nx</parametername>
+<parametername>ny</parametername>
+<parametername>nz</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Number of cells in each direction </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>dx</parametername>
+<parametername>dy</parametername>
+<parametername>dz</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Cell sizes </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>px</parametername>
+<parametername>py</parametername>
+<parametername>pz</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Origin coordinates (default: 0,0,0) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/par2_core/grid.hpp" line="118" column="20" bodyfile="include/par2_core/grid.hpp" bodystart="118" bodyend="124"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacepar2_1a8d9deed7320c41adfe7d35338362443f" prot="public" static="no" constexpr="yes" const="no" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename T</type>
+          </param>
+        </templateparamlist>
+        <type>constexpr <ref refid="structpar2_1_1GridDesc" kindref="compound">GridDesc</ref>&lt; T &gt;</type>
+        <definition>constexpr GridDesc&lt; T &gt; par2::make_uniform_grid</definition>
+        <argsstring>(int nx, int ny, int nz, T cell_size, T px=T(0), T py=T(0), T pz=T(0)) noexcept</argsstring>
+        <name>make_uniform_grid</name>
+        <qualifiedname>par2::make_uniform_grid</qualifiedname>
+        <param>
+          <type>int</type>
+          <declname>nx</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>ny</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>nz</declname>
+        </param>
+        <param>
+          <type>T</type>
+          <declname>cell_size</declname>
+        </param>
+        <param>
+          <type>T</type>
+          <declname>px</declname>
+          <defval>T(0)</defval>
+        </param>
+        <param>
+          <type>T</type>
+          <declname>py</declname>
+          <defval>T(0)</defval>
+        </param>
+        <param>
+          <type>T</type>
+          <declname>pz</declname>
+          <defval>T(0)</defval>
+        </param>
+        <briefdescription>
+<para>Create a uniform grid with same cell size in all directions. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/par2_core/grid.hpp" line="130" column="20" bodyfile="include/par2_core/grid.hpp" bodystart="130" bodyend="136"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacepar2_1a30900d048d64c7b0bb3891393943b727" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename T</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void par2::inject_box</definition>
+        <argsstring>(const ParticlesView&lt; T &gt; &amp;particles, T x0, T y0, T z0, T x1, T y1, T z1, unsigned long long seed=12345ULL, cudaStream_t stream=nullptr)</argsstring>
+        <name>inject_box</name>
+        <qualifiedname>par2::inject_box</qualifiedname>
+        <param>
+          <type>const <ref refid="structpar2_1_1ParticlesView" kindref="compound">ParticlesView</ref>&lt; T &gt; &amp;</type>
+          <declname>particles</declname>
+        </param>
+        <param>
+          <type>T</type>
+          <declname>x0</declname>
+        </param>
+        <param>
+          <type>T</type>
+          <declname>y0</declname>
+        </param>
+        <param>
+          <type>T</type>
+          <declname>z0</declname>
+        </param>
+        <param>
+          <type>T</type>
+          <declname>x1</declname>
+        </param>
+        <param>
+          <type>T</type>
+          <declname>y1</declname>
+        </param>
+        <param>
+          <type>T</type>
+          <declname>z1</declname>
+        </param>
+        <param>
+          <type>unsigned long long</type>
+          <declname>seed</declname>
+          <defval>12345ULL</defval>
+        </param>
+        <param>
+          <type>cudaStream_t</type>
+          <declname>stream</declname>
+          <defval>nullptr</defval>
+        </param>
+        <briefdescription>
+<para>Initialize particles uniformly distributed in a box. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>T</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Floating point type (float or double)</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>particles</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Particle view (device pointers) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>x0</parametername>
+<parametername>y0</parametername>
+<parametername>z0</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Minimum corner of box </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>x1</parametername>
+<parametername>y1</parametername>
+<parametername>z1</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Maximum corner of box </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>seed</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Random seed for reproducibility </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>stream</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>CUDA stream (nullptr for default)</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+Particles are distributed uniformly within the box using a deterministic algorithm based on particle index and seed.</para>
+<para><simplesect kind="note"><para>This is the standalone function version. <ref refid="classpar2_1_1TransportEngine_1ac104270e0963816b21585e33f89be79f" kindref="member">TransportEngine::inject_box</ref> provides the same functionality through the engine API. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/par2_core/injectors.hpp" line="38" column="6" declfile="include/par2_core/injectors.hpp" declline="38" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacepar2_1a56cf396b9bbc13ad93080a9144bfcbe9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename T</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void par2::inject_grid</definition>
+        <argsstring>(const ParticlesView&lt; T &gt; &amp;particles, T x0, T y0, T z0, T x1, T y1, T z1, int nx, int ny, int nz, cudaStream_t stream=nullptr)</argsstring>
+        <name>inject_grid</name>
+        <qualifiedname>par2::inject_grid</qualifiedname>
+        <param>
+          <type>const <ref refid="structpar2_1_1ParticlesView" kindref="compound">ParticlesView</ref>&lt; T &gt; &amp;</type>
+          <declname>particles</declname>
+        </param>
+        <param>
+          <type>T</type>
+          <declname>x0</declname>
+        </param>
+        <param>
+          <type>T</type>
+          <declname>y0</declname>
+        </param>
+        <param>
+          <type>T</type>
+          <declname>z0</declname>
+        </param>
+        <param>
+          <type>T</type>
+          <declname>x1</declname>
+        </param>
+        <param>
+          <type>T</type>
+          <declname>y1</declname>
+        </param>
+        <param>
+          <type>T</type>
+          <declname>z1</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>nx</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>ny</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>nz</declname>
+        </param>
+        <param>
+          <type>cudaStream_t</type>
+          <declname>stream</declname>
+          <defval>nullptr</defval>
+        </param>
+        <briefdescription>
+<para>Initialize particles at regular grid positions within a box. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>T</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Floating point type</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>particles</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Particle view </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>x0</parametername>
+<parametername>y0</parametername>
+<parametername>z0</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Minimum corner </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>x1</parametername>
+<parametername>y1</parametername>
+<parametername>z1</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Maximum corner </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>nx</parametername>
+<parametername>ny</parametername>
+<parametername>nz</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Number of particles per axis </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>stream</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>CUDA stream</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+Creates a regular grid of particles. Total particles = nx * ny * nz. If particles.n != nx*ny*nz, only min(particles.n, nx*ny*nz) are set.</para>
+<para><simplesect kind="note"><para>Useful for debugging and visualization. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/par2_core/injectors.hpp" line="63" column="6" declfile="include/par2_core/injectors.hpp" declline="63" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacepar2_1a0eaccbf22f25d80ed8b516d5290792ad" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>template void</type>
+        <definition>template void par2::inject_box&lt; float &gt;</definition>
+        <argsstring>(const ParticlesView&lt; float &gt; &amp;, float, float, float, float, float, float, unsigned long long, cudaStream_t)</argsstring>
+        <name>inject_box&lt; float &gt;</name>
+        <qualifiedname>par2::inject_box&lt; float &gt;</qualifiedname>
+        <param>
+          <type>const <ref refid="structpar2_1_1ParticlesView" kindref="compound">ParticlesView</ref>&lt; float &gt; &amp;</type>
+        </param>
+        <param>
+          <type>float</type>
+        </param>
+        <param>
+          <type>float</type>
+        </param>
+        <param>
+          <type>float</type>
+        </param>
+        <param>
+          <type>float</type>
+        </param>
+        <param>
+          <type>float</type>
+        </param>
+        <param>
+          <type>float</type>
+        </param>
+        <param>
+          <type>unsigned long long</type>
+        </param>
+        <param>
+          <type>cudaStream_t</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/par2_core/injectors.hpp" line="72" column="17" declfile="include/par2_core/injectors.hpp" declline="72" declcolumn="17"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacepar2_1ae8f95ea711d3188099c1acedef032594" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>template void</type>
+        <definition>template void par2::inject_box&lt; double &gt;</definition>
+        <argsstring>(const ParticlesView&lt; double &gt; &amp;, double, double, double, double, double, double, unsigned long long, cudaStream_t)</argsstring>
+        <name>inject_box&lt; double &gt;</name>
+        <qualifiedname>par2::inject_box&lt; double &gt;</qualifiedname>
+        <param>
+          <type>const <ref refid="structpar2_1_1ParticlesView" kindref="compound">ParticlesView</ref>&lt; double &gt; &amp;</type>
+        </param>
+        <param>
+          <type>double</type>
+        </param>
+        <param>
+          <type>double</type>
+        </param>
+        <param>
+          <type>double</type>
+        </param>
+        <param>
+          <type>double</type>
+        </param>
+        <param>
+          <type>double</type>
+        </param>
+        <param>
+          <type>double</type>
+        </param>
+        <param>
+          <type>unsigned long long</type>
+        </param>
+        <param>
+          <type>cudaStream_t</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/par2_core/injectors.hpp" line="75" column="17" declfile="include/par2_core/injectors.hpp" declline="75" declcolumn="17"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacepar2_1a770790c753e2c1e702444601a7d43f36" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename T</type>
+          </param>
+        </templateparamlist>
+        <type>double</type>
+        <definition>double par2::concentration_box</definition>
+        <argsstring>(const ConstParticlesView&lt; T &gt; &amp;particles, T x0, T y0, T z0, T x1, T y1, T z1, cudaStream_t stream=nullptr)</argsstring>
+        <name>concentration_box</name>
+        <qualifiedname>par2::concentration_box</qualifiedname>
+        <param>
+          <type>const <ref refid="structpar2_1_1ConstParticlesView" kindref="compound">ConstParticlesView</ref>&lt; T &gt; &amp;</type>
+          <declname>particles</declname>
+        </param>
+        <param>
+          <type>T</type>
+          <declname>x0</declname>
+        </param>
+        <param>
+          <type>T</type>
+          <declname>y0</declname>
+        </param>
+        <param>
+          <type>T</type>
+          <declname>z0</declname>
+        </param>
+        <param>
+          <type>T</type>
+          <declname>x1</declname>
+        </param>
+        <param>
+          <type>T</type>
+          <declname>y1</declname>
+        </param>
+        <param>
+          <type>T</type>
+          <declname>z1</declname>
+        </param>
+        <param>
+          <type>cudaStream_t</type>
+          <declname>stream</declname>
+          <defval>nullptr</defval>
+        </param>
+        <briefdescription>
+<para>Count particles in a box region. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Equivalent to legacy <computeroutput>concentrationBox()</computeroutput>.</para>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>T</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Floating point type</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>particles</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Particle positions (device) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>x0</parametername>
+<parametername>y0</parametername>
+<parametername>z0</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Minimum corner of box </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>x1</parametername>
+<parametername>y1</parametername>
+<parametername>z1</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Maximum corner of box </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>stream</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>CUDA stream (nullptr = default stream)</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Fraction of particles inside box [0.0, 1.0]</para>
+</simplesect>
+<simplesect kind="note"><para>This function SYNCHRONIZES the stream internally. </para>
+</simplesect>
+<simplesect kind="warning"><para>This blocks the CPU until the stream completes. Unsuitable for the hot path in HPC pipelines. For async operation, use <ref refid="classpar2_1_1StatsComputer" kindref="compound">StatsComputer</ref>.</para>
+</simplesect>
+<simplesect kind="note"><para>Particles with any status are counted (no filtering). This matches legacy behavior. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/par2_core/stats.hpp" line="269" column="8" declfile="include/par2_core/stats.hpp" declline="269" declcolumn="8"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacepar2_1a9bce5aded6bb06c022dd23ab5bccc411" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename T</type>
+          </param>
+        </templateparamlist>
+        <type>double</type>
+        <definition>double par2::concentration_past_plane</definition>
+        <argsstring>(const ConstParticlesView&lt; T &gt; &amp;particles, int axis, T threshold, cudaStream_t stream=nullptr)</argsstring>
+        <name>concentration_past_plane</name>
+        <qualifiedname>par2::concentration_past_plane</qualifiedname>
+        <param>
+          <type>const <ref refid="structpar2_1_1ConstParticlesView" kindref="compound">ConstParticlesView</ref>&lt; T &gt; &amp;</type>
+          <declname>particles</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>axis</declname>
+        </param>
+        <param>
+          <type>T</type>
+          <declname>threshold</declname>
+        </param>
+        <param>
+          <type>cudaStream_t</type>
+          <declname>stream</declname>
+          <defval>nullptr</defval>
+        </param>
+        <briefdescription>
+<para>Count particles past a plane. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Equivalent to legacy <computeroutput>concentrationAfterX()</computeroutput> (when axis=0).</para>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>T</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Floating point type</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>particles</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Particle positions (device) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>axis</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Which axis: 0=X, 1=Y, 2=Z </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>threshold</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Position of the plane </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>stream</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>CUDA stream (nullptr = default stream)</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Fraction of particles with coord &gt; threshold [0.0, 1.0]</para>
+</simplesect>
+<simplesect kind="note"><para>This function SYNCHRONIZES the stream internally. </para>
+</simplesect>
+<simplesect kind="warning"><para>This blocks the CPU until the stream completes. Unsuitable for the hot path in HPC pipelines.</para>
+</simplesect>
+<simplesect kind="note"><para>All particles counted regardless of status (legacy behavior). </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/par2_core/stats.hpp" line="297" column="8" declfile="include/par2_core/stats.hpp" declline="297" declcolumn="8"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacepar2_1a891f2f48e8cee966243f37d1f22878f7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename T</type>
+          </param>
+        </templateparamlist>
+        <type><ref refid="structpar2_1_1ParticleCounts" kindref="compound">ParticleCounts</ref></type>
+        <definition>ParticleCounts par2::count_by_status</definition>
+        <argsstring>(const ConstParticlesView&lt; T &gt; &amp;particles, cudaStream_t stream=nullptr)</argsstring>
+        <name>count_by_status</name>
+        <qualifiedname>par2::count_by_status</qualifiedname>
+        <param>
+          <type>const <ref refid="structpar2_1_1ConstParticlesView" kindref="compound">ConstParticlesView</ref>&lt; T &gt; &amp;</type>
+          <declname>particles</declname>
+        </param>
+        <param>
+          <type>cudaStream_t</type>
+          <declname>stream</declname>
+          <defval>nullptr</defval>
+        </param>
+        <briefdescription>
+<para>Count particles by status. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>T</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Floating point type</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>particles</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Particle view with status array </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>stream</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>CUDA stream</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para><ref refid="structpar2_1_1ParticleCounts" kindref="compound">ParticleCounts</ref> with active/exited/inactive counts</para>
+</simplesect>
+<simplesect kind="note"><para>If particles.status is nullptr, all are counted as active. </para>
+</simplesect>
+<simplesect kind="note"><para>This function SYNCHRONIZES the stream internally. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/par2_core/stats.hpp" line="318" column="16" declfile="include/par2_core/stats.hpp" declline="318" declcolumn="16"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacepar2_1a3418d81ddd9dc28320621a3ade3760e6" prot="public" static="no" constexpr="yes" const="no" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
+        <type>constexpr size_t</type>
+        <definition>constexpr size_t par2::merge_id</definition>
+        <argsstring>(int ix, int iy, int iz, int nx, int ny) noexcept</argsstring>
+        <name>merge_id</name>
+        <qualifiedname>par2::merge_id</qualifiedname>
+        <param>
+          <type>int</type>
+          <declname>ix</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>iy</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>iz</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>nx</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>ny</declname>
+        </param>
+        <briefdescription>
+<para>Compute the merged linear index for a 3D point in legacy layout. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>ix</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>X index (0 to nx inclusive) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>iy</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Y index (0 to ny inclusive) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>iz</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Z index (0 to nz inclusive) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>nx</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Number of cells in X </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>ny</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Number of cells in Y </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Linear index for arrays of size (nx+1)*(ny+1)*(nz+1)</para>
+</simplesect>
+This matches legacy PAR² <computeroutput>facefield::mergeId()</computeroutput>: <programlisting><codeline><highlight class="normal">index<sp/>=<sp/>iz<sp/>*<sp/>(ny+1)<sp/>*<sp/>(nx+1)<sp/>+<sp/>iy<sp/>*<sp/>(nx+1)<sp/>+<sp/>ix</highlight></codeline>
+</programlisting> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/par2_core/velocity_layout.hpp" line="80" column="25" bodyfile="include/par2_core/velocity_layout.hpp" bodystart="80" bodyend="84"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacepar2_1a9df49898861da6df112626217994392e" prot="public" static="no" constexpr="yes" const="no" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
+        <type>constexpr size_t</type>
+        <definition>constexpr size_t par2::field_size</definition>
+        <argsstring>(int nx, int ny, int nz) noexcept</argsstring>
+        <name>field_size</name>
+        <qualifiedname>par2::field_size</qualifiedname>
+        <param>
+          <type>int</type>
+          <declname>nx</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>ny</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>nz</declname>
+        </param>
+        <briefdescription>
+<para>Compute the expected array size for a face/corner field. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>nx</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Number of cells in X </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>ny</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Number of cells in Y </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>nz</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Number of cells in Z </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>(nx+1) * (ny+1) * (nz+1) </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/par2_core/velocity_layout.hpp" line="94" column="25" bodyfile="include/par2_core/velocity_layout.hpp" bodystart="94" bodyend="96"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacepar2_1a2691b6c86b488eb7032b4611fa1ba982" prot="public" static="no" constexpr="yes" const="no" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename T</type>
+          </param>
+        </templateparamlist>
+        <type>constexpr size_t</type>
+        <definition>constexpr size_t par2::field_size</definition>
+        <argsstring>(const GridDesc&lt; T &gt; &amp;grid) noexcept</argsstring>
+        <name>field_size</name>
+        <qualifiedname>par2::field_size</qualifiedname>
+        <param>
+          <type>const <ref refid="structpar2_1_1GridDesc" kindref="compound">GridDesc</ref>&lt; T &gt; &amp;</type>
+          <declname>grid</declname>
+        </param>
+        <briefdescription>
+<para>Compute expected field size from grid descriptor. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/par2_core/velocity_layout.hpp" line="102" column="25" bodyfile="include/par2_core/velocity_layout.hpp" bodystart="102" bodyend="104"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacepar2_1ae02a56f80f564eb73fd3fda24f473113" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename T</type>
+          </param>
+          <param>
+            <type>typename GridT</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void par2::validate_face_field</definition>
+        <argsstring>(const FaceFieldView&lt; T &gt; &amp;, const GridDesc&lt; GridT &gt; &amp;)</argsstring>
+        <name>validate_face_field</name>
+        <qualifiedname>par2::validate_face_field</qualifiedname>
+        <param>
+          <type>const <ref refid="structpar2_1_1FaceFieldView" kindref="compound">FaceFieldView</ref>&lt; T &gt; &amp;</type>
+        </param>
+        <param>
+          <type>const <ref refid="structpar2_1_1GridDesc" kindref="compound">GridDesc</ref>&lt; GridT &gt; &amp;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/par2_core/velocity_layout.hpp" line="298" column="13" bodyfile="include/par2_core/velocity_layout.hpp" bodystart="298" bodyend="298"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacepar2_1a81293dc39b62d4a934c8b39ba3a08326" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename T</type>
+          </param>
+          <param>
+            <type>typename GridT</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void par2::validate_corner_field</definition>
+        <argsstring>(const CornerFieldView&lt; T &gt; &amp;, const GridDesc&lt; GridT &gt; &amp;)</argsstring>
+        <name>validate_corner_field</name>
+        <qualifiedname>par2::validate_corner_field</qualifiedname>
+        <param>
+          <type>const <ref refid="structpar2_1_1CornerFieldView" kindref="compound">CornerFieldView</ref>&lt; T &gt; &amp;</type>
+        </param>
+        <param>
+          <type>const <ref refid="structpar2_1_1GridDesc" kindref="compound">GridDesc</ref>&lt; GridT &gt; &amp;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/par2_core/velocity_layout.hpp" line="301" column="13" bodyfile="include/par2_core/velocity_layout.hpp" bodystart="301" bodyend="301"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="include/par2_core/boundary.hpp" line="15" column="1"/>
+  </compounddef>
+</doxygen>

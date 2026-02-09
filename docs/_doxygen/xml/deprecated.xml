@@ -1,0 +1,27 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.4" xml:lang="en-US">
+  <compounddef id="deprecated" kind="page">
+    <compoundname>deprecated</compoundname>
+    <title>Deprecated List</title>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><variablelist>
+<varlistentry><term>Member <ref refid="namespacepar2_1adcaef34a5fba7ed6b9a0bef9fd519046" kindref="member">par2::CornerVelocityView</ref>  </term></varlistentry>
+<listitem><para><anchor id="deprecated_1_deprecated000004"/>Use CornerFieldView&lt;T&gt; in new code.  </para>
+</listitem>
+<varlistentry><term>Member <ref refid="structpar2_1_1EngineConfig_1ab81902eb1552d990b0902dcd6574abb4" kindref="member">par2::EngineConfig::debug_checks</ref>  </term></varlistentry>
+<listitem><para><anchor id="deprecated_1_deprecated000002"/>Use PAR2_DEBUG_LEVEL compile-time flag for zero-overhead debug.  </para>
+</listitem>
+<varlistentry><term>Member <ref refid="namespacepar2_1a7f83eb45eb57c7110fb2f83369f17c03" kindref="member">par2::VelocityView</ref>  </term></varlistentry>
+<listitem><para><anchor id="deprecated_1_deprecated000003"/>Use FaceFieldView&lt;T&gt; in new code.  </para>
+</listitem>
+<varlistentry><term>Member <ref refid="debug__policy_8hpp_1ad90d3d600e0ce3f692232ac7635ed8f0" kindref="member">PAR2_DEBUG_ONLY</ref>  (code)</term></varlistentry>
+<listitem><para><anchor id="deprecated_1_deprecated000001"/>Use PAR2_DEBUG_LEVEL instead. </para>
+</listitem>
+</variablelist>
+</para>
+    </detaileddescription>
+    <location file="deprecated"/>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,203 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.4" xml:lang="en-US">
+  <compounddef id="structpar2_1_1ConstParticlesView" kind="struct" language="C++" prot="public">
+    <compoundname>par2::ConstParticlesView</compoundname>
+    <includes refid="views_8hpp" local="no">views.hpp</includes>
+    <templateparamlist>
+      <param>
+        <type>typename T</type>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structpar2_1_1ConstParticlesView_1a75e39ac7eca1d26c13f4f05b82f86dd3" prot="public" static="no" mutable="no">
+        <type>const T *</type>
+        <definition>const T* par2::ConstParticlesView&lt; T &gt;::x</definition>
+        <argsstring></argsstring>
+        <name>x</name>
+        <qualifiedname>par2::ConstParticlesView::x</qualifiedname>
+        <initializer>= nullptr</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/par2_core/views.hpp" line="136" column="13" bodyfile="include/par2_core/views.hpp" bodystart="136" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structpar2_1_1ConstParticlesView_1aadef95124bd0e08d79630d658825500d" prot="public" static="no" mutable="no">
+        <type>const T *</type>
+        <definition>const T* par2::ConstParticlesView&lt; T &gt;::y</definition>
+        <argsstring></argsstring>
+        <name>y</name>
+        <qualifiedname>par2::ConstParticlesView::y</qualifiedname>
+        <initializer>= nullptr</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/par2_core/views.hpp" line="137" column="13" bodyfile="include/par2_core/views.hpp" bodystart="137" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structpar2_1_1ConstParticlesView_1a8e28bec89373c72cccf8f07c15479e09" prot="public" static="no" mutable="no">
+        <type>const T *</type>
+        <definition>const T* par2::ConstParticlesView&lt; T &gt;::z</definition>
+        <argsstring></argsstring>
+        <name>z</name>
+        <qualifiedname>par2::ConstParticlesView::z</qualifiedname>
+        <initializer>= nullptr</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/par2_core/views.hpp" line="138" column="13" bodyfile="include/par2_core/views.hpp" bodystart="138" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structpar2_1_1ConstParticlesView_1aae0d0dbff67b7c7b911f231db0cd23ba" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int par2::ConstParticlesView&lt; T &gt;::n</definition>
+        <argsstring></argsstring>
+        <name>n</name>
+        <qualifiedname>par2::ConstParticlesView::n</qualifiedname>
+        <initializer>= 0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/par2_core/views.hpp" line="139" column="9" bodyfile="include/par2_core/views.hpp" bodystart="139" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structpar2_1_1ConstParticlesView_1a499008086cabe34babfde8b3d13193e1" prot="public" static="no" mutable="no">
+        <type>const uint8_t *</type>
+        <definition>const uint8_t* par2::ConstParticlesView&lt; T &gt;::status</definition>
+        <argsstring></argsstring>
+        <name>status</name>
+        <qualifiedname>par2::ConstParticlesView::status</qualifiedname>
+        <initializer>= nullptr</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/par2_core/views.hpp" line="140" column="19" bodyfile="include/par2_core/views.hpp" bodystart="140" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structpar2_1_1ConstParticlesView_1a9bbc2f7437d4d33b8ce5c1133a1e4128" prot="public" static="no" mutable="no">
+        <type>const int32_t *</type>
+        <definition>const int32_t* par2::ConstParticlesView&lt; T &gt;::wrapX</definition>
+        <argsstring></argsstring>
+        <name>wrapX</name>
+        <qualifiedname>par2::ConstParticlesView::wrapX</qualifiedname>
+        <initializer>= nullptr</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/par2_core/views.hpp" line="141" column="19" bodyfile="include/par2_core/views.hpp" bodystart="141" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structpar2_1_1ConstParticlesView_1a166a3e21c1d21560867693e295cc168d" prot="public" static="no" mutable="no">
+        <type>const int32_t *</type>
+        <definition>const int32_t* par2::ConstParticlesView&lt; T &gt;::wrapY</definition>
+        <argsstring></argsstring>
+        <name>wrapY</name>
+        <qualifiedname>par2::ConstParticlesView::wrapY</qualifiedname>
+        <initializer>= nullptr</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/par2_core/views.hpp" line="142" column="19" bodyfile="include/par2_core/views.hpp" bodystart="142" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structpar2_1_1ConstParticlesView_1a0b3d7a3dd00cf1f76ad9e6847989ddef" prot="public" static="no" mutable="no">
+        <type>const int32_t *</type>
+        <definition>const int32_t* par2::ConstParticlesView&lt; T &gt;::wrapZ</definition>
+        <argsstring></argsstring>
+        <name>wrapZ</name>
+        <qualifiedname>par2::ConstParticlesView::wrapZ</qualifiedname>
+        <initializer>= nullptr</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/par2_core/views.hpp" line="143" column="19" bodyfile="include/par2_core/views.hpp" bodystart="143" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="structpar2_1_1ConstParticlesView_1a6cfbcb682db6409528f2304d1811606f" prot="public" static="no" constexpr="yes" const="yes" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
+        <type>constexpr bool</type>
+        <definition>constexpr bool par2::ConstParticlesView&lt; T &gt;::valid</definition>
+        <argsstring>() const noexcept</argsstring>
+        <name>valid</name>
+        <qualifiedname>par2::ConstParticlesView::valid</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/par2_core/views.hpp" line="145" column="20" bodyfile="include/par2_core/views.hpp" bodystart="145" bodyend="147"/>
+      </memberdef>
+      <memberdef kind="function" id="structpar2_1_1ConstParticlesView_1a6691d9cd9a6b0a0ca047375f1840458b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>par2::ConstParticlesView&lt; T &gt;::ConstParticlesView</definition>
+        <argsstring>()=default</argsstring>
+        <name>ConstParticlesView</name>
+        <qualifiedname>par2::ConstParticlesView::ConstParticlesView</qualifiedname>
+        <briefdescription>
+<para>Implicit conversion from mutable view. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/par2_core/views.hpp" line="150" column="5"/>
+      </memberdef>
+      <memberdef kind="function" id="structpar2_1_1ConstParticlesView_1a2ac00a7f4d23850b5079c0e557decb01" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>par2::ConstParticlesView&lt; T &gt;::ConstParticlesView</definition>
+        <argsstring>(const ParticlesView&lt; T &gt; &amp;v)</argsstring>
+        <name>ConstParticlesView</name>
+        <qualifiedname>par2::ConstParticlesView::ConstParticlesView</qualifiedname>
+        <param>
+          <type>const <ref refid="structpar2_1_1ParticlesView" kindref="compound">ParticlesView</ref>&lt; T &gt; &amp;</type>
+          <declname>v</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/par2_core/views.hpp" line="151" column="5" bodyfile="include/par2_core/views.hpp" bodystart="151" bodyend="153"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Read-only view of particle positions. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>Use this when you only need to read particle data (e.g., for statistics). </para>
+    </detaileddescription>
+    <location file="include/par2_core/views.hpp" line="135" column="1" bodyfile="include/par2_core/views.hpp" bodystart="135" bodyend="154"/>
+    <listofallmembers>
+      <member refid="structpar2_1_1ConstParticlesView_1a6691d9cd9a6b0a0ca047375f1840458b" prot="public" virt="non-virtual"><scope>par2::ConstParticlesView</scope><name>ConstParticlesView</name></member>
+      <member refid="structpar2_1_1ConstParticlesView_1a2ac00a7f4d23850b5079c0e557decb01" prot="public" virt="non-virtual"><scope>par2::ConstParticlesView</scope><name>ConstParticlesView</name></member>
+      <member refid="structpar2_1_1ConstParticlesView_1aae0d0dbff67b7c7b911f231db0cd23ba" prot="public" virt="non-virtual"><scope>par2::ConstParticlesView</scope><name>n</name></member>
+      <member refid="structpar2_1_1ConstParticlesView_1a499008086cabe34babfde8b3d13193e1" prot="public" virt="non-virtual"><scope>par2::ConstParticlesView</scope><name>status</name></member>
+      <member refid="structpar2_1_1ConstParticlesView_1a6cfbcb682db6409528f2304d1811606f" prot="public" virt="non-virtual"><scope>par2::ConstParticlesView</scope><name>valid</name></member>
+      <member refid="structpar2_1_1ConstParticlesView_1a9bbc2f7437d4d33b8ce5c1133a1e4128" prot="public" virt="non-virtual"><scope>par2::ConstParticlesView</scope><name>wrapX</name></member>
+      <member refid="structpar2_1_1ConstParticlesView_1a166a3e21c1d21560867693e295cc168d" prot="public" virt="non-virtual"><scope>par2::ConstParticlesView</scope><name>wrapY</name></member>
+      <member refid="structpar2_1_1ConstParticlesView_1a0b3d7a3dd00cf1f76ad9e6847989ddef" prot="public" virt="non-virtual"><scope>par2::ConstParticlesView</scope><name>wrapZ</name></member>
+      <member refid="structpar2_1_1ConstParticlesView_1a75e39ac7eca1d26c13f4f05b82f86dd3" prot="public" virt="non-virtual"><scope>par2::ConstParticlesView</scope><name>x</name></member>
+      <member refid="structpar2_1_1ConstParticlesView_1aadef95124bd0e08d79630d658825500d" prot="public" virt="non-virtual"><scope>par2::ConstParticlesView</scope><name>y</name></member>
+      <member refid="structpar2_1_1ConstParticlesView_1a8e28bec89373c72cccf8f07c15479e09" prot="public" virt="non-virtual"><scope>par2::ConstParticlesView</scope><name>z</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

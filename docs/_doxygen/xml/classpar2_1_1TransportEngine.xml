@@ -1,0 +1,1147 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.4" xml:lang="en-US">
+  <compounddef id="classpar2_1_1TransportEngine" kind="class" language="C++" prot="public">
+    <compoundname>par2::TransportEngine</compoundname>
+    <includes refid="transport__engine_8hpp" local="no">transport_engine.hpp</includes>
+    <templateparamlist>
+      <param>
+        <type>typename T</type>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classpar2_1_1TransportEngine_1a719d195ca4f764cf10d674c67496cadb" prot="private" static="no" mutable="no">
+        <type>std::unique_ptr&lt; <ref refid="structpar2_1_1detail_1_1EngineImpl" kindref="compound">detail::EngineImpl</ref>&lt; T &gt; &gt;</type>
+        <definition>std::unique_ptr&lt;detail::EngineImpl&lt;T&gt; &gt; par2::TransportEngine&lt; T &gt;::impl_</definition>
+        <argsstring></argsstring>
+        <name>impl_</name>
+        <qualifiedname>par2::TransportEngine::impl_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/par2_core/transport_engine.hpp" line="563" column="21" bodyfile="include/par2_core/transport_engine.hpp" bodystart="563" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classpar2_1_1TransportEngine_1ad50e83cc6ed8bb68b07379e2663a7836" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>par2::TransportEngine&lt; T &gt;::TransportEngine</definition>
+        <argsstring>(const GridDesc&lt; T &gt; &amp;grid, const TransportParams&lt; T &gt; &amp;params, const BoundaryConfig&lt; T &gt; &amp;bc, const EngineConfig &amp;config=EngineConfig{})</argsstring>
+        <name>TransportEngine</name>
+        <qualifiedname>par2::TransportEngine::TransportEngine</qualifiedname>
+        <param>
+          <type>const <ref refid="structpar2_1_1GridDesc" kindref="compound">GridDesc</ref>&lt; T &gt; &amp;</type>
+          <declname>grid</declname>
+        </param>
+        <param>
+          <type>const <ref refid="structpar2_1_1TransportParams" kindref="compound">TransportParams</ref>&lt; T &gt; &amp;</type>
+          <declname>params</declname>
+        </param>
+        <param>
+          <type>const <ref refid="structpar2_1_1BoundaryConfig" kindref="compound">BoundaryConfig</ref>&lt; T &gt; &amp;</type>
+          <declname>bc</declname>
+        </param>
+        <param>
+          <type>const <ref refid="structpar2_1_1EngineConfig" kindref="compound">EngineConfig</ref> &amp;</type>
+          <declname>config</declname>
+          <defval><ref refid="structpar2_1_1EngineConfig" kindref="compound">EngineConfig</ref>{}</defval>
+        </param>
+        <briefdescription>
+<para>Construct a transport engine. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>grid</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Grid descriptor (geometry) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>params</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Transport parameters (diffusion, dispersivity) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>bc</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Boundary conditions </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>config</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Engine configuration</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="exception"><parameteritem>
+<parameternamelist>
+<parametername>std::runtime_error</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>if CUDA initialization fails </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/par2_core/transport_engine.hpp" line="96" column="5"/>
+      </memberdef>
+      <memberdef kind="function" id="classpar2_1_1TransportEngine_1a2383c36aa2ee4ad0a64d9080aefba631" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>par2::TransportEngine&lt; T &gt;::~TransportEngine</definition>
+        <argsstring>()</argsstring>
+        <name>~TransportEngine</name>
+        <qualifiedname>par2::TransportEngine::~TransportEngine</qualifiedname>
+        <briefdescription>
+<para>Destructor - releases CUDA resources. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/par2_core/transport_engine.hpp" line="104" column="5"/>
+      </memberdef>
+      <memberdef kind="function" id="classpar2_1_1TransportEngine_1a4f43bb8e9b41ef56bbfe527e581db931" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>par2::TransportEngine&lt; T &gt;::TransportEngine</definition>
+        <argsstring>(const TransportEngine &amp;)=delete</argsstring>
+        <name>TransportEngine</name>
+        <qualifiedname>par2::TransportEngine::TransportEngine</qualifiedname>
+        <param>
+          <type>const <ref refid="classpar2_1_1TransportEngine" kindref="compound">TransportEngine</ref> &amp;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/par2_core/transport_engine.hpp" line="107" column="5"/>
+      </memberdef>
+      <memberdef kind="function" id="classpar2_1_1TransportEngine_1aae804abaff03a2be45e657b1e5ad1030" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classpar2_1_1TransportEngine" kindref="compound">TransportEngine</ref> &amp;</type>
+        <definition>TransportEngine &amp; par2::TransportEngine&lt; T &gt;::operator=</definition>
+        <argsstring>(const TransportEngine &amp;)=delete</argsstring>
+        <name>operator=</name>
+        <qualifiedname>par2::TransportEngine::operator=</qualifiedname>
+        <param>
+          <type>const <ref refid="classpar2_1_1TransportEngine" kindref="compound">TransportEngine</ref> &amp;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/par2_core/transport_engine.hpp" line="108" column="21"/>
+      </memberdef>
+      <memberdef kind="function" id="classpar2_1_1TransportEngine_1adcacb981976e59e322c9e4571d62d498" prot="public" static="no" const="no" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+        <type></type>
+        <definition>par2::TransportEngine&lt; T &gt;::TransportEngine</definition>
+        <argsstring>(TransportEngine &amp;&amp;) noexcept</argsstring>
+        <name>TransportEngine</name>
+        <qualifiedname>par2::TransportEngine::TransportEngine</qualifiedname>
+        <param>
+          <type><ref refid="classpar2_1_1TransportEngine" kindref="compound">TransportEngine</ref> &amp;&amp;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/par2_core/transport_engine.hpp" line="109" column="5"/>
+      </memberdef>
+      <memberdef kind="function" id="classpar2_1_1TransportEngine_1a5f44ae90b3832391dbab05c391312dfa" prot="public" static="no" const="no" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+        <type><ref refid="classpar2_1_1TransportEngine" kindref="compound">TransportEngine</ref> &amp;</type>
+        <definition>TransportEngine &amp; par2::TransportEngine&lt; T &gt;::operator=</definition>
+        <argsstring>(TransportEngine &amp;&amp;) noexcept</argsstring>
+        <name>operator=</name>
+        <qualifiedname>par2::TransportEngine::operator=</qualifiedname>
+        <param>
+          <type><ref refid="classpar2_1_1TransportEngine" kindref="compound">TransportEngine</ref> &amp;&amp;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/par2_core/transport_engine.hpp" line="110" column="21"/>
+      </memberdef>
+      <memberdef kind="function" id="classpar2_1_1TransportEngine_1a626e300583384da22ec9a637c9b1b255" prot="public" static="no" const="no" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void par2::TransportEngine&lt; T &gt;::set_stream</definition>
+        <argsstring>(cudaStream_t stream) noexcept</argsstring>
+        <name>set_stream</name>
+        <qualifiedname>par2::TransportEngine::set_stream</qualifiedname>
+        <param>
+          <type>cudaStream_t</type>
+          <declname>stream</declname>
+        </param>
+        <briefdescription>
+<para>Set the CUDA stream for all operations. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>stream</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>CUDA stream (nullptr for default stream)</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+All subsequent operations (step, inject, etc.) will use this stream. The engine does NOT own the stream - caller must manage its lifetime.</para>
+<sect2 id="classpar2_1_1TransportEngine_1autotoc_md17">
+<title>HPC Pipeline Usage</title>
+<para>For multi-solver pipelines, use a dedicated stream: <programlisting filename=".cpp"><codeline><highlight class="normal">cudaStream_t<sp/>transport_stream;</highlight></codeline>
+<codeline><highlight class="normal">cudaStreamCreate(&amp;transport_stream);</highlight></codeline>
+<codeline><highlight class="normal">engine.set_stream(transport_stream);</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">//<sp/>Now<sp/>engine<sp/>operations<sp/>are<sp/>independent<sp/>of<sp/>other<sp/>streams</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">engine.step(dt);<sp/><sp/></highlight><highlight class="comment">//<sp/>Enqueued<sp/>on<sp/>transport_stream</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="note"><para>The engine never calls cudaDeviceSynchronize() internally. Use <ref refid="classpar2_1_1TransportEngine_1a4a740df188604ac7655428afdd44650c" kindref="member">synchronize()</ref> or events for coordination. </para>
+</simplesect>
+</para>
+</sect2>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/par2_core/transport_engine.hpp" line="139" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classpar2_1_1TransportEngine_1a7c2fb73be13c916d078720da1d98087a" prot="public" static="no" const="yes" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+        <type>cudaStream_t</type>
+        <definition>cudaStream_t par2::TransportEngine&lt; T &gt;::stream</definition>
+        <argsstring>() const noexcept</argsstring>
+        <name>stream</name>
+        <qualifiedname>par2::TransportEngine::stream</qualifiedname>
+        <briefdescription>
+<para>Get the current CUDA stream. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/par2_core/transport_engine.hpp" line="144" column="18"/>
+      </memberdef>
+      <memberdef kind="function" id="classpar2_1_1TransportEngine_1acf68d4ffc86aaee00660117d01427f92" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void par2::TransportEngine&lt; T &gt;::bind_velocity</definition>
+        <argsstring>(const VelocityView&lt; T &gt; &amp;vel)</argsstring>
+        <name>bind_velocity</name>
+        <qualifiedname>par2::TransportEngine::bind_velocity</qualifiedname>
+        <param>
+          <type>const <ref refid="namespacepar2_1a7f83eb45eb57c7110fb2f83369f17c03" kindref="member">VelocityView</ref>&lt; T &gt; &amp;</type>
+          <declname>vel</declname>
+        </param>
+        <briefdescription>
+<para>Bind velocity field (device pointers). </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>vel</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Velocity view with device pointers to U, V, W arrays</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="pre"><para>vel.size == grid.num_corners() (= (nx+1)*(ny+1)*(nz+1)) </para>
+</simplesect>
+<simplesect kind="pre"><para>All pointers are valid device memory </para>
+</simplesect>
+<simplesect kind="post"><para><ref refid="classpar2_1_1TransportEngine_1a54a6150f822240a32fb1e5fc07edbc78" kindref="member">needs_corner_update()</ref> == true </para>
+</simplesect>
+<simplesect kind="post"><para><ref refid="classpar2_1_1TransportEngine_1a90ad66fcd78e43673b98ef3af44a819d" kindref="member">needs_drift_update()</ref> == true (if using Precomputed drift)</para>
+</simplesect>
+The engine does NOT copy this data — operates directly on user buffers. The buffers must remain valid until the next <ref refid="classpar2_1_1TransportEngine_1acf68d4ffc86aaee00660117d01427f92" kindref="member">bind_velocity()</ref> call or engine destruction.</para>
+<para><simplesect kind="warning"><para>After calling this, you must call <ref refid="classpar2_1_1TransportEngine_1affb69d449a3c1e5f05da35a8459defcc" kindref="member">update_derived_fields()</ref> before the next <ref refid="classpar2_1_1TransportEngine_1afa6a9cd031dc86fa4b40444bf532b59a" kindref="member">step()</ref> if using Trilinear interpolation or on-the-fly drift correction. </para>
+</simplesect>
+<simplesect kind="warning"><para>Clears any previous <ref refid="classpar2_1_1TransportEngine_1a3e54b01b268455f4a5962e9fc62798e8" kindref="member">bind_corner_velocity()</ref> external binding. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/par2_core/transport_engine.hpp" line="169" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classpar2_1_1TransportEngine_1a3e54b01b268455f4a5962e9fc62798e8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void par2::TransportEngine&lt; T &gt;::bind_corner_velocity</definition>
+        <argsstring>(const CornerVelocityView&lt; T &gt; &amp;cvel)</argsstring>
+        <name>bind_corner_velocity</name>
+        <qualifiedname>par2::TransportEngine::bind_corner_velocity</qualifiedname>
+        <param>
+          <type>const <ref refid="namespacepar2_1adcaef34a5fba7ed6b9a0bef9fd519046" kindref="member">CornerVelocityView</ref>&lt; T &gt; &amp;</type>
+          <declname>cvel</declname>
+        </param>
+        <briefdescription>
+<para>Bind external corner velocity field (for trilinear mode). </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>cvel</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Corner velocity view with (nx+1)×(ny+1)×(nz+1) grid</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+Use this when you have <bold>pre-computed</bold> corner velocities (e.g., from MODFLOW/MT3DMS output). When bound, <computeroutput><ref refid="classpar2_1_1TransportEngine_1affb69d449a3c1e5f05da35a8459defcc" kindref="member">update_derived_fields()</ref></computeroutput> will skip the internal corner computation and use these values instead.</para>
+<para>If not bound, call <computeroutput><ref refid="classpar2_1_1TransportEngine_1affb69d449a3c1e5f05da35a8459defcc" kindref="member">update_derived_fields()</ref></computeroutput> after <computeroutput><ref refid="classpar2_1_1TransportEngine_1acf68d4ffc86aaee00660117d01427f92" kindref="member">bind_velocity()</ref></computeroutput> to compute corner velocities from the face field automatically.</para>
+<para><simplesect kind="note"><para>External binding takes priority over internal computation. Call <computeroutput><ref refid="classpar2_1_1TransportEngine_1acf68d4ffc86aaee00660117d01427f92" kindref="member">bind_velocity()</ref></computeroutput> again to clear external binding and revert to internal computation. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/par2_core/transport_engine.hpp" line="187" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classpar2_1_1TransportEngine_1ae44759dc107d28f9d43904c8ba66c1a1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void par2::TransportEngine&lt; T &gt;::bind_particles</definition>
+        <argsstring>(const ParticlesView&lt; T &gt; &amp;particles)</argsstring>
+        <name>bind_particles</name>
+        <qualifiedname>par2::TransportEngine::bind_particles</qualifiedname>
+        <param>
+          <type>const <ref refid="structpar2_1_1ParticlesView" kindref="compound">ParticlesView</ref>&lt; T &gt; &amp;</type>
+          <declname>particles</declname>
+        </param>
+        <briefdescription>
+<para>Bind particle arrays (device pointers). </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>particles</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Particle view with device pointers to x, y, z arrays</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="pre"><para>particles.n &lt;= allocated size of arrays </para>
+</simplesect>
+<simplesect kind="pre"><para>All pointers are valid device memory </para>
+</simplesect>
+<simplesect kind="post"><para><ref refid="classpar2_1_1TransportEngine_1a48a0c43bedd7d095602672855a24cdbe" kindref="member">is_prepared()</ref> == false — you must call <ref refid="classpar2_1_1TransportEngine_1ad6789ef1a213665542e57b2f693d5653" kindref="member">prepare()</ref> before <ref refid="classpar2_1_1TransportEngine_1afa6a9cd031dc86fa4b40444bf532b59a" kindref="member">step()</ref></para>
+</simplesect>
+The engine writes to these arrays during <ref refid="classpar2_1_1TransportEngine_1afa6a9cd031dc86fa4b40444bf532b59a" kindref="member">step()</ref> and inject_*().</para>
+<para><simplesect kind="warning"><para>The particle arrays must remain valid until the next <ref refid="classpar2_1_1TransportEngine_1ae44759dc107d28f9d43904c8ba66c1a1" kindref="member">bind_particles()</ref> call or engine destruction. </para>
+</simplesect>
+<simplesect kind="warning"><para>If particles.status / wrapX/Y/Z are nullptr and the boundary config requires them, call <ref refid="classpar2_1_1TransportEngine_1a34d0552a0f43862cba2fb3c80a0e7341" kindref="member">ensure_tracking_arrays()</ref> or <ref refid="classpar2_1_1TransportEngine_1ad6789ef1a213665542e57b2f693d5653" kindref="member">prepare()</ref> to auto-allocate. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/par2_core/transport_engine.hpp" line="206" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classpar2_1_1TransportEngine_1affb783f13b196cfb841020bfc71ae962" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void par2::TransportEngine&lt; T &gt;::bind_drift_correction</definition>
+        <argsstring>(const DriftCorrectionView&lt; T &gt; &amp;dc)</argsstring>
+        <name>bind_drift_correction</name>
+        <qualifiedname>par2::TransportEngine::bind_drift_correction</qualifiedname>
+        <param>
+          <type>const <ref refid="structpar2_1_1DriftCorrectionView" kindref="compound">DriftCorrectionView</ref>&lt; T &gt; &amp;</type>
+          <declname>dc</declname>
+        </param>
+        <briefdescription>
+<para>Bind precomputed drift correction field. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>dc</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Drift correction view</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+Only used when config.drift_correction == <ref refid="namespacepar2_1a2e9b0a2b6e4d6f65763b00f8c87aa181a04021d95a37003c16d27a38d407e3304" kindref="member">DriftCorrectionMode::Precomputed</ref>. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/par2_core/transport_engine.hpp" line="215" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classpar2_1_1TransportEngine_1affb69d449a3c1e5f05da35a8459defcc" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void par2::TransportEngine&lt; T &gt;::update_derived_fields</definition>
+        <argsstring>(cudaStream_t stream=nullptr)</argsstring>
+        <name>update_derived_fields</name>
+        <qualifiedname>par2::TransportEngine::update_derived_fields</qualifiedname>
+        <param>
+          <type>cudaStream_t</type>
+          <declname>stream</declname>
+          <defval>nullptr</defval>
+        </param>
+        <briefdescription>
+<para>Update derived fields (corner velocity) from face velocity. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>stream</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>CUDA stream for the computation (default: engine stream)</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<bold>IMPORTANT</bold>: Call this after changing U/V/W when using:<itemizedlist>
+<listitem><para><ref refid="namespacepar2_1a7c8f4da66964574b306027d770c0f963a969a7b6f1f3951ef293b3ff281dc293d" kindref="member">InterpolationMode::Trilinear</ref></para>
+</listitem><listitem><para><ref refid="namespacepar2_1a2e9b0a2b6e4d6f65763b00f8c87aa181aba8be745c90c7d1c79753cd7dda9b925" kindref="member">DriftCorrectionMode::TrilinearOnFly</ref></para>
+</listitem></itemizedlist>
+</para>
+<para>If you bound an external corner velocity via <ref refid="classpar2_1_1TransportEngine_1a3e54b01b268455f4a5962e9fc62798e8" kindref="member">bind_corner_velocity()</ref>, this call is a no-op (external binding takes priority).</para>
+<para>This is ASYNC: kernel launches on stream, returns immediately. No cudaDeviceSynchronize() inside. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/par2_core/transport_engine.hpp" line="236" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classpar2_1_1TransportEngine_1a54a6150f822240a32fb1e5fc07edbc78" prot="public" static="no" const="yes" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool par2::TransportEngine&lt; T &gt;::needs_corner_update</definition>
+        <argsstring>() const noexcept</argsstring>
+        <name>needs_corner_update</name>
+        <qualifiedname>par2::TransportEngine::needs_corner_update</qualifiedname>
+        <briefdescription>
+<para>Check if corner velocity needs update. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>true if <ref refid="classpar2_1_1TransportEngine_1affb69d449a3c1e5f05da35a8459defcc" kindref="member">update_derived_fields()</ref> should be called </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/par2_core/transport_engine.hpp" line="243" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classpar2_1_1TransportEngine_1a90ad66fcd78e43673b98ef3af44a819d" prot="public" static="no" const="yes" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool par2::TransportEngine&lt; T &gt;::needs_drift_update</definition>
+        <argsstring>() const noexcept</argsstring>
+        <name>needs_drift_update</name>
+        <qualifiedname>par2::TransportEngine::needs_drift_update</qualifiedname>
+        <briefdescription>
+<para>Check if precomputed drift needs update. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>true if <ref refid="classpar2_1_1TransportEngine_1affb69d449a3c1e5f05da35a8459defcc" kindref="member">update_derived_fields()</ref> should be called (Precomputed mode) </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/par2_core/transport_engine.hpp" line="250" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classpar2_1_1TransportEngine_1afa6a9cd031dc86fa4b40444bf532b59a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void par2::TransportEngine&lt; T &gt;::step</definition>
+        <argsstring>(T dt)</argsstring>
+        <name>step</name>
+        <qualifiedname>par2::TransportEngine::step</qualifiedname>
+        <param>
+          <type>T</type>
+          <declname>dt</declname>
+        </param>
+        <briefdescription>
+<para>Execute one RWPT step. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>dt</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Time step size</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="pre"><para><ref refid="classpar2_1_1TransportEngine_1a798a9da31d5ac9ca77516a7be0db3156" kindref="member">has_velocity()</ref> == true </para>
+</simplesect>
+<simplesect kind="pre"><para><ref refid="classpar2_1_1TransportEngine_1ac5e8147446a0af95cb63ff980d458dad" kindref="member">has_particles()</ref> == true </para>
+</simplesect>
+<simplesect kind="pre"><para><ref refid="classpar2_1_1TransportEngine_1a48a0c43bedd7d095602672855a24cdbe" kindref="member">is_prepared()</ref> == true (call <ref refid="classpar2_1_1TransportEngine_1ad6789ef1a213665542e57b2f693d5653" kindref="member">prepare()</ref> first) </para>
+</simplesect>
+<simplesect kind="pre"><para><ref refid="classpar2_1_1TransportEngine_1a54a6150f822240a32fb1e5fc07edbc78" kindref="member">needs_corner_update()</ref> == false </para>
+</simplesect>
+<simplesect kind="pre"><para><ref refid="classpar2_1_1TransportEngine_1a90ad66fcd78e43673b98ef3af44a819d" kindref="member">needs_drift_update()</ref> == false </para>
+</simplesect>
+<simplesect kind="pre"><para>dt &gt; 0</para>
+</simplesect>
+This is ASYNC: the kernel is launched on the configured stream and returns immediately. NO cudaDeviceSynchronize() inside. NO allocations occur — all workspace was set up in <ref refid="classpar2_1_1TransportEngine_1ad6789ef1a213665542e57b2f693d5653" kindref="member">prepare()</ref>.</para>
+<para>After return, particle positions are updated (on GPU). Particles with <ref refid="namespacepar2_1a7c204ae8d485714ee4a7935edc563101a268ce394e277db759f5d6ee76c59f0e7" kindref="member">ParticleStatus::Exited</ref> are skipped.</para>
+<para><simplesect kind="warning"><para>Calling <ref refid="classpar2_1_1TransportEngine_1afa6a9cd031dc86fa4b40444bf532b59a" kindref="member">step()</ref> without <ref refid="classpar2_1_1TransportEngine_1ad6789ef1a213665542e57b2f693d5653" kindref="member">prepare()</ref> causes an assertion failure in debug builds or undefined behavior in release. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/par2_core/transport_engine.hpp" line="278" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classpar2_1_1TransportEngine_1a451d1dbcba471fe55d2ee0f63ad3f075" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void par2::TransportEngine&lt; T &gt;::advance</definition>
+        <argsstring>(T dt, int num_steps)</argsstring>
+        <name>advance</name>
+        <qualifiedname>par2::TransportEngine::advance</qualifiedname>
+        <param>
+          <type>T</type>
+          <declname>dt</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>num_steps</declname>
+        </param>
+        <briefdescription>
+<para>Execute multiple RWPT steps. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>dt</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Time step size per step </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>num_steps</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Number of steps to execute</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="pre"><para>Same preconditions as <ref refid="classpar2_1_1TransportEngine_1afa6a9cd031dc86fa4b40444bf532b59a" kindref="member">step()</ref></para>
+</simplesect>
+Equivalent to calling step(dt) num_steps times. All steps run on the same stream without intermediate syncs. No allocations, no synchronization during the loop. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/par2_core/transport_engine.hpp" line="292" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classpar2_1_1TransportEngine_1ac104270e0963816b21585e33f89be79f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void par2::TransportEngine&lt; T &gt;::inject_box</definition>
+        <argsstring>(T x0, T y0, T z0, T x1, T y1, T z1, int first_particle=0, int count=-1)</argsstring>
+        <name>inject_box</name>
+        <qualifiedname>par2::TransportEngine::inject_box</qualifiedname>
+        <param>
+          <type>T</type>
+          <declname>x0</declname>
+        </param>
+        <param>
+          <type>T</type>
+          <declname>y0</declname>
+        </param>
+        <param>
+          <type>T</type>
+          <declname>z0</declname>
+        </param>
+        <param>
+          <type>T</type>
+          <declname>x1</declname>
+        </param>
+        <param>
+          <type>T</type>
+          <declname>y1</declname>
+        </param>
+        <param>
+          <type>T</type>
+          <declname>z1</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>first_particle</declname>
+          <defval>0</defval>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>count</declname>
+          <defval>-1</defval>
+        </param>
+        <briefdescription>
+<para>Initialize particles uniformly in a box. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>x0</parametername>
+<parametername>y0</parametername>
+<parametername>z0</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Minimum corner of box </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>x1</parametername>
+<parametername>y1</parametername>
+<parametername>z1</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Maximum corner of box </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>first_particle</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Starting index (default: 0) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>count</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Number of particles to initialize (default: all bound)</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+Particles are distributed uniformly within [x0,x1] x [y0,y1] x [z0,z1]. This uses a deterministic pattern based on particle index.</para>
+<para><simplesect kind="pre"><para>Particles are bound </para>
+</simplesect>
+<simplesect kind="pre"><para>Box is within domain (no validation - user responsibility)</para>
+</simplesect>
+This is ASYNC: kernel launched on configured stream. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/par2_core/transport_engine.hpp" line="314" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classpar2_1_1TransportEngine_1a597eab8aa3e35e1dd3a28f4334009ee2" prot="public" static="no" const="yes" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+        <type>const <ref refid="structpar2_1_1GridDesc" kindref="compound">GridDesc</ref>&lt; T &gt; &amp;</type>
+        <definition>const GridDesc&lt; T &gt; &amp; par2::TransportEngine&lt; T &gt;::grid</definition>
+        <argsstring>() const noexcept</argsstring>
+        <name>grid</name>
+        <qualifiedname>par2::TransportEngine::grid</qualifiedname>
+        <briefdescription>
+<para>Get the grid descriptor. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/par2_core/transport_engine.hpp" line="326" column="20"/>
+      </memberdef>
+      <memberdef kind="function" id="classpar2_1_1TransportEngine_1abefeecf8f9983638017cef5616200492" prot="public" static="no" const="yes" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+        <type>const <ref refid="structpar2_1_1TransportParams" kindref="compound">TransportParams</ref>&lt; T &gt; &amp;</type>
+        <definition>const TransportParams&lt; T &gt; &amp; par2::TransportEngine&lt; T &gt;::params</definition>
+        <argsstring>() const noexcept</argsstring>
+        <name>params</name>
+        <qualifiedname>par2::TransportEngine::params</qualifiedname>
+        <briefdescription>
+<para>Get the transport parameters. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/par2_core/transport_engine.hpp" line="329" column="27"/>
+      </memberdef>
+      <memberdef kind="function" id="classpar2_1_1TransportEngine_1a37523a6ad247099d71507f459fe5a017" prot="public" static="no" const="yes" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+        <type>const <ref refid="structpar2_1_1BoundaryConfig" kindref="compound">BoundaryConfig</ref>&lt; T &gt; &amp;</type>
+        <definition>const BoundaryConfig&lt; T &gt; &amp; par2::TransportEngine&lt; T &gt;::boundary</definition>
+        <argsstring>() const noexcept</argsstring>
+        <name>boundary</name>
+        <qualifiedname>par2::TransportEngine::boundary</qualifiedname>
+        <briefdescription>
+<para>Get the boundary configuration. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/par2_core/transport_engine.hpp" line="332" column="26"/>
+      </memberdef>
+      <memberdef kind="function" id="classpar2_1_1TransportEngine_1aa55b61239f51e746237574c86efe58d8" prot="public" static="no" const="yes" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+        <type>const <ref refid="structpar2_1_1EngineConfig" kindref="compound">EngineConfig</ref> &amp;</type>
+        <definition>const EngineConfig &amp; par2::TransportEngine&lt; T &gt;::config</definition>
+        <argsstring>() const noexcept</argsstring>
+        <name>config</name>
+        <qualifiedname>par2::TransportEngine::config</qualifiedname>
+        <briefdescription>
+<para>Get the engine configuration. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/par2_core/transport_engine.hpp" line="335" column="24"/>
+      </memberdef>
+      <memberdef kind="function" id="classpar2_1_1TransportEngine_1afc86ab33f59e50210d839abe96e1ae1e" prot="public" static="no" const="yes" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+        <type>int</type>
+        <definition>int par2::TransportEngine&lt; T &gt;::num_particles</definition>
+        <argsstring>() const noexcept</argsstring>
+        <name>num_particles</name>
+        <qualifiedname>par2::TransportEngine::num_particles</qualifiedname>
+        <briefdescription>
+<para>Get number of bound particles. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/par2_core/transport_engine.hpp" line="338" column="9"/>
+      </memberdef>
+      <memberdef kind="function" id="classpar2_1_1TransportEngine_1a798a9da31d5ac9ca77516a7be0db3156" prot="public" static="no" const="yes" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool par2::TransportEngine&lt; T &gt;::has_velocity</definition>
+        <argsstring>() const noexcept</argsstring>
+        <name>has_velocity</name>
+        <qualifiedname>par2::TransportEngine::has_velocity</qualifiedname>
+        <briefdescription>
+<para>Check if velocity is bound. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/par2_core/transport_engine.hpp" line="341" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classpar2_1_1TransportEngine_1ac5e8147446a0af95cb63ff980d458dad" prot="public" static="no" const="yes" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool par2::TransportEngine&lt; T &gt;::has_particles</definition>
+        <argsstring>() const noexcept</argsstring>
+        <name>has_particles</name>
+        <qualifiedname>par2::TransportEngine::has_particles</qualifiedname>
+        <briefdescription>
+<para>Check if particles are bound. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/par2_core/transport_engine.hpp" line="344" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classpar2_1_1TransportEngine_1a34d0552a0f43862cba2fb3c80a0e7341" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void par2::TransportEngine&lt; T &gt;::ensure_tracking_arrays</definition>
+        <argsstring>()</argsstring>
+        <name>ensure_tracking_arrays</name>
+        <qualifiedname>par2::TransportEngine::ensure_tracking_arrays</qualifiedname>
+        <briefdescription>
+<para>Ensure tracking arrays are allocated for boundary conditions. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Call this after <ref refid="classpar2_1_1TransportEngine_1ae44759dc107d28f9d43904c8ba66c1a1" kindref="member">bind_particles()</ref> if using:<itemizedlist>
+<listitem><para>Open BC: allocates status array if not provided by user</para>
+</listitem><listitem><para>Periodic BC: allocates wrapX/Y/Z if not provided by user</para>
+</listitem></itemizedlist>
+</para>
+<para><simplesect kind="pre"><para><ref refid="classpar2_1_1TransportEngine_1ac5e8147446a0af95cb63ff980d458dad" kindref="member">has_particles()</ref> == true</para>
+</simplesect>
+This is NOT called automatically to avoid hidden allocations. Safe to call multiple times — no-op if already allocated. User-provided buffers in <ref refid="structpar2_1_1ParticlesView" kindref="compound">ParticlesView</ref> take priority (not overwritten).</para>
+<para><simplesect kind="note"><para>Also called internally by <ref refid="classpar2_1_1TransportEngine_1ad6789ef1a213665542e57b2f693d5653" kindref="member">prepare()</ref>.</para>
+</simplesect>
+<parameterlist kind="exception"><parameteritem>
+<parameternamelist>
+<parametername>std::runtime_error</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>if allocation fails </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/par2_core/transport_engine.hpp" line="367" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classpar2_1_1TransportEngine_1ad6789ef1a213665542e57b2f693d5653" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void par2::TransportEngine&lt; T &gt;::prepare</definition>
+        <argsstring>(cudaStream_t stream=nullptr)</argsstring>
+        <name>prepare</name>
+        <qualifiedname>par2::TransportEngine::prepare</qualifiedname>
+        <param>
+          <type>cudaStream_t</type>
+          <declname>stream</declname>
+          <defval>nullptr</defval>
+        </param>
+        <briefdescription>
+<para>Prepare engine for simulation (allocate + initialize workspace). </para>
+        </briefdescription>
+        <detaileddescription>
+<para><bold>MUST be called after <ref refid="classpar2_1_1TransportEngine_1ae44759dc107d28f9d43904c8ba66c1a1" kindref="member">bind_particles()</ref> and before <ref refid="classpar2_1_1TransportEngine_1afa6a9cd031dc86fa4b40444bf532b59a" kindref="member">step()</ref>/advance()</bold>.</para>
+<para><simplesect kind="pre"><para><ref refid="classpar2_1_1TransportEngine_1ac5e8147446a0af95cb63ff980d458dad" kindref="member">has_particles()</ref> == true </para>
+</simplesect>
+<simplesect kind="post"><para><ref refid="classpar2_1_1TransportEngine_1a48a0c43bedd7d095602672855a24cdbe" kindref="member">is_prepared()</ref> == true </para>
+</simplesect>
+<simplesect kind="post"><para><ref refid="classpar2_1_1TransportEngine_1afa6a9cd031dc86fa4b40444bf532b59a" kindref="member">step()</ref> and <ref refid="classpar2_1_1TransportEngine_1a451d1dbcba471fe55d2ee0f63ad3f075" kindref="member">advance()</ref> can be called without allocations</para>
+</simplesect>
+This method:<itemizedlist>
+<listitem><para>Allocates RNG states if needed (one-time or grow)</para>
+</listitem><listitem><para>Initializes RNG states with kernel (seed from <ref refid="structpar2_1_1EngineConfig_1a5f1ee14667cb8cfd5629b3ba0b3520d9" kindref="member">EngineConfig::rng_seed</ref>)</para>
+</listitem><listitem><para>Calls <ref refid="classpar2_1_1TransportEngine_1a34d0552a0f43862cba2fb3c80a0e7341" kindref="member">ensure_tracking_arrays()</ref> for Open/Periodic BC</para>
+</listitem><listitem><para>Computes corner velocity if trilinear mode and face velocity bound</para>
+</listitem></itemizedlist>
+</para>
+<para>All allocations use cudaMallocAsync when available (CUDA 11.2+). After <ref refid="classpar2_1_1TransportEngine_1ad6789ef1a213665542e57b2f693d5653" kindref="member">prepare()</ref>, <ref refid="classpar2_1_1TransportEngine_1afa6a9cd031dc86fa4b40444bf532b59a" kindref="member">step()</ref>/advance() will NOT allocate.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>stream</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>CUDA stream for allocation/init kernels (default: engine stream)</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="exception"><parameteritem>
+<parameternamelist>
+<parametername>std::runtime_error</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>if allocation fails</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+<sect2 id="classpar2_1_1TransportEngine_1autotoc_md18">
+<title>Usage Pattern (Pipeline)</title>
+<para><programlisting filename=".cpp"><codeline><highlight class="normal">engine.bind_velocity(vel);</highlight></codeline>
+<codeline><highlight class="normal">engine.bind_particles(<ref refid="classpar2_1_1TransportEngine_1a989b022a19f3990fa324493280521832" kindref="member">particles</ref>);</highlight></codeline>
+<codeline><highlight class="normal">engine.prepare();<sp/><sp/></highlight><highlight class="comment">//<sp/>&lt;--<sp/>All<sp/>allocations<sp/>happen<sp/>here</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">//<sp/>Hot<sp/>loop<sp/>-<sp/>no<sp/>allocations,<sp/>fully<sp/>async</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i<sp/>=<sp/>0;<sp/>i<sp/>&lt;<sp/>1000;<sp/>++i)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>engine.step(dt);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">engine.synchronize();<sp/><sp/></highlight><highlight class="comment">//<sp/>Wait<sp/>for<sp/>completion</highlight></codeline>
+</programlisting> </para>
+</sect2>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/par2_core/transport_engine.hpp" line="409" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classpar2_1_1TransportEngine_1a48a0c43bedd7d095602672855a24cdbe" prot="public" static="no" const="yes" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool par2::TransportEngine&lt; T &gt;::is_prepared</definition>
+        <argsstring>() const noexcept</argsstring>
+        <name>is_prepared</name>
+        <qualifiedname>par2::TransportEngine::is_prepared</qualifiedname>
+        <briefdescription>
+<para>Check if engine is prepared for stepping. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>true if <ref refid="classpar2_1_1TransportEngine_1ad6789ef1a213665542e57b2f693d5653" kindref="member">prepare()</ref> has been called and RNG states are ready </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/par2_core/transport_engine.hpp" line="416" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classpar2_1_1TransportEngine_1a4a740df188604ac7655428afdd44650c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void par2::TransportEngine&lt; T &gt;::synchronize</definition>
+        <argsstring>()</argsstring>
+        <name>synchronize</name>
+        <qualifiedname>par2::TransportEngine::synchronize</qualifiedname>
+        <briefdescription>
+<para>Synchronize the engine stream (wait for all pending work). </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Equivalent to cudaStreamSynchronize(stream()), but preferred for clarity. Use this to wait for <ref refid="classpar2_1_1TransportEngine_1afa6a9cd031dc86fa4b40444bf532b59a" kindref="member">step()</ref>/advance() to complete.</para>
+<para><parameterlist kind="exception"><parameteritem>
+<parameternamelist>
+<parametername>std::runtime_error</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>if synchronization fails</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="note"><para>This is the ONLY synchronization point the engine exposes. The engine NEVER calls cudaDeviceSynchronize() internally. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/par2_core/transport_engine.hpp" line="429" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classpar2_1_1TransportEngine_1aec74ff569be592641fedd6286ac3888d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void par2::TransportEngine&lt; T &gt;::record_event</definition>
+        <argsstring>(cudaEvent_t event)</argsstring>
+        <name>record_event</name>
+        <qualifiedname>par2::TransportEngine::record_event</qualifiedname>
+        <param>
+          <type>cudaEvent_t</type>
+          <declname>event</declname>
+        </param>
+        <briefdescription>
+<para>Record a CUDA event on the engine stream. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>event</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Pre-created CUDA event</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+Use this for fine-grained pipeline synchronization without blocking: <programlisting filename=".cpp"><codeline><highlight class="normal">engine.step(dt);</highlight></codeline>
+<codeline><highlight class="normal">engine.record_event(done_event);</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">//<sp/>Other<sp/>solver<sp/>can<sp/>cudaStreamWaitEvent(its_stream,<sp/>done_event,<sp/>0);</highlight></codeline>
+</programlisting></para>
+<para><parameterlist kind="exception"><parameteritem>
+<parameternamelist>
+<parametername>std::runtime_error</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>if event recording fails </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/par2_core/transport_engine.hpp" line="445" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classpar2_1_1TransportEngine_1a0d9b39f75639df294f3173d66b8ce35e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void par2::TransportEngine&lt; T &gt;::wait_event</definition>
+        <argsstring>(cudaEvent_t event)</argsstring>
+        <name>wait_event</name>
+        <qualifiedname>par2::TransportEngine::wait_event</qualifiedname>
+        <param>
+          <type>cudaEvent_t</type>
+          <declname>event</declname>
+        </param>
+        <briefdescription>
+<para>Wait for an external event before continuing. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>event</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>External CUDA event to wait on</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+Makes the engine stream wait for an event from another stream: <programlisting filename=".cpp"><codeline><highlight class="comment">//<sp/>Flow<sp/>solver<sp/>records<sp/>event<sp/>after<sp/>updating<sp/>velocity</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">cudaEventRecord(vel_ready,<sp/>flow_stream);</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">//<sp/>Transport<sp/>waits<sp/>for<sp/>velocity<sp/>before<sp/>stepping</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">engine.wait_event(vel_ready);</highlight></codeline>
+<codeline><highlight class="normal">engine.step(dt);</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="note"><para>This does NOT block the CPU - the wait happens on the GPU. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/par2_core/transport_engine.hpp" line="463" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classpar2_1_1TransportEngine_1a989b022a19f3990fa324493280521832" prot="public" static="no" const="yes" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+        <type><ref refid="structpar2_1_1ConstParticlesView" kindref="compound">ConstParticlesView</ref>&lt; T &gt;</type>
+        <definition>ConstParticlesView&lt; T &gt; par2::TransportEngine&lt; T &gt;::particles</definition>
+        <argsstring>() const noexcept</argsstring>
+        <name>particles</name>
+        <qualifiedname>par2::TransportEngine::particles</qualifiedname>
+        <briefdescription>
+<para>Get read-only view of current particle data (device pointers). </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Returns the bound particle view with:<itemizedlist>
+<listitem><para>x, y, z: wrapped positions on device</para>
+</listitem><listitem><para>status: particle status (if tracking enabled)</para>
+</listitem><listitem><para>wrapX/Y/Z: wrap counters (if periodic BC with tracking)</para>
+</listitem></itemizedlist>
+</para>
+<para><bold>Important</bold>: The returned pointers are device memory. To read on CPU:<orderedlist>
+<listitem><para>Call engine.synchronize() to ensure <ref refid="classpar2_1_1TransportEngine_1afa6a9cd031dc86fa4b40444bf532b59a" kindref="member">step()</ref> completed</para>
+</listitem><listitem><para>Use cudaMemcpy to copy to host</para>
+</listitem></orderedlist>
+</para>
+<para>Or use <ref refid="classpar2_1_1TransportEngine_1a49909c7eff5f21b0b37df8baa37613b8" kindref="member">compute_unwrapped_positions()</ref> + download helpers for full workflow.</para>
+<para><simplesect kind="return"><para><ref refid="structpar2_1_1ConstParticlesView" kindref="compound">ConstParticlesView</ref> with device pointers (read-only) </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/par2_core/transport_engine.hpp" line="525" column="24"/>
+      </memberdef>
+      <memberdef kind="function" id="classpar2_1_1TransportEngine_1a49909c7eff5f21b0b37df8baa37613b8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void par2::TransportEngine&lt; T &gt;::compute_unwrapped_positions</definition>
+        <argsstring>(UnwrappedPositionsView&lt; T &gt; out, cudaStream_t stream=nullptr)</argsstring>
+        <name>compute_unwrapped_positions</name>
+        <qualifiedname>par2::TransportEngine::compute_unwrapped_positions</qualifiedname>
+        <param>
+          <type><ref refid="structpar2_1_1UnwrappedPositionsView" kindref="compound">UnwrappedPositionsView</ref>&lt; T &gt;</type>
+          <declname>out</declname>
+        </param>
+        <param>
+          <type>cudaStream_t</type>
+          <declname>stream</declname>
+          <defval>nullptr</defval>
+        </param>
+        <briefdescription>
+<para>Compute unwrapped (continuous) positions on-demand. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>For periodic BC, particles wrap around the domain. This kernel computes the continuous positions:</para>
+<para>x_u = x + wrapX * Lx y_u = y + wrapY * Ly z_u = z + wrapZ * Lz</para>
+<para>If an axis is not periodic or wrapCount is nullptr, the wrapped position is copied directly (x_u = x).</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>out</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Output view (user-allocated device arrays, capacity &gt;= n) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>stream</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>CUDA stream (default: engine stream)</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="pre"><para>out.capacity &gt;= <ref refid="classpar2_1_1TransportEngine_1afc86ab33f59e50210d839abe96e1ae1e" kindref="member">num_particles()</ref> </para>
+</simplesect>
+<simplesect kind="pre"><para>All output pointers are valid device memory</para>
+</simplesect>
+This is ASYNC: kernel launches on stream, returns immediately. No allocations, no sync.</para>
+<sect2 id="classpar2_1_1TransportEngine_1autotoc_md19">
+<title>Usage</title>
+<para><programlisting filename=".cpp"><codeline><highlight class="comment">//<sp/>Allocate<sp/>output<sp/>once</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">UnwrappedPositionsView&lt;double&gt;<sp/>unwrap{d_xu,<sp/>d_yu,<sp/>d_zu,<sp/>n};</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">//<sp/>After<sp/>each<sp/>step<sp/>(or<sp/>when<sp/>needed):</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">engine.compute_unwrapped_positions(unwrap);</highlight></codeline>
+<codeline><highlight class="normal">engine.synchronize();<sp/><sp/></highlight><highlight class="comment">//<sp/>if<sp/>need<sp/>to<sp/>read<sp/>on<sp/>CPU</highlight></codeline>
+</programlisting> </para>
+</sect2>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/par2_core/transport_engine.hpp" line="559" column="10"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>GPU-native particle tracking engine. </para>
+    </briefdescription>
+    <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>T</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Floating point type (float or double)</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+<sect2 id="classpar2_1_1TransportEngine_1autotoc_md15">
+<title>Thread Safety</title>
+<para><ref refid="classpar2_1_1TransportEngine" kindref="compound">TransportEngine</ref> is <bold>NOT thread-safe</bold> for concurrent host calls. All bind_*, <ref refid="classpar2_1_1TransportEngine_1afa6a9cd031dc86fa4b40444bf532b59a" kindref="member">step()</ref>, <ref refid="classpar2_1_1TransportEngine_1a4a740df188604ac7655428afdd44650c" kindref="member">synchronize()</ref>, etc. must be serialized from the host side. Multiple engines on different CUDA streams can run concurrently (one host thread per engine, or explicit serialization).</para>
+</sect2>
+<sect2 id="classpar2_1_1TransportEngine_1autotoc_md16">
+<title>Usage Example</title>
+<para><programlisting filename=".cpp"><codeline><highlight class="comment">//<sp/>Setup</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/><ref refid="classpar2_1_1TransportEngine_1a597eab8aa3e35e1dd3a28f4334009ee2" kindref="member">grid</ref><sp/>=<sp/>par2::make_grid&lt;double&gt;(100,<sp/>100,<sp/>10,<sp/>1.0,<sp/>1.0,<sp/>1.0);</highlight></codeline>
+<codeline><highlight class="normal"><ref refid="structpar2_1_1TransportParams" kindref="compound">par2::TransportParams&lt;double&gt;</ref><sp/><ref refid="classpar2_1_1TransportEngine_1abefeecf8f9983638017cef5616200492" kindref="member">params</ref>{1e-9,<sp/>0.1,<sp/>0.01};</highlight></codeline>
+<codeline><highlight class="normal"><ref refid="structpar2_1_1BoundaryConfig" kindref="compound">par2::BoundaryConfig&lt;double&gt;</ref><sp/>bc<sp/>=<sp/><ref refid="structpar2_1_1BoundaryConfig_1a4519cf579c4c3175ecf0c610c0a78043" kindref="member">par2::BoundaryConfig&lt;double&gt;::all_closed</ref>();</highlight></codeline>
+<codeline><highlight class="normal"><ref refid="structpar2_1_1EngineConfig" kindref="compound">par2::EngineConfig</ref><sp/><ref refid="classpar2_1_1TransportEngine_1aa55b61239f51e746237574c86efe58d8" kindref="member">config</ref>;</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><ref refid="classpar2_1_1TransportEngine" kindref="compound">par2::TransportEngine&lt;double&gt;</ref><sp/>engine(<ref refid="classpar2_1_1TransportEngine_1a597eab8aa3e35e1dd3a28f4334009ee2" kindref="member">grid</ref>,<sp/><ref refid="classpar2_1_1TransportEngine_1abefeecf8f9983638017cef5616200492" kindref="member">params</ref>,<sp/>bc,<sp/><ref refid="classpar2_1_1TransportEngine_1aa55b61239f51e746237574c86efe58d8" kindref="member">config</ref>);</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">//<sp/>Bind<sp/>velocity<sp/>field<sp/>(already<sp/>on<sp/>GPU)</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">engine.bind_velocity({d_U,<sp/>d_V,<sp/>d_W,<sp/><ref refid="classpar2_1_1TransportEngine_1a597eab8aa3e35e1dd3a28f4334009ee2" kindref="member">grid</ref>.num_corners()});</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">//<sp/>Bind<sp/>particles<sp/>(already<sp/>on<sp/>GPU)</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">engine.bind_particles({d_x,<sp/>d_y,<sp/>d_z,<sp/><ref refid="classpar2_1_1TransportEngine_1afc86ab33f59e50210d839abe96e1ae1e" kindref="member">num_particles</ref>});</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">//<sp/>Inject<sp/>particles<sp/>in<sp/>a<sp/>box</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">engine.inject_box(0.0,<sp/>0.0,<sp/>0.0,<sp/>10.0,<sp/>10.0,<sp/>10.0);</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">//<sp/>Run<sp/>simulation</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>dt<sp/>=<sp/>0.1;</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i<sp/>=<sp/>0;<sp/>i<sp/>&lt;<sp/>1000;<sp/>++i)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>engine.step(dt);<sp/><sp/></highlight><highlight class="comment">//<sp/>Async,<sp/>no<sp/>sync<sp/>inside</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">cudaStreamSynchronize(engine.stream());<sp/><sp/></highlight><highlight class="comment">//<sp/>Sync<sp/>when<sp/>needed</highlight></codeline>
+</programlisting> </para>
+</sect2>
+    </detaileddescription>
+    <location file="include/par2_core/transport_engine.hpp" line="80" column="1" bodyfile="include/par2_core/transport_engine.hpp" bodystart="80" bodyend="564"/>
+    <listofallmembers>
+      <member refid="classpar2_1_1TransportEngine_1a451d1dbcba471fe55d2ee0f63ad3f075" prot="public" virt="non-virtual"><scope>par2::TransportEngine</scope><name>advance</name></member>
+      <member refid="classpar2_1_1TransportEngine_1a3e54b01b268455f4a5962e9fc62798e8" prot="public" virt="non-virtual"><scope>par2::TransportEngine</scope><name>bind_corner_velocity</name></member>
+      <member refid="classpar2_1_1TransportEngine_1affb783f13b196cfb841020bfc71ae962" prot="public" virt="non-virtual"><scope>par2::TransportEngine</scope><name>bind_drift_correction</name></member>
+      <member refid="classpar2_1_1TransportEngine_1ae44759dc107d28f9d43904c8ba66c1a1" prot="public" virt="non-virtual"><scope>par2::TransportEngine</scope><name>bind_particles</name></member>
+      <member refid="classpar2_1_1TransportEngine_1acf68d4ffc86aaee00660117d01427f92" prot="public" virt="non-virtual"><scope>par2::TransportEngine</scope><name>bind_velocity</name></member>
+      <member refid="classpar2_1_1TransportEngine_1a37523a6ad247099d71507f459fe5a017" prot="public" virt="non-virtual"><scope>par2::TransportEngine</scope><name>boundary</name></member>
+      <member refid="classpar2_1_1TransportEngine_1a49909c7eff5f21b0b37df8baa37613b8" prot="public" virt="non-virtual"><scope>par2::TransportEngine</scope><name>compute_unwrapped_positions</name></member>
+      <member refid="classpar2_1_1TransportEngine_1aa55b61239f51e746237574c86efe58d8" prot="public" virt="non-virtual"><scope>par2::TransportEngine</scope><name>config</name></member>
+      <member refid="classpar2_1_1TransportEngine_1a34d0552a0f43862cba2fb3c80a0e7341" prot="public" virt="non-virtual"><scope>par2::TransportEngine</scope><name>ensure_tracking_arrays</name></member>
+      <member refid="classpar2_1_1TransportEngine_1a597eab8aa3e35e1dd3a28f4334009ee2" prot="public" virt="non-virtual"><scope>par2::TransportEngine</scope><name>grid</name></member>
+      <member refid="classpar2_1_1TransportEngine_1ac5e8147446a0af95cb63ff980d458dad" prot="public" virt="non-virtual"><scope>par2::TransportEngine</scope><name>has_particles</name></member>
+      <member refid="classpar2_1_1TransportEngine_1a798a9da31d5ac9ca77516a7be0db3156" prot="public" virt="non-virtual"><scope>par2::TransportEngine</scope><name>has_velocity</name></member>
+      <member refid="classpar2_1_1TransportEngine_1a719d195ca4f764cf10d674c67496cadb" prot="private" virt="non-virtual"><scope>par2::TransportEngine</scope><name>impl_</name></member>
+      <member refid="classpar2_1_1TransportEngine_1ac104270e0963816b21585e33f89be79f" prot="public" virt="non-virtual"><scope>par2::TransportEngine</scope><name>inject_box</name></member>
+      <member refid="classpar2_1_1TransportEngine_1a48a0c43bedd7d095602672855a24cdbe" prot="public" virt="non-virtual"><scope>par2::TransportEngine</scope><name>is_prepared</name></member>
+      <member refid="classpar2_1_1TransportEngine_1a54a6150f822240a32fb1e5fc07edbc78" prot="public" virt="non-virtual"><scope>par2::TransportEngine</scope><name>needs_corner_update</name></member>
+      <member refid="classpar2_1_1TransportEngine_1a90ad66fcd78e43673b98ef3af44a819d" prot="public" virt="non-virtual"><scope>par2::TransportEngine</scope><name>needs_drift_update</name></member>
+      <member refid="classpar2_1_1TransportEngine_1afc86ab33f59e50210d839abe96e1ae1e" prot="public" virt="non-virtual"><scope>par2::TransportEngine</scope><name>num_particles</name></member>
+      <member refid="classpar2_1_1TransportEngine_1aae804abaff03a2be45e657b1e5ad1030" prot="public" virt="non-virtual"><scope>par2::TransportEngine</scope><name>operator=</name></member>
+      <member refid="classpar2_1_1TransportEngine_1a5f44ae90b3832391dbab05c391312dfa" prot="public" virt="non-virtual"><scope>par2::TransportEngine</scope><name>operator=</name></member>
+      <member refid="classpar2_1_1TransportEngine_1abefeecf8f9983638017cef5616200492" prot="public" virt="non-virtual"><scope>par2::TransportEngine</scope><name>params</name></member>
+      <member refid="classpar2_1_1TransportEngine_1a989b022a19f3990fa324493280521832" prot="public" virt="non-virtual"><scope>par2::TransportEngine</scope><name>particles</name></member>
+      <member refid="classpar2_1_1TransportEngine_1ad6789ef1a213665542e57b2f693d5653" prot="public" virt="non-virtual"><scope>par2::TransportEngine</scope><name>prepare</name></member>
+      <member refid="classpar2_1_1TransportEngine_1aec74ff569be592641fedd6286ac3888d" prot="public" virt="non-virtual"><scope>par2::TransportEngine</scope><name>record_event</name></member>
+      <member refid="classpar2_1_1TransportEngine_1a626e300583384da22ec9a637c9b1b255" prot="public" virt="non-virtual"><scope>par2::TransportEngine</scope><name>set_stream</name></member>
+      <member refid="classpar2_1_1TransportEngine_1afa6a9cd031dc86fa4b40444bf532b59a" prot="public" virt="non-virtual"><scope>par2::TransportEngine</scope><name>step</name></member>
+      <member refid="classpar2_1_1TransportEngine_1a7c2fb73be13c916d078720da1d98087a" prot="public" virt="non-virtual"><scope>par2::TransportEngine</scope><name>stream</name></member>
+      <member refid="classpar2_1_1TransportEngine_1a4a740df188604ac7655428afdd44650c" prot="public" virt="non-virtual"><scope>par2::TransportEngine</scope><name>synchronize</name></member>
+      <member refid="classpar2_1_1TransportEngine_1ad50e83cc6ed8bb68b07379e2663a7836" prot="public" virt="non-virtual"><scope>par2::TransportEngine</scope><name>TransportEngine</name></member>
+      <member refid="classpar2_1_1TransportEngine_1a4f43bb8e9b41ef56bbfe527e581db931" prot="public" virt="non-virtual"><scope>par2::TransportEngine</scope><name>TransportEngine</name></member>
+      <member refid="classpar2_1_1TransportEngine_1adcacb981976e59e322c9e4571d62d498" prot="public" virt="non-virtual"><scope>par2::TransportEngine</scope><name>TransportEngine</name></member>
+      <member refid="classpar2_1_1TransportEngine_1affb69d449a3c1e5f05da35a8459defcc" prot="public" virt="non-virtual"><scope>par2::TransportEngine</scope><name>update_derived_fields</name></member>
+      <member refid="classpar2_1_1TransportEngine_1a0d9b39f75639df294f3173d66b8ce35e" prot="public" virt="non-virtual"><scope>par2::TransportEngine</scope><name>wait_event</name></member>
+      <member refid="classpar2_1_1TransportEngine_1a2383c36aa2ee4ad0a64d9080aefba631" prot="public" virt="non-virtual"><scope>par2::TransportEngine</scope><name>~TransportEngine</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

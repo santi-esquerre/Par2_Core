@@ -1,0 +1,10 @@
+build
+.aidigestignore
+*.md
+.clangd
+.cache
+.vscode
+compile_commands.json
+debug_artifacts
+tests
+output/

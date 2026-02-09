@@ -1,0 +1,207 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.4" xml:lang="en-US">
+  <compounddef id="structpar2_1_1FaceFieldView" kind="struct" language="C++" prot="public">
+    <compoundname>par2::FaceFieldView</compoundname>
+    <includes refid="velocity__layout_8hpp" local="no">velocity_layout.hpp</includes>
+    <templateparamlist>
+      <param>
+        <type>typename T</type>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structpar2_1_1FaceFieldView_1ab933d4c0f4412cb2a0bbdd6be9768cf4" prot="public" static="no" mutable="no">
+        <type>const T *</type>
+        <definition>const T* par2::FaceFieldView&lt; T &gt;::U</definition>
+        <argsstring></argsstring>
+        <name>U</name>
+        <qualifiedname>par2::FaceFieldView::U</qualifiedname>
+        <initializer>= nullptr</initializer>
+        <briefdescription>
+<para>X-component (face-centered on YZ planes) [device ptr]. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/par2_core/velocity_layout.hpp" line="159" column="13" bodyfile="include/par2_core/velocity_layout.hpp" bodystart="159" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structpar2_1_1FaceFieldView_1a7c44e636e180ff1e973a79e052897f2d" prot="public" static="no" mutable="no">
+        <type>const T *</type>
+        <definition>const T* par2::FaceFieldView&lt; T &gt;::V</definition>
+        <argsstring></argsstring>
+        <name>V</name>
+        <qualifiedname>par2::FaceFieldView::V</qualifiedname>
+        <initializer>= nullptr</initializer>
+        <briefdescription>
+<para>Y-component (face-centered on XZ planes) [device ptr]. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/par2_core/velocity_layout.hpp" line="160" column="13" bodyfile="include/par2_core/velocity_layout.hpp" bodystart="160" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structpar2_1_1FaceFieldView_1adf6e9512c186b65108888815399b39c9" prot="public" static="no" mutable="no">
+        <type>const T *</type>
+        <definition>const T* par2::FaceFieldView&lt; T &gt;::W</definition>
+        <argsstring></argsstring>
+        <name>W</name>
+        <qualifiedname>par2::FaceFieldView::W</qualifiedname>
+        <initializer>= nullptr</initializer>
+        <briefdescription>
+<para>Z-component (face-centered on XY planes) [device ptr]. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/par2_core/velocity_layout.hpp" line="161" column="13" bodyfile="include/par2_core/velocity_layout.hpp" bodystart="161" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structpar2_1_1FaceFieldView_1a82b6a9cdc06fce36128dee4bc2de9212" prot="public" static="no" mutable="no">
+        <type>size_t</type>
+        <definition>size_t par2::FaceFieldView&lt; T &gt;::size</definition>
+        <argsstring></argsstring>
+        <name>size</name>
+        <qualifiedname>par2::FaceFieldView::size</qualifiedname>
+        <initializer>= 0</initializer>
+        <briefdescription>
+<para>Number of elements per component: (nx+1)(ny+1)(nz+1) </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/par2_core/velocity_layout.hpp" line="162" column="12" bodyfile="include/par2_core/velocity_layout.hpp" bodystart="162" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="structpar2_1_1FaceFieldView_1ae657102a5db89cb80d097807e5f60b64" prot="public" static="no" constexpr="yes" const="yes" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
+        <type>constexpr bool</type>
+        <definition>constexpr bool par2::FaceFieldView&lt; T &gt;::valid</definition>
+        <argsstring>() const noexcept</argsstring>
+        <name>valid</name>
+        <qualifiedname>par2::FaceFieldView::valid</qualifiedname>
+        <briefdescription>
+<para>Check if all pointers are set and size is valid. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/par2_core/velocity_layout.hpp" line="165" column="20" bodyfile="include/par2_core/velocity_layout.hpp" bodystart="165" bodyend="167"/>
+      </memberdef>
+      <memberdef kind="function" id="structpar2_1_1FaceFieldView_1a0aa39d3492319bf1debf1bae21f7d7f4" prot="public" static="no" constexpr="yes" const="yes" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename GridT</type>
+          </param>
+        </templateparamlist>
+        <type>constexpr bool</type>
+        <definition>constexpr bool par2::FaceFieldView&lt; T &gt;::matches_grid</definition>
+        <argsstring>(const GridDesc&lt; GridT &gt; &amp;grid) const noexcept</argsstring>
+        <name>matches_grid</name>
+        <qualifiedname>par2::FaceFieldView::matches_grid</qualifiedname>
+        <param>
+          <type>const <ref refid="structpar2_1_1GridDesc" kindref="compound">GridDesc</ref>&lt; GridT &gt; &amp;</type>
+          <declname>grid</declname>
+        </param>
+        <briefdescription>
+<para>Check if size matches expected for given grid. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/par2_core/velocity_layout.hpp" line="171" column="20" bodyfile="include/par2_core/velocity_layout.hpp" bodystart="171" bodyend="173"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Non-owning view of a staggered velocity field (MAC grid layout). </para>
+    </briefdescription>
+    <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>T</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Floating point type (float or double)</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+<sect2 id="structpar2_1_1FaceFieldView_1autotoc_md30">
+<title>Memory Layout</title>
+<para>Each component (U, V, W) is stored as a flat array with:<itemizedlist>
+<listitem><para><bold>Size:</bold> <computeroutput>(nx+1) * (ny+1) * (nz+1)</computeroutput> elements</para>
+</listitem><listitem><para><bold>Indexing:</bold> <computeroutput>merge_id(ix, iy, iz, nx, ny)</computeroutput></para>
+</listitem></itemizedlist>
+</para>
+</sect2>
+<sect2 id="structpar2_1_1FaceFieldView_1autotoc_md31">
+<title>Semantic Meaning</title>
+<para>Despite using corner-point indexing, these represent <bold>face-centered</bold> values:</para>
+<para><table rows="4" cols="3"><row>
+<entry thead="yes"><para>Component   </para>
+</entry><entry thead="yes"><para>Physical Location   </para>
+</entry><entry thead="yes"><para>Access for cell (cx, cy, cz)    </para>
+</entry></row>
+<row>
+<entry thead="no"><para>U   </para>
+</entry><entry thead="no"><para>X-face centers (yz plane)   </para>
+</entry><entry thead="no"><para><computeroutput>U[merge_id(cx, cy, cz)]</computeroutput> = left, <computeroutput>U[merge_id(cx+1, cy, cz)]</computeroutput> = right    </para>
+</entry></row>
+<row>
+<entry thead="no"><para>V   </para>
+</entry><entry thead="no"><para>Y-face centers (xz plane)   </para>
+</entry><entry thead="no"><para><computeroutput>V[merge_id(cx, cy, cz)]</computeroutput> = front, <computeroutput>V[merge_id(cx, cy+1, cz)]</computeroutput> = back    </para>
+</entry></row>
+<row>
+<entry thead="no"><para>W   </para>
+</entry><entry thead="no"><para>Z-face centers (xy plane)   </para>
+</entry><entry thead="no"><para><computeroutput>W[merge_id(cx, cy, cz)]</computeroutput> = bottom, <computeroutput>W[merge_id(cx, cy, cz+1)]</computeroutput> = top   </para>
+</entry></row>
+</table>
+</para>
+</sect2>
+<sect2 id="structpar2_1_1FaceFieldView_1autotoc_md32">
+<title>Valid Index Ranges</title>
+<para><itemizedlist>
+<listitem><para>ix: 0 to nx (inclusive) - nx+1 values per row</para>
+</listitem><listitem><para>iy: 0 to ny (inclusive) - ny+1 values per column</para>
+</listitem><listitem><para>iz: 0 to nz (inclusive) - nz+1 values per layer</para>
+</listitem></itemizedlist>
+</para>
+</sect2>
+<sect2 id="structpar2_1_1FaceFieldView_1autotoc_md33">
+<title>Usage Example</title>
+<para><programlisting filename=".cpp"><codeline><highlight class="comment">//<sp/>Allocate<sp/>on<sp/>GPU</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>sz<sp/>=<sp/><ref refid="namespacepar2_1a9df49898861da6df112626217994392e" kindref="member">par2::field_size</ref>(grid);</highlight></codeline>
+<codeline><highlight class="normal">T*<sp/>d_U,<sp/>*d_V,<sp/>*d_W;</highlight></codeline>
+<codeline><highlight class="normal">cudaMalloc(&amp;d_U,<sp/>sz<sp/>*<sp/></highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(T));</highlight></codeline>
+<codeline><highlight class="normal">cudaMalloc(&amp;d_V,<sp/>sz<sp/>*<sp/></highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(T));</highlight></codeline>
+<codeline><highlight class="normal">cudaMalloc(&amp;d_W,<sp/>sz<sp/>*<sp/></highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(T));</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">//<sp/>Create<sp/>view</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><ref refid="structpar2_1_1FaceFieldView" kindref="compound">par2::FaceFieldView&lt;T&gt;</ref><sp/>vel{d_U,<sp/>d_V,<sp/>d_W,<sp/>sz};</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">//<sp/>Bind<sp/>to<sp/>engine</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">engine.bind_velocity(vel);</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="note"><para>This is the <bold>input format</bold> expected by <computeroutput><ref refid="classpar2_1_1TransportEngine_1acf68d4ffc86aaee00660117d01427f92" kindref="member">TransportEngine::bind_velocity()</ref></computeroutput>. </para>
+</simplesect>
+<simplesect kind="note"><para>Legacy PAR² calls this &quot;FaceField&quot; and uses <computeroutput>facefield::mergeId()</computeroutput>. </para>
+</simplesect>
+</para>
+</sect2>
+    </detaileddescription>
+    <location file="include/par2_core/velocity_layout.hpp" line="158" column="1" bodyfile="include/par2_core/velocity_layout.hpp" bodystart="158" bodyend="174"/>
+    <listofallmembers>
+      <member refid="structpar2_1_1FaceFieldView_1a0aa39d3492319bf1debf1bae21f7d7f4" prot="public" virt="non-virtual"><scope>par2::FaceFieldView</scope><name>matches_grid</name></member>
+      <member refid="structpar2_1_1FaceFieldView_1a82b6a9cdc06fce36128dee4bc2de9212" prot="public" virt="non-virtual"><scope>par2::FaceFieldView</scope><name>size</name></member>
+      <member refid="structpar2_1_1FaceFieldView_1ab933d4c0f4412cb2a0bbdd6be9768cf4" prot="public" virt="non-virtual"><scope>par2::FaceFieldView</scope><name>U</name></member>
+      <member refid="structpar2_1_1FaceFieldView_1a7c44e636e180ff1e973a79e052897f2d" prot="public" virt="non-virtual"><scope>par2::FaceFieldView</scope><name>V</name></member>
+      <member refid="structpar2_1_1FaceFieldView_1ae657102a5db89cb80d097807e5f60b64" prot="public" virt="non-virtual"><scope>par2::FaceFieldView</scope><name>valid</name></member>
+      <member refid="structpar2_1_1FaceFieldView_1adf6e9512c186b65108888815399b39c9" prot="public" virt="non-virtual"><scope>par2::FaceFieldView</scope><name>W</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

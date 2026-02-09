@@ -1,0 +1,224 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.4" xml:lang="en-US">
+  <compounddef id="classpar2_1_1io_1_1PinnedParticlesBuffer" kind="class" language="C++" prot="public">
+    <compoundname>par2::io::PinnedParticlesBuffer</compoundname>
+    <includes refid="io_8hpp" local="no">io.hpp</includes>
+    <templateparamlist>
+      <param>
+        <type>typename T</type>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="classpar2_1_1io_1_1PinnedParticlesBuffer_1a7cad6c201da996d6e12c1470f18f087c" prot="public" static="no" mutable="no">
+        <type><ref refid="structpar2_1_1io_1_1HostParticlesBuffer" kindref="compound">HostParticlesBuffer</ref>&lt; T &gt;</type>
+        <definition>HostParticlesBuffer&lt;T&gt; par2::io::PinnedParticlesBuffer&lt; T &gt;::buffer</definition>
+        <argsstring></argsstring>
+        <name>buffer</name>
+        <qualifiedname>par2::io::PinnedParticlesBuffer::buffer</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/par2_core/io.hpp" line="256" column="25" bodyfile="include/par2_core/io.hpp" bodystart="256" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classpar2_1_1io_1_1PinnedParticlesBuffer_1abb27c905649af9669b1fa3526886bf87" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>par2::io::PinnedParticlesBuffer&lt; T &gt;::PinnedParticlesBuffer</definition>
+        <argsstring>()=default</argsstring>
+        <name>PinnedParticlesBuffer</name>
+        <qualifiedname>par2::io::PinnedParticlesBuffer::PinnedParticlesBuffer</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/par2_core/io.hpp" line="258" column="5"/>
+      </memberdef>
+      <memberdef kind="function" id="classpar2_1_1io_1_1PinnedParticlesBuffer_1a45d913e643400d364cb6b21b872f5c7e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool par2::io::PinnedParticlesBuffer&lt; T &gt;::allocate</definition>
+        <argsstring>(int capacity, bool with_unwrapped=true, bool with_status=true)</argsstring>
+        <name>allocate</name>
+        <qualifiedname>par2::io::PinnedParticlesBuffer::allocate</qualifiedname>
+        <param>
+          <type>int</type>
+          <declname>capacity</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>with_unwrapped</declname>
+          <defval>true</defval>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>with_status</declname>
+          <defval>true</defval>
+        </param>
+        <briefdescription>
+<para>Allocate pinned buffers. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>capacity</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Number of particles </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>with_unwrapped</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Allocate x_u/y_u/z_u </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>with_status</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Allocate status array </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/par2_core/io.hpp" line="267" column="10" bodyfile="include/par2_core/io.hpp" bodystart="267" bodyend="299"/>
+      </memberdef>
+      <memberdef kind="function" id="classpar2_1_1io_1_1PinnedParticlesBuffer_1a44a76574cf835483cd3459a63a58f915" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void par2::io::PinnedParticlesBuffer&lt; T &gt;::free</definition>
+        <argsstring>()</argsstring>
+        <name>free</name>
+        <qualifiedname>par2::io::PinnedParticlesBuffer::free</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/par2_core/io.hpp" line="301" column="10" bodyfile="include/par2_core/io.hpp" bodystart="301" bodyend="310"/>
+      </memberdef>
+      <memberdef kind="function" id="classpar2_1_1io_1_1PinnedParticlesBuffer_1a638152fb6895d37748318768d835c996" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>par2::io::PinnedParticlesBuffer&lt; T &gt;::~PinnedParticlesBuffer</definition>
+        <argsstring>()</argsstring>
+        <name>~PinnedParticlesBuffer</name>
+        <qualifiedname>par2::io::PinnedParticlesBuffer::~PinnedParticlesBuffer</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/par2_core/io.hpp" line="312" column="5" bodyfile="include/par2_core/io.hpp" bodystart="312" bodyend="312"/>
+      </memberdef>
+      <memberdef kind="function" id="classpar2_1_1io_1_1PinnedParticlesBuffer_1aab63a6c24c7cce4b771e2261e0693635" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>par2::io::PinnedParticlesBuffer&lt; T &gt;::PinnedParticlesBuffer</definition>
+        <argsstring>(const PinnedParticlesBuffer &amp;)=delete</argsstring>
+        <name>PinnedParticlesBuffer</name>
+        <qualifiedname>par2::io::PinnedParticlesBuffer::PinnedParticlesBuffer</qualifiedname>
+        <param>
+          <type>const <ref refid="classpar2_1_1io_1_1PinnedParticlesBuffer" kindref="compound">PinnedParticlesBuffer</ref> &amp;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/par2_core/io.hpp" line="315" column="5"/>
+      </memberdef>
+      <memberdef kind="function" id="classpar2_1_1io_1_1PinnedParticlesBuffer_1ad2915952c37021836d83c9bdb05ad8ad" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classpar2_1_1io_1_1PinnedParticlesBuffer" kindref="compound">PinnedParticlesBuffer</ref> &amp;</type>
+        <definition>PinnedParticlesBuffer &amp; par2::io::PinnedParticlesBuffer&lt; T &gt;::operator=</definition>
+        <argsstring>(const PinnedParticlesBuffer &amp;)=delete</argsstring>
+        <name>operator=</name>
+        <qualifiedname>par2::io::PinnedParticlesBuffer::operator=</qualifiedname>
+        <param>
+          <type>const <ref refid="classpar2_1_1io_1_1PinnedParticlesBuffer" kindref="compound">PinnedParticlesBuffer</ref> &amp;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/par2_core/io.hpp" line="316" column="27"/>
+      </memberdef>
+      <memberdef kind="function" id="classpar2_1_1io_1_1PinnedParticlesBuffer_1a9723ad29ac16701d1a683cd84dbd0b59" prot="public" static="no" const="no" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
+        <type></type>
+        <definition>par2::io::PinnedParticlesBuffer&lt; T &gt;::PinnedParticlesBuffer</definition>
+        <argsstring>(PinnedParticlesBuffer &amp;&amp;other) noexcept</argsstring>
+        <name>PinnedParticlesBuffer</name>
+        <qualifiedname>par2::io::PinnedParticlesBuffer::PinnedParticlesBuffer</qualifiedname>
+        <param>
+          <type><ref refid="classpar2_1_1io_1_1PinnedParticlesBuffer" kindref="compound">PinnedParticlesBuffer</ref> &amp;&amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/par2_core/io.hpp" line="319" column="5" bodyfile="include/par2_core/io.hpp" bodystart="319" bodyend="322"/>
+      </memberdef>
+      <memberdef kind="function" id="classpar2_1_1io_1_1PinnedParticlesBuffer_1aef9b4b025eb311e99b291f5dd4a11089" prot="public" static="no" const="no" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
+        <type><ref refid="classpar2_1_1io_1_1PinnedParticlesBuffer" kindref="compound">PinnedParticlesBuffer</ref> &amp;</type>
+        <definition>PinnedParticlesBuffer &amp; par2::io::PinnedParticlesBuffer&lt; T &gt;::operator=</definition>
+        <argsstring>(PinnedParticlesBuffer &amp;&amp;other) noexcept</argsstring>
+        <name>operator=</name>
+        <qualifiedname>par2::io::PinnedParticlesBuffer::operator=</qualifiedname>
+        <param>
+          <type><ref refid="classpar2_1_1io_1_1PinnedParticlesBuffer" kindref="compound">PinnedParticlesBuffer</ref> &amp;&amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/par2_core/io.hpp" line="323" column="27" bodyfile="include/par2_core/io.hpp" bodystart="323" bodyend="330"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>RAII wrapper for pinned host buffer allocation. </para>
+    </briefdescription>
+    <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>T</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Floating point type</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+Allocates pinned memory for efficient async transfers. Automatically frees on destruction. </para>
+    </detaileddescription>
+    <location file="include/par2_core/io.hpp" line="254" column="1" bodyfile="include/par2_core/io.hpp" bodystart="254" bodyend="331"/>
+    <listofallmembers>
+      <member refid="classpar2_1_1io_1_1PinnedParticlesBuffer_1a45d913e643400d364cb6b21b872f5c7e" prot="public" virt="non-virtual"><scope>par2::io::PinnedParticlesBuffer</scope><name>allocate</name></member>
+      <member refid="classpar2_1_1io_1_1PinnedParticlesBuffer_1a7cad6c201da996d6e12c1470f18f087c" prot="public" virt="non-virtual"><scope>par2::io::PinnedParticlesBuffer</scope><name>buffer</name></member>
+      <member refid="classpar2_1_1io_1_1PinnedParticlesBuffer_1a44a76574cf835483cd3459a63a58f915" prot="public" virt="non-virtual"><scope>par2::io::PinnedParticlesBuffer</scope><name>free</name></member>
+      <member refid="classpar2_1_1io_1_1PinnedParticlesBuffer_1ad2915952c37021836d83c9bdb05ad8ad" prot="public" virt="non-virtual"><scope>par2::io::PinnedParticlesBuffer</scope><name>operator=</name></member>
+      <member refid="classpar2_1_1io_1_1PinnedParticlesBuffer_1aef9b4b025eb311e99b291f5dd4a11089" prot="public" virt="non-virtual"><scope>par2::io::PinnedParticlesBuffer</scope><name>operator=</name></member>
+      <member refid="classpar2_1_1io_1_1PinnedParticlesBuffer_1abb27c905649af9669b1fa3526886bf87" prot="public" virt="non-virtual"><scope>par2::io::PinnedParticlesBuffer</scope><name>PinnedParticlesBuffer</name></member>
+      <member refid="classpar2_1_1io_1_1PinnedParticlesBuffer_1aab63a6c24c7cce4b771e2261e0693635" prot="public" virt="non-virtual"><scope>par2::io::PinnedParticlesBuffer</scope><name>PinnedParticlesBuffer</name></member>
+      <member refid="classpar2_1_1io_1_1PinnedParticlesBuffer_1a9723ad29ac16701d1a683cd84dbd0b59" prot="public" virt="non-virtual"><scope>par2::io::PinnedParticlesBuffer</scope><name>PinnedParticlesBuffer</name></member>
+      <member refid="classpar2_1_1io_1_1PinnedParticlesBuffer_1a638152fb6895d37748318768d835c996" prot="public" virt="non-virtual"><scope>par2::io::PinnedParticlesBuffer</scope><name>~PinnedParticlesBuffer</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>
