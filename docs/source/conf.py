@@ -62,6 +62,7 @@ html_theme_options = {
 }
 html_static_path = ["_static"]
 html_title = "Par2_Core Documentation"
+html_baseurl = "https://santi-esquerre.github.io/Par2_Core/"
 
 # ---------------------------------------------------------------------------
 # General

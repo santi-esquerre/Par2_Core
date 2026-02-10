@@ -14,7 +14,7 @@ REPO_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
 
 if [[ "${1:-}" == "clean" ]]; then
     echo "Cleaning docs build artifacts..."
-    rm -rf "$SCRIPT_DIR/build" "$SCRIPT_DIR/_doxygen"
+    rm -rf "$SCRIPT_DIR/build" "$SCRIPT_DIR/_build" "$SCRIPT_DIR/_doxygen"
     echo "Done."
     exit 0
 fi
