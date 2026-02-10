@@ -6,7 +6,7 @@
 ![CUDA](https://img.shields.io/badge/CUDA-12.x-76B900?logo=nvidia)
 ![CMake](https://img.shields.io/badge/CMake-≥3.18-064F8C?logo=cmake)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
-[![Docs](https://img.shields.io/badge/docs-GitHub%20Pages-blue?logo=readthedocs)](https://GerryR.github.io/par2/)
+[![Docs](https://img.shields.io/badge/docs-GitHub%20Pages-blue?logo=readthedocs)](https://santi-esquerre.github.io/Par2_Core/)
 <!-- TODO: update docs URL once GitHub Pages is live -->
 
 ---
