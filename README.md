@@ -31,7 +31,7 @@ It is designed to plug into larger HPC simulation pipelines
   conditions are decoupled from the engine itself.
 - **Scientific documentation** — full equation derivations
   (mapped to Rizzo et al., 2019) published on
-  [GitHub Pages](https://GerryR.github.io/par2/).
+  [GitHub Pages](https://santi-esquerre.github.io/Par2_Core/).
 
 ---
 
