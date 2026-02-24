@@ -15,7 +15,7 @@ set(CMAKE_CUDA_STANDARD_REQUIRED ON)
 
 # Default CUDA architectures if not specified (75+ for CUDA 12.x)
 if(NOT DEFINED CMAKE_CUDA_ARCHITECTURES)
-    set(CMAKE_CUDA_ARCHITECTURES 75 80 86 89 90)
+    set(CMAKE_CUDA_ARCHITECTURES 70 75 80 86)
 endif()
 
 # clangd compatibility: avoid CUDA response files
