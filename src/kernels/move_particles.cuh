@@ -42,6 +42,7 @@ void launch_move_particles(
     T dt,
     const VelocityView<T>& velocity,
     const CornerVelocityView<T>& corner_velocity,
+    const PotentialFlowView<T>& potential_flow,
     const ParticlesView<T>& particles,
     const DriftCorrectionView<T>& drift_correction,
     curandState_t* rng_states,

@@ -204,6 +204,7 @@
 #include "../internal/grid/indexing.cuh"
 #include "../internal/fields/facefield_accessor.cuh"
 #include "../internal/fields/cornerfield_accessor.cuh"
+#include "../internal/fields/potential_flow_accessor.cuh"
 #include "../internal/math/dispersion.cuh"
 #include "../internal/boundary/boundary_helpers.cuh"
 
@@ -217,6 +218,7 @@ using internal::sample_velocity_facefield;
 using internal::sample_velocity_facefield_2d_aware;
 using internal::sample_velocity_cornerfield;
 using internal::sample_velocity_cornerfield_2d_aware;
+using internal::sample_velocity_kh_potential;
 using internal::compute_drift_trilinear;
 using internal::position_to_cell;
 using internal::is_valid_cell;
@@ -327,6 +329,8 @@ __global__ void move_particles_kernel_full(
     const T* __restrict__ Uc,
     const T* __restrict__ Vc,
     const T* __restrict__ Wc,
+    // Cell-centered K/head for KH potential reconstruction
+    const PotentialFlowView<T> potential_flow,
     // Precomputed drift correction (if Precomputed mode)
     const T* __restrict__ drift_x,
     const T* __restrict__ drift_y,
@@ -342,6 +346,7 @@ __global__ void move_particles_kernel_full(
     curandState_t* __restrict__ rng_states,
     int n,
     // Mode configuration
+    VelocityEvalMode velocity_eval_mode,
     InterpolationMode interp_mode,
     DriftCorrectionMode drift_mode
 ) {
@@ -393,7 +398,9 @@ __global__ void move_particles_kernel_full(
         // =====================================================================
         T vx, vy, vz;
 
-        if (interp_mode == InterpolationMode::Linear) {
+        if (velocity_eval_mode == VelocityEvalMode::KhPotentialReconstruction) {
+            sample_velocity_kh_potential(potential_flow, grid, x, y, z, vx, vy, vz);
+        } else if (interp_mode == InterpolationMode::Linear) {
             // SOURCE: legacy/Geometry/FaceField.cuh, facefield::in()
             sample_velocity_facefield_2d_aware(U, V, W, grid, idx, idy, idz, valid, x, y, z, vx, vy, vz);
         } else {
@@ -431,7 +438,9 @@ __global__ void move_particles_kernel_full(
         // SOURCE: legacy/Geometry/CornerField.cuh, displacementMatrix()
         // For B matrix, we need corner velocity (trilinear) as per legacy
         T vx_B, vy_B, vz_B;
-        if (interp_mode == InterpolationMode::Trilinear && Uc != nullptr) {
+        if (velocity_eval_mode == VelocityEvalMode::KhPotentialReconstruction) {
+            vx_B = vx; vy_B = vy; vz_B = vz;
+        } else if (interp_mode == InterpolationMode::Trilinear && Uc != nullptr) {
             vx_B = vx; vy_B = vy; vz_B = vz;
         } else if (Uc != nullptr) {
             // Use corner velocity for B matrix even in Linear mode
@@ -663,6 +672,7 @@ void launch_move_particles(
     T dt,
     const VelocityView<T>& velocity,
     const CornerVelocityView<T>& corner_velocity,
+    const PotentialFlowView<T>& potential_flow,
     const ParticlesView<T>& particles,
     const DriftCorrectionView<T>& drift_correction,
     curandState_t* rng_states,
@@ -687,6 +697,8 @@ void launch_move_particles(
         corner_velocity.Uc,
         corner_velocity.Vc,
         corner_velocity.Wc,
+        // Potential-flow K/head source (may be null in face mode)
+        potential_flow,
         // Precomputed drift (may be nullptr)
         drift_correction.dcx,
         drift_correction.dcy,
@@ -702,6 +714,7 @@ void launch_move_particles(
         rng_states,
         particles.n,
         // Mode configuration
+        config.velocity_eval_mode,
         config.interpolation_mode,
         config.drift_mode
     );
@@ -731,6 +744,7 @@ template void launch_move_particles<float>(
     const GridDesc<float>&, const TransportParams<float>&,
     const BoundaryConfig<float>&, const EngineConfig&, float,
     const VelocityView<float>&, const CornerVelocityView<float>&,
+    const PotentialFlowView<float>&,
     const ParticlesView<float>&, const DriftCorrectionView<float>&,
     curandState_t*, int, int, cudaStream_t);
 
@@ -738,6 +752,7 @@ template void launch_move_particles<double>(
     const GridDesc<double>&, const TransportParams<double>&,
     const BoundaryConfig<double>&, const EngineConfig&, double,
     const VelocityView<double>&, const CornerVelocityView<double>&,
+    const PotentialFlowView<double>&,
     const ParticlesView<double>&, const DriftCorrectionView<double>&,
     curandState_t*, int, int, cudaStream_t);
 

@@ -60,6 +60,58 @@ using ConstDeviceSpan = DeviceSpan<const T>;
 // - CornerVelocityView<T> = CornerFieldView<T> (corner-centered velocities)
 
 // =============================================================================
+// PotentialFlowView - KH reconstruction scalar fields
+// =============================================================================
+
+/**
+ * @brief Scalar boundary condition type for cell-centered potential fields.
+ */
+enum class ScalarBoundaryType : uint8_t {
+    Extrapolate,  ///< Clamp to nearest interior cell value
+    Periodic,     ///< Wrap indices across this axis
+    Dirichlet,    ///< Constant face value supplied in ScalarBoundaryFace::value
+    Neumann       ///< Zero normal gradient for first implementation
+};
+
+template <typename T>
+struct ScalarBoundaryFace {
+    ScalarBoundaryType type = ScalarBoundaryType::Extrapolate;
+    T value = T(0);
+};
+
+template <typename T>
+struct ScalarAxisBoundary {
+    ScalarBoundaryFace<T> lo;
+    ScalarBoundaryFace<T> hi;
+};
+
+template <typename T>
+struct PotentialBoundaryConfig {
+    ScalarAxisBoundary<T> x;
+    ScalarAxisBoundary<T> y;
+    ScalarAxisBoundary<T> z;
+};
+
+/**
+ * @brief Non-owning KH potential-flow scalar view.
+ *
+ * K and head are cell-centered arrays with size nx*ny*nz and linear index
+ * i + nx * (j + ny*k). The buffers must point to device memory and are owned by
+ * the caller.
+ */
+template <typename T>
+struct PotentialFlowView {
+    const T* K = nullptr;
+    const T* head = nullptr;
+    size_t size = 0;
+    PotentialBoundaryConfig<T> head_bc;
+
+    constexpr bool valid() const noexcept {
+        return (size == 0) || (K != nullptr && head != nullptr);
+    }
+};
+
+// =============================================================================
 // ParticlesView - SoA layout for particle positions
 // =============================================================================
 

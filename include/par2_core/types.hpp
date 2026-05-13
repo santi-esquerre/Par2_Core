@@ -114,6 +114,21 @@ enum class InterpolationMode : uint8_t {
 };
 
 /**
+ * @brief High-level velocity source used by the transport kernel.
+ *
+ * FaceTrilinear is the existing Par2 velocity-field path: the engine samples
+ * the bound face/corner velocity data according to interpolation_mode.
+ *
+ * KhPotentialReconstruction is experimental. It ignores the bound face velocity
+ * during advection and reconstructs q(x) = -K(x) grad h(x) from the bound
+ * cell-centered potential-flow view.
+ */
+enum class VelocityEvalMode : uint8_t {
+    FaceTrilinear,
+    KhPotentialReconstruction
+};
+
+/**
  * @brief Drift correction computation mode.
  *
  * The drift correction term (div(D)) arises from the Fokker-Planck equation
@@ -200,6 +215,7 @@ enum class DriftCorrectionMode : uint8_t {
  * @see debug_policy.hpp for compile-time debug configuration.
  */
 struct EngineConfig {
+    VelocityEvalMode velocity_eval_mode = VelocityEvalMode::FaceTrilinear;
     InterpolationMode interpolation_mode = InterpolationMode::Linear;
     DriftCorrectionMode drift_mode = DriftCorrectionMode::TrilinearOnFly;
 

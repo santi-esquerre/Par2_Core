@@ -58,6 +58,7 @@ struct EngineImpl {
     // Bound views (non-owning pointers to user data)
     VelocityView<T> velocity;
     CornerVelocityView<T> corner_velocity;
+    PotentialFlowView<T> potential_flow;
     ParticlesView<T> particles;
     DriftCorrectionView<T> drift_correction;
 
@@ -127,6 +128,11 @@ TransportEngine<T>::TransportEngine(
     if (grid.dx <= T(0) || grid.dy <= T(0) || grid.dz <= T(0)) {
         throw std::invalid_argument("Grid cell sizes must be > 0");
     }
+    if (config.velocity_eval_mode == VelocityEvalMode::KhPotentialReconstruction &&
+        params.has_dispersion()) {
+        throw std::invalid_argument(
+            "KH potential reconstruction currently supports pure advection only");
+    }
 }
 
 template <typename T>
@@ -161,6 +167,15 @@ void TransportEngine<T>::bind_velocity(const VelocityView<T>& vel) {
 }
 
 template <typename T>
+void TransportEngine<T>::bind_potential_flow(const PotentialFlowView<T>& potential) {
+    assert(potential.valid() && "Invalid potential-flow view");
+    assert(potential.size == static_cast<size_t>(impl_->grid.num_cells()) &&
+           "Potential-flow array size must match grid.num_cells()");
+    impl_->potential_flow = potential;
+    impl_->prepared = false;
+}
+
+template <typename T>
 void TransportEngine<T>::bind_corner_velocity(const CornerVelocityView<T>& cvel) {
     assert(cvel.valid() && "Invalid corner velocity view");
     impl_->corner_velocity = cvel;
@@ -192,9 +207,12 @@ void TransportEngine<T>::update_derived_fields(cudaStream_t stream) {
     // =========================================================================
     // Part 1: Corner velocity (for Trilinear interpolation or TrilinearOnFly drift)
     // =========================================================================
+    const bool uses_face_velocity =
+        impl_->config.velocity_eval_mode != VelocityEvalMode::KhPotentialReconstruction;
     const bool needs_corner =
-        impl_->config.interpolation_mode == InterpolationMode::Trilinear ||
-        impl_->config.drift_mode == DriftCorrectionMode::TrilinearOnFly;
+        uses_face_velocity &&
+        (impl_->config.interpolation_mode == InterpolationMode::Trilinear ||
+         impl_->config.drift_mode == DriftCorrectionMode::TrilinearOnFly);
 
     // Skip corner update if external or not dirty
     if (needs_corner && !impl_->corner_external && impl_->corner_dirty) {
@@ -288,6 +306,8 @@ void TransportEngine<T>::update_derived_fields(cudaStream_t stream) {
 
 template <typename T>
 bool TransportEngine<T>::needs_corner_update() const noexcept {
+    if (impl_->config.velocity_eval_mode == VelocityEvalMode::KhPotentialReconstruction)
+        return false;
     if (impl_->corner_external) return false;
     if (!impl_->corner_dirty) return false;
 
@@ -297,6 +317,8 @@ bool TransportEngine<T>::needs_corner_update() const noexcept {
 
 template <typename T>
 bool TransportEngine<T>::needs_drift_update() const noexcept {
+    if (impl_->config.velocity_eval_mode == VelocityEvalMode::KhPotentialReconstruction)
+        return false;
     if (impl_->workspace.drift_external) return false;
     if (!impl_->workspace.drift_dirty) return false;
 
@@ -306,7 +328,11 @@ bool TransportEngine<T>::needs_drift_update() const noexcept {
 // Simulation
 template <typename T>
 void TransportEngine<T>::step(T dt) {
-    assert(has_velocity() && "Velocity not bound");
+    if (impl_->config.velocity_eval_mode == VelocityEvalMode::KhPotentialReconstruction) {
+        assert(has_potential_flow() && "Potential-flow source not bound");
+    } else {
+        assert(has_velocity() && "Velocity not bound");
+    }
     assert(has_particles() && "Particles not bound");
     assert(dt > T(0) && "dt must be positive");
     assert(impl_->prepared && "Engine not prepared. Call prepare() before step().");
@@ -340,6 +366,7 @@ void TransportEngine<T>::step(T dt) {
         dt,
         impl_->velocity,
         impl_->corner_velocity,
+        impl_->potential_flow,
         impl_->particles,
         impl_->drift_correction,
         impl_->workspace.rng_states,  // RNG from workspace
@@ -427,6 +454,11 @@ int TransportEngine<T>::num_particles() const noexcept {
 template <typename T>
 bool TransportEngine<T>::has_velocity() const noexcept {
     return impl_->velocity.valid() && impl_->velocity.size > 0;
+}
+
+template <typename T>
+bool TransportEngine<T>::has_potential_flow() const noexcept {
+    return impl_->potential_flow.valid() && impl_->potential_flow.size > 0;
 }
 
 template <typename T>

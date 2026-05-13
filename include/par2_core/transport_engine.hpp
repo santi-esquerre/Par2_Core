@@ -169,6 +169,15 @@ public:
     void bind_velocity(const VelocityView<T>& vel);
 
     /**
+     * @brief Bind cell-centered K/head scalar fields for KH reconstruction.
+     *
+     * Used only when EngineConfig::velocity_eval_mode is
+     * VelocityEvalMode::KhPotentialReconstruction. The engine does not copy the
+     * data; the caller owns the device buffers.
+     */
+    void bind_potential_flow(const PotentialFlowView<T>& potential);
+
+    /**
      * @brief Bind external corner velocity field (for trilinear mode).
      *
      * @param cvel Corner velocity view with (nx+1)×(ny+1)×(nz+1) grid
@@ -339,6 +348,11 @@ public:
 
     /// Check if velocity is bound
     bool has_velocity() const noexcept;
+
+    /**
+     * @brief Check whether a KH potential-flow source is bound.
+     */
+    bool has_potential_flow() const noexcept;
 
     /// Check if particles are bound
     bool has_particles() const noexcept;
