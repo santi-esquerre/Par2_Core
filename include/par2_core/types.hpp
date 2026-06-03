@@ -124,9 +124,18 @@ enum class InterpolationMode : uint8_t {
  * cell-centered potential-flow view.
  */
 enum class VelocityEvalMode : uint8_t {
-    FaceTrilinear,
-    KhPotentialReconstruction
+    FaceTrilinear = 0,
+    KhLinear = 1,
+    KhCubicPotentialReconstruction = 2,
+    KhLogKCubicPotentialReconstruction = 3,
+    KhPotentialReconstruction = KhLinear
 };
+
+constexpr bool is_kh_velocity_eval_mode(VelocityEvalMode mode) noexcept {
+    return mode == VelocityEvalMode::KhLinear ||
+           mode == VelocityEvalMode::KhCubicPotentialReconstruction ||
+           mode == VelocityEvalMode::KhLogKCubicPotentialReconstruction;
+}
 
 /**
  * @brief Drift correction computation mode.

@@ -219,6 +219,7 @@ using internal::sample_velocity_facefield_2d_aware;
 using internal::sample_velocity_cornerfield;
 using internal::sample_velocity_cornerfield_2d_aware;
 using internal::sample_velocity_kh_potential;
+using internal::sample_velocity_potential_backend;
 using internal::compute_drift_trilinear;
 using internal::position_to_cell;
 using internal::is_valid_cell;
@@ -398,8 +399,9 @@ __global__ void move_particles_kernel_full(
         // =====================================================================
         T vx, vy, vz;
 
-        if (velocity_eval_mode == VelocityEvalMode::KhPotentialReconstruction) {
-            sample_velocity_kh_potential(potential_flow, grid, x, y, z, vx, vy, vz);
+        if (is_kh_velocity_eval_mode(velocity_eval_mode)) {
+            sample_velocity_potential_backend(potential_flow, grid, velocity_eval_mode, x, y, z,
+                                              vx, vy, vz);
         } else if (interp_mode == InterpolationMode::Linear) {
             // SOURCE: legacy/Geometry/FaceField.cuh, facefield::in()
             sample_velocity_facefield_2d_aware(U, V, W, grid, idx, idy, idz, valid, x, y, z, vx, vy, vz);
@@ -438,7 +440,7 @@ __global__ void move_particles_kernel_full(
         // SOURCE: legacy/Geometry/CornerField.cuh, displacementMatrix()
         // For B matrix, we need corner velocity (trilinear) as per legacy
         T vx_B, vy_B, vz_B;
-        if (velocity_eval_mode == VelocityEvalMode::KhPotentialReconstruction) {
+        if (is_kh_velocity_eval_mode(velocity_eval_mode)) {
             vx_B = vx; vy_B = vy; vz_B = vz;
         } else if (interp_mode == InterpolationMode::Trilinear && Uc != nullptr) {
             vx_B = vx; vy_B = vy; vz_B = vz;

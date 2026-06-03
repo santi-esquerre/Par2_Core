@@ -128,8 +128,7 @@ TransportEngine<T>::TransportEngine(
     if (grid.dx <= T(0) || grid.dy <= T(0) || grid.dz <= T(0)) {
         throw std::invalid_argument("Grid cell sizes must be > 0");
     }
-    if (config.velocity_eval_mode == VelocityEvalMode::KhPotentialReconstruction &&
-        params.has_dispersion()) {
+    if (is_kh_velocity_eval_mode(config.velocity_eval_mode) && params.has_dispersion()) {
         throw std::invalid_argument(
             "KH potential reconstruction currently supports pure advection only");
     }
@@ -207,8 +206,7 @@ void TransportEngine<T>::update_derived_fields(cudaStream_t stream) {
     // =========================================================================
     // Part 1: Corner velocity (for Trilinear interpolation or TrilinearOnFly drift)
     // =========================================================================
-    const bool uses_face_velocity =
-        impl_->config.velocity_eval_mode != VelocityEvalMode::KhPotentialReconstruction;
+    const bool uses_face_velocity = !is_kh_velocity_eval_mode(impl_->config.velocity_eval_mode);
     const bool needs_corner =
         uses_face_velocity &&
         (impl_->config.interpolation_mode == InterpolationMode::Trilinear ||
@@ -306,7 +304,7 @@ void TransportEngine<T>::update_derived_fields(cudaStream_t stream) {
 
 template <typename T>
 bool TransportEngine<T>::needs_corner_update() const noexcept {
-    if (impl_->config.velocity_eval_mode == VelocityEvalMode::KhPotentialReconstruction)
+    if (is_kh_velocity_eval_mode(impl_->config.velocity_eval_mode))
         return false;
     if (impl_->corner_external) return false;
     if (!impl_->corner_dirty) return false;
@@ -317,7 +315,7 @@ bool TransportEngine<T>::needs_corner_update() const noexcept {
 
 template <typename T>
 bool TransportEngine<T>::needs_drift_update() const noexcept {
-    if (impl_->config.velocity_eval_mode == VelocityEvalMode::KhPotentialReconstruction)
+    if (is_kh_velocity_eval_mode(impl_->config.velocity_eval_mode))
         return false;
     if (impl_->workspace.drift_external) return false;
     if (!impl_->workspace.drift_dirty) return false;
@@ -328,7 +326,7 @@ bool TransportEngine<T>::needs_drift_update() const noexcept {
 // Simulation
 template <typename T>
 void TransportEngine<T>::step(T dt) {
-    if (impl_->config.velocity_eval_mode == VelocityEvalMode::KhPotentialReconstruction) {
+    if (is_kh_velocity_eval_mode(impl_->config.velocity_eval_mode)) {
         assert(has_potential_flow() && "Potential-flow source not bound");
     } else {
         assert(has_velocity() && "Velocity not bound");
