@@ -171,11 +171,11 @@ __global__ void computeMomentsKernel(
     __shared__ typename BlockReduce::TempStorage temp_storage[3];
 
     MomentAccum<T> block_result[3];
-    block_result[0] = BlockReduce(temp_storage[0]).Reduce(accum[0], cub::Sum());
+    block_result[0] = BlockReduce(temp_storage[0]).Sum(accum[0]);
     __syncthreads();
-    block_result[1] = BlockReduce(temp_storage[1]).Reduce(accum[1], cub::Sum());
+    block_result[1] = BlockReduce(temp_storage[1]).Sum(accum[1]);
     __syncthreads();
-    block_result[2] = BlockReduce(temp_storage[2]).Reduce(accum[2], cub::Sum());
+    block_result[2] = BlockReduce(temp_storage[2]).Sum(accum[2]);
 
     // Thread 0 writes block result
     if (threadIdx.x == 0) {
@@ -215,11 +215,11 @@ __global__ void countStatusKernel(
     using BlockReduce = cub::BlockReduce<int, 256>;
     __shared__ typename BlockReduce::TempStorage temp_storage;
 
-    int block_active = BlockReduce(temp_storage).Reduce(local_active, cub::Sum());
+    int block_active = BlockReduce(temp_storage).Sum(local_active);
     __syncthreads();
-    int block_exited = BlockReduce(temp_storage).Reduce(local_exited, cub::Sum());
+    int block_exited = BlockReduce(temp_storage).Sum(local_exited);
     __syncthreads();
-    int block_inactive = BlockReduce(temp_storage).Reduce(local_inactive, cub::Sum());
+    int block_inactive = BlockReduce(temp_storage).Sum(local_inactive);
 
     if (threadIdx.x == 0) {
         atomicAdd(&counts[0], block_active);
@@ -521,7 +521,7 @@ __global__ void countInBoxKernel(
     // Block reduction
     using BlockReduce = cub::BlockReduce<int, 256>;
     __shared__ typename BlockReduce::TempStorage temp_storage;
-    int block_count = BlockReduce(temp_storage).Reduce(local_count, cub::Sum());
+    int block_count = BlockReduce(temp_storage).Sum(local_count);
 
     if (threadIdx.x == 0) {
         atomicAdd(count, block_count);
@@ -547,7 +547,7 @@ __global__ void countPastPlaneKernel(
 
     using BlockReduce = cub::BlockReduce<int, 256>;
     __shared__ typename BlockReduce::TempStorage temp_storage;
-    int block_count = BlockReduce(temp_storage).Reduce(local_count, cub::Sum());
+    int block_count = BlockReduce(temp_storage).Sum(local_count);
 
     if (threadIdx.x == 0) {
         atomicAdd(count, block_count);
@@ -688,9 +688,9 @@ __global__ void countByStatusKernel(
     using BlockReduce = cub::BlockReduce<int, 256>;
     __shared__ typename BlockReduce::TempStorage temp;
 
-    int ba = BlockReduce(temp).Reduce(local_active, cub::Sum()); __syncthreads();
-    int be = BlockReduce(temp).Reduce(local_exited, cub::Sum()); __syncthreads();
-    int bi = BlockReduce(temp).Reduce(local_inactive, cub::Sum());
+    int ba = BlockReduce(temp).Sum(local_active); __syncthreads();
+    int be = BlockReduce(temp).Sum(local_exited); __syncthreads();
+    int bi = BlockReduce(temp).Sum(local_inactive);
 
     if (threadIdx.x == 0) {
         atomicAdd(&counts[0], ba);
